@@ -1,37 +1,53 @@
 import { Instagram, Facebook, Twitter } from 'lucide-react';
-import eod4 from '@/assets/band/eod4.jpg';
-import eod5 from '@/assets/band/eod5.jpg';
-import eod6 from '@/assets/band/eod6.jpg';
-import eod7 from '@/assets/band/eod7.jpg';
+import eod9 from '@/assets/band/eod9.jpg';
+import eod10 from '@/assets/band/eod10.jpg';
+import eod14 from '@/assets/band/eod14.jpg';
+import eod15 from '@/assets/band/eod15.jpg';
+import eod12 from '@/assets/band/eod12.jpg';
+import eod13 from '@/assets/band/eod13.jpg';
 
 const posts = [
   {
     platform: 'Instagram',
-    image: eod4,
+    image: eod10,
     caption: 'The ritual begins. See you all at Darkness Festival.',
     likes: '2.3K',
     date: '2 days ago',
   },
   {
     platform: 'Instagram',
-    image: eod5,
-    caption: 'Backstage moments before we summon the darkness.',
-    likes: '1.8K',
+    image: eod14,
+    caption: 'Purple haze consumes all. The void calls.',
+    likes: '3.1K',
     date: '5 days ago',
   },
   {
     platform: 'Instagram',
-    image: eod6,
-    caption: 'When shadows dance and the night awakens.',
-    likes: '3.1K',
+    image: eod15,
+    caption: 'Behind the mask lies eternal darkness.',
+    likes: '4.2K',
     date: '1 week ago',
   },
   {
     platform: 'Instagram',
-    image: eod7,
-    caption: 'Purple haze and eternal praise.',
+    image: eod9,
+    caption: 'When shadows dance and the night awakens.',
     likes: '2.7K',
     date: '2 weeks ago',
+  },
+  {
+    platform: 'Instagram',
+    image: eod12,
+    caption: 'Backstage moments before we summon the darkness.',
+    likes: '1.8K',
+    date: '3 weeks ago',
+  },
+  {
+    platform: 'Instagram',
+    image: eod13,
+    caption: 'Keys to the underworld. Orchestrating chaos.',
+    likes: '2.1K',
+    date: '1 month ago',
   },
 ];
 
@@ -60,10 +76,10 @@ const SocialFeed = () => {
         </div>
 
         {/* Posts Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
           {posts.map((post, index) => (
             <div key={index} className="group cursor-pointer">
-              <div className="relative aspect-square rounded-lg overflow-hidden">
+              <div className="relative aspect-square rounded-lg overflow-hidden silver-border">
                 <img 
                   src={post.image} 
                   alt={post.caption}
