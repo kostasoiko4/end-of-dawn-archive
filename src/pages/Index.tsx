@@ -1,13 +1,34 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import Navigation from '@/components/sections/Navigation';
+import Hero from '@/components/sections/Hero';
+import TopSongs from '@/components/sections/TopSongs';
+import Bio from '@/components/sections/Bio';
+import Videos from '@/components/sections/Videos';
+import Lineup from '@/components/sections/Lineup';
+import Discography from '@/components/sections/Discography';
+import Merch from '@/components/sections/Merch';
+import Shows from '@/components/sections/Shows';
+import SocialFeed from '@/components/sections/SocialFeed';
+import MediaDownload from '@/components/sections/MediaDownload';
+import Contact from '@/components/sections/Contact';
+import Footer from '@/components/sections/Footer';
 
 const Index = () => {
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
-      </div>
-    </div>
+    <main className="min-h-screen bg-background">
+      <Navigation />
+      <Hero />
+      <TopSongs />
+      <Bio />
+      <Videos />
+      <Lineup />
+      <Discography />
+      <Merch />
+      <Shows />
+      <SocialFeed />
+      <MediaDownload />
+      <Contact />
+      <Footer />
+    </main>
   );
 };
 
