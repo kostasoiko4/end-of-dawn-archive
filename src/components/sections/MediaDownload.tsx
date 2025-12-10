@@ -5,8 +5,24 @@ import eod3 from '@/assets/band/eod3.jpg';
 import eod4 from '@/assets/band/eod4.jpg';
 import eod5 from '@/assets/band/eod5.jpg';
 import eod6 from '@/assets/band/eod6.jpg';
+import eod9 from '@/assets/band/eod9.jpg';
+import eod10 from '@/assets/band/eod10.jpg';
+import eod11 from '@/assets/band/eod11.jpg';
+import eod12 from '@/assets/band/eod12.jpg';
+import eod13 from '@/assets/band/eod13.jpg';
+import eod14 from '@/assets/band/eod14.jpg';
+import eod15 from '@/assets/band/eod15.jpg';
+import eod16 from '@/assets/band/eod16.jpg';
 
 const photos = [
+  { src: eod10, title: 'Dual Vocalists' },
+  { src: eod12, title: 'Guitar & Bass Live' },
+  { src: eod14, title: 'Purple Stage Lights' },
+  { src: eod15, title: 'Corpse Paint Portrait' },
+  { src: eod16, title: 'Outdoor Festival' },
+  { src: eod9, title: 'Guitar Solo' },
+  { src: eod11, title: 'Drummer in Action' },
+  { src: eod13, title: 'Keyboards Performance' },
   { src: eod1, title: 'Live Performance 1' },
   { src: eod2, title: 'Live Performance 2' },
   { src: eod3, title: 'Band Photo 1' },
@@ -60,9 +76,9 @@ const MediaDownload = () => {
 
           {/* Photo Grid */}
           <h3 className="gothic-subtitle text-xl text-center mb-8">Press Photos</h3>
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {photos.map((photo, index) => (
-              <div key={index} className="group relative aspect-video rounded-lg overflow-hidden">
+              <div key={index} className="group relative aspect-video rounded-lg overflow-hidden silver-border">
                 <img 
                   src={photo.src} 
                   alt={photo.title}
