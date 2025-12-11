@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Play, ExternalLink } from 'lucide-react';
 import album from '@/assets/band/primordial-darkness.jpg';
+import single from '@/assets/band/eodShadow.jpg';
 
 const releases = [
   {
@@ -19,7 +20,7 @@ const releases = [
     type: 'Single',
     label: 'Independent',
     tracks: 1,
-    image: null,
+    image: single,
     featured: false,
     link: 'https://endofdawn.bandcamp.com/track/shadow',
   },
