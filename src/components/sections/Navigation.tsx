@@ -29,7 +29,7 @@ const Navigation = () => {
             <img 
               src={logo} 
               alt="End of Dawn" 
-              className="h-12 w-auto opacity-90 invert" 
+              className="h-12 w-auto opacity-90" 
             />
           </a>
 

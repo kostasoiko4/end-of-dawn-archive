@@ -27,7 +27,7 @@ const Footer = () => {
           <img 
             src={logo} 
             alt="End of Dawn" 
-            className="h-20 w-auto opacity-60 mb-6 invert"
+            className="h-20 w-auto opacity-60 mb-6"
           />
 
           {/* Social Links */}

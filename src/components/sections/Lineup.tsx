@@ -26,17 +26,17 @@ const members = [
   },
   {
     name: 'Gravekeeper',
-    role: 'Lead Guitar',
+    role: 'Rythm Guitar',
     image: gravekeeper,
-    instrument: '7-String Guitar',
-    bio: 'Crafting melodies from the depths of shadow.',
+    instrument: '6-String Guitar',
+    bio: 'The sonic foundation of eternal night.',
   },
   {
     name: 'Absence',
-    role: 'Rhythm Guitar',
+    role: 'Lead Guitar',
     image: absence,
     instrument: '6-String Guitar',
-    bio: 'The sonic foundation of eternal night.',
+    bio: 'Crafting melodies from the depths of shadow.',
   },
   {
     name: 'Apollyon',
@@ -46,7 +46,7 @@ const members = [
     bio: 'Thunderous depths that shake the earth.',
   },
   {
-    name: 'Akhenaken',
+    name: 'Akhenaten',
     role: 'Keyboards',
     image: akhenaken,
     instrument: 'Synths & Orchestration',

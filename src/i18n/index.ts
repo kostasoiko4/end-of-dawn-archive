@@ -7,7 +7,7 @@ import de from './locales/de.json';
 import fr from './locales/fr.json';
 
 i18n
-  .use(LanguageDetector)
+  // .use(LanguageDetector)
   .use(initReactI18next)
   .init({
     resources: {
