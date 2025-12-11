@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "Accueil",
+    "music": "Musique",
+    "bio": "Biographie",
+    "videos": "Vidéos",
+    "lineup": "Formation",
+    "discography": "Discographie",
+    "merch": "Boutique",
+    "shows": "Concerts",
+    "media": "Médias",
+    "contact": "Contact"
+  },
+  "hero": {
+    "subtitle": "Symphonic Gothic Black Metal",
+    "listenNow": "Écouter Maintenant",
+    "pastShows": "Concerts Passés"
+  },
+  "topSongs": {
+    "title": "Top Chansons",
+    "latestAlbum": "Dernier Album: Primordial Darkness",
+    "listenOnSpotify": "Écouter sur Spotify",
+    "plays": "écoutes"
+  },
+  "bio": {
+    "title": "La Légende",
+    "quote": "À la fin, il n'y a pas d'aube—seulement l'étreinte éternelle des ombres."
+  },
+  "videos": {
+    "title": "Dernières Vidéos",
+    "viewAll": "Voir Tout sur YouTube"
+  },
+  "lineup": {
+    "title": "La Formation"
+  },
+  "discography": {
+    "title": "Discographie",
+    "latestRelease": "Dernière Sortie",
+    "streamNow": "Écouter Maintenant",
+    "buyPhysical": "Acheter Physique",
+    "previousReleases": "Sorties Précédentes"
+  },
+  "merch": {
+    "title": "Boutique",
+    "addToCart": "Ajouter au Panier",
+    "visitStore": "Visiter la Boutique"
+  },
+  "shows": {
+    "title": "Concerts Passés",
+    "viewEvent": "Voir l'Événement",
+    "moreInfo": "Suivez-nous sur les réseaux sociaux pour les annonces de concerts."
+  },
+  "social": {
+    "title": "Suivez les Ténèbres"
+  },
+  "media": {
+    "title": "Presse & Médias",
+    "description": "Photos de presse haute résolution et matériel promotionnel disponibles au téléchargement. Pour les demandes de presse, veuillez contacter notre management.",
+    "pressKit": "Dossier de Presse (PDF)",
+    "logoPack": "Pack Logo (ZIP)",
+    "allPhotos": "Toutes les Photos (ZIP)",
+    "epkZip": "EPK (ZIP)",
+    "pressPhotos": "Photos de Presse",
+    "download": "Télécharger"
+  },
+  "contact": {
+    "title": "Contact",
+    "getInTouch": "Contactez-Nous",
+    "description": "Pour les demandes de réservation, les demandes de presse ou toute autre question, contactez-nous via le formulaire ou les coordonnées ci-dessous.",
+    "generalInquiries": "Demandes Générales",
+    "phone": "Téléphone",
+    "name": "Nom",
+    "email": "Email",
+    "subject": "Sujet",
+    "message": "Message",
+    "selectSubject": "Sélectionner un sujet",
+    "booking": "Demande de Réservation",
+    "press": "Presse/Médias",
+    "merchandise": "Boutique",
+    "general": "Question Générale",
+    "other": "Autre",
+    "yourName": "Votre nom",
+    "yourEmail": "votre@email.com",
+    "yourMessage": "Votre message...",
+    "send": "Envoyer le Message",
+    "sending": "Envoi...",
+    "success": "Message envoyé avec succès! Nous vous répondrons bientôt."
+  },
+  "footer": {
+    "rights": "Tous droits réservés.",
+    "tagline": "À la fin, il n'y a pas d'aube—seulement les ténèbres éternelles."
+  }
+}

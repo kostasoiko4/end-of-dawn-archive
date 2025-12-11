@@ -1,4 +1,5 @@
-import { Download, Image, FileText } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Download, Image, FileText, Package } from 'lucide-react';
 import eod1 from '@/assets/band/eod1.jpg';
 import eod2 from '@/assets/band/eod2.jpg';
 import eod3 from '@/assets/band/eod3.jpg';
@@ -31,7 +32,16 @@ const photos = [
   { src: eod6, title: 'Live Performance 5' },
 ];
 
+const downloadLinks = {
+  pressKit: 'https://drive.usercontent.google.com/u/0/uc?id=1deGY0_zZ__VJDQDYTE9lnBLfU4n51aRn&export=download',
+  logoPack: 'https://drive.usercontent.google.com/u/0/uc?id=1JwBaF6fsT68UkiIsHFaORbjkNM_eCpm6&export=download',
+  allPhotos: 'https://drive.usercontent.google.com/u/0/uc?id=12K1ysAgCnXYxKkpM_yuprTlHzFjRe8MJ&export=download',
+  epkZip: 'https://drive.usercontent.google.com/u/0/uc?id=1h9Sdh3y8iZPryNl3pRQ6oKDGZiro5ISX&export=download',
+};
+
 const MediaDownload = () => {
+  const { t } = useTranslation();
+
   const handleDownload = (imageSrc: string, title: string) => {
     const link = document.createElement('a');
     link.href = imageSrc;
@@ -45,7 +55,7 @@ const MediaDownload = () => {
     <section id="media" className="py-24 bg-charcoal">
       <div className="container mx-auto px-4">
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
-          Press & Media
+          {t('media.title')}
         </h2>
         <div className="section-divider mb-12" />
 
@@ -53,29 +63,52 @@ const MediaDownload = () => {
           {/* Info */}
           <div className="text-center mb-12">
             <p className="text-foreground/80 font-cormorant text-lg max-w-2xl mx-auto">
-              High-resolution press photos and promotional materials available for download. 
-              For press inquiries, please contact our management.
+              {t('media.description')}
             </p>
           </div>
 
           {/* Quick Downloads */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <button className="btn-outline-gothic text-sm flex items-center gap-2">
+            <a 
+              href={downloadLinks.pressKit}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-gothic text-sm flex items-center gap-2"
+            >
               <FileText className="w-4 h-4" />
-              Press Kit (PDF)
-            </button>
-            <button className="btn-outline-gothic text-sm flex items-center gap-2">
+              {t('media.pressKit')}
+            </a>
+            <a 
+              href={downloadLinks.logoPack}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-gothic text-sm flex items-center gap-2"
+            >
               <Image className="w-4 h-4" />
-              Logo Pack (ZIP)
-            </button>
-            <button className="btn-outline-gothic text-sm flex items-center gap-2">
+              {t('media.logoPack')}
+            </a>
+            <a 
+              href={downloadLinks.allPhotos}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-gothic text-sm flex items-center gap-2"
+            >
               <Download className="w-4 h-4" />
-              All Photos (ZIP)
-            </button>
+              {t('media.allPhotos')}
+            </a>
+            <a 
+              href={downloadLinks.epkZip}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-outline-gothic text-sm flex items-center gap-2"
+            >
+              <Package className="w-4 h-4" />
+              {t('media.epkZip')}
+            </a>
           </div>
 
           {/* Photo Grid */}
-          <h3 className="gothic-subtitle text-xl text-center mb-8">Press Photos</h3>
+          <h3 className="gothic-subtitle text-xl text-center mb-8">{t('media.pressPhotos')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {photos.map((photo, index) => (
               <div key={index} className="group relative aspect-video rounded-lg overflow-hidden silver-border">
@@ -90,7 +123,7 @@ const MediaDownload = () => {
                     className="btn-gothic text-sm flex items-center gap-2"
                   >
                     <Download className="w-4 h-4" />
-                    Download
+                    {t('media.download')}
                   </button>
                 </div>
                 <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-background to-transparent">

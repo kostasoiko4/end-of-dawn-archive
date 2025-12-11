@@ -82,7 +82,7 @@
   .gothic-title {
     @apply text-silver tracking-widest uppercase;
     font-family: 'Cinzel Decorative', cursive;
-    text-shadow: 0 0 20px hsl(270 70% 50% / 0.5), 0 0 40px hsl(270 70% 50% / 0.3);
+    text-shadow: 0 0 8px hsl(270 70% 50% / 0.3), 0 0 16px hsl(270 70% 50% / 0.15);
   }
 
   .gothic-subtitle {

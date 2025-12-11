@@ -1,8 +1,10 @@
 import { useState } from 'react';
-import { Send, Mail, MapPin } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
+import { Send, Mail, Phone } from 'lucide-react';
 import { toast } from 'sonner';
 
 const Contact = () => {
+  const { t } = useTranslation();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -15,10 +17,18 @@ const Contact = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    // Create mailto link with form data
+    const mailtoLink = `mailto:endofdawn.bandofficial@gmail.com?subject=${encodeURIComponent(
+      `[${formData.subject}] Message from ${formData.name}`
+    )}&body=${encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
+    )}`;
 
-    toast.success('Message sent successfully! We will get back to you soon.');
+    // Open email client
+    window.location.href = mailtoLink;
+
+    // Show success message
+    toast.success(t('contact.success'));
     setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
   };
@@ -34,48 +44,36 @@ const Contact = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
-          Contact
+          {t('contact.title')}
         </h2>
         <div className="section-divider mb-12" />
 
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
-            <h3 className="font-cinzel text-xl text-silver mb-6">Get in Touch</h3>
+            <h3 className="font-cinzel text-xl text-silver mb-6">{t('contact.getInTouch')}</h3>
             <p className="text-foreground/80 font-cormorant text-lg mb-8">
-              For booking inquiries, press requests, or any other questions, 
-              reach out to us through the form or contact details below.
+              {t('contact.description')}
             </p>
 
             <div className="space-y-6">
               <div className="flex items-start gap-4">
                 <Mail className="w-5 h-5 text-primary mt-1" />
                 <div>
-                  <h4 className="font-cinzel text-silver text-sm tracking-wider">General Inquiries</h4>
-                  <a href="mailto:info@endofdawn.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    info@endofdawn.com
+                  <h4 className="font-cinzel text-silver text-sm tracking-wider">{t('contact.generalInquiries')}</h4>
+                  <a href="mailto:endofdawn.bandofficial@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
+                    endofdawn.bandofficial@gmail.com
                   </a>
                 </div>
               </div>
 
               <div className="flex items-start gap-4">
-                <Mail className="w-5 h-5 text-primary mt-1" />
+                <Phone className="w-5 h-5 text-primary mt-1" />
                 <div>
-                  <h4 className="font-cinzel text-silver text-sm tracking-wider">Booking</h4>
-                  <a href="mailto:booking@endofdawn.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    booking@endofdawn.com
+                  <h4 className="font-cinzel text-silver text-sm tracking-wider">{t('contact.phone')}</h4>
+                  <a href="tel:+306981777403" className="text-muted-foreground hover:text-primary transition-colors">
+                    +30 6981777403
                   </a>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-4">
-                <MapPin className="w-5 h-5 text-primary mt-1" />
-                <div>
-                  <h4 className="font-cinzel text-silver text-sm tracking-wider">Management</h4>
-                  <p className="text-muted-foreground">
-                    Dark Arts Management<br />
-                    Los Angeles, CA
-                  </p>
                 </div>
               </div>
             </div>
@@ -86,7 +84,7 @@ const Contact = () => {
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
-                  Name
+                  {t('contact.name')}
                 </label>
                 <input
                   type="text"
@@ -96,13 +94,13 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="input-gothic"
-                  placeholder="Your name"
+                  placeholder={t('contact.yourName')}
                 />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
-                  Email
+                  {t('contact.email')}
                 </label>
                 <input
                   type="email"
@@ -112,13 +110,13 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="input-gothic"
-                  placeholder="your@email.com"
+                  placeholder={t('contact.yourEmail')}
                 />
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
-                  Subject
+                  {t('contact.subject')}
                 </label>
                 <select
                   id="subject"
@@ -128,18 +126,18 @@ const Contact = () => {
                   required
                   className="input-gothic"
                 >
-                  <option value="">Select a subject</option>
-                  <option value="booking">Booking Inquiry</option>
-                  <option value="press">Press/Media</option>
-                  <option value="merch">Merchandise</option>
-                  <option value="general">General Question</option>
-                  <option value="other">Other</option>
+                  <option value="">{t('contact.selectSubject')}</option>
+                  <option value="booking">{t('contact.booking')}</option>
+                  <option value="press">{t('contact.press')}</option>
+                  <option value="merch">{t('contact.merchandise')}</option>
+                  <option value="general">{t('contact.general')}</option>
+                  <option value="other">{t('contact.other')}</option>
                 </select>
               </div>
 
               <div>
                 <label htmlFor="message" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
-                  Message
+                  {t('contact.message')}
                 </label>
                 <textarea
                   id="message"
@@ -149,7 +147,7 @@ const Contact = () => {
                   required
                   rows={5}
                   className="input-gothic resize-none"
-                  placeholder="Your message..."
+                  placeholder={t('contact.yourMessage')}
                 />
               </div>
 
@@ -159,11 +157,11 @@ const Contact = () => {
                 className="btn-gothic w-full flex items-center justify-center gap-2 disabled:opacity-50"
               >
                 {isSubmitting ? (
-                  <span>Sending...</span>
+                  <span>{t('contact.sending')}</span>
                 ) : (
                   <>
                     <Send className="w-4 h-4" />
-                    <span>Send Message</span>
+                    <span>{t('contact.send')}</span>
                   </>
                 )}
               </button>

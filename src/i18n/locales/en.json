@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "Home",
+    "music": "Music",
+    "bio": "Bio",
+    "videos": "Videos",
+    "lineup": "Lineup",
+    "discography": "Discography",
+    "merch": "Merch",
+    "shows": "Shows",
+    "media": "Media",
+    "contact": "Contact"
+  },
+  "hero": {
+    "subtitle": "Symphonic Gothic Black Metal",
+    "listenNow": "Listen Now",
+    "pastShows": "Past Shows"
+  },
+  "topSongs": {
+    "title": "Top Songs",
+    "latestAlbum": "Latest Album: Primordial Darkness",
+    "listenOnSpotify": "Listen on Spotify",
+    "plays": "plays"
+  },
+  "bio": {
+    "title": "The Legend",
+    "quote": "In the end, there is no dawn—only the eternal embrace of shadows."
+  },
+  "videos": {
+    "title": "Latest Videos",
+    "viewAll": "View All on YouTube"
+  },
+  "lineup": {
+    "title": "The Lineup"
+  },
+  "discography": {
+    "title": "Discography",
+    "latestRelease": "Latest Release",
+    "streamNow": "Stream Now",
+    "buyPhysical": "Buy Physical",
+    "previousReleases": "Previous Releases"
+  },
+  "merch": {
+    "title": "Merchandise",
+    "addToCart": "Add to Cart",
+    "visitStore": "Visit Full Store"
+  },
+  "shows": {
+    "title": "Past Shows",
+    "viewEvent": "View Event",
+    "moreInfo": "Follow us on social media for upcoming show announcements."
+  },
+  "social": {
+    "title": "Follow the Darkness"
+  },
+  "media": {
+    "title": "Press & Media",
+    "description": "High-resolution press photos and promotional materials available for download. For press inquiries, please contact our management.",
+    "pressKit": "Press Kit (PDF)",
+    "logoPack": "Logo Pack (ZIP)",
+    "allPhotos": "All Photos (ZIP)",
+    "epkZip": "EPK (ZIP)",
+    "pressPhotos": "Press Photos",
+    "download": "Download"
+  },
+  "contact": {
+    "title": "Contact",
+    "getInTouch": "Get in Touch",
+    "description": "For booking inquiries, press requests, or any other questions, reach out to us through the form or contact details below.",
+    "generalInquiries": "General Inquiries",
+    "phone": "Phone",
+    "name": "Name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "selectSubject": "Select a subject",
+    "booking": "Booking Inquiry",
+    "press": "Press/Media",
+    "merchandise": "Merchandise",
+    "general": "General Question",
+    "other": "Other",
+    "yourName": "Your name",
+    "yourEmail": "your@email.com",
+    "yourMessage": "Your message...",
+    "send": "Send Message",
+    "sending": "Sending...",
+    "success": "Message sent successfully! We will get back to you soon."
+  },
+  "footer": {
+    "rights": "All rights reserved.",
+    "tagline": "In the end, there is no dawn—only eternal darkness."
+  }
+}
