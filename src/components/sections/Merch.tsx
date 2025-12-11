@@ -1,21 +1,23 @@
 import { useTranslation } from 'react-i18next';
 import { ShoppingBag, ExternalLink } from 'lucide-react';
-import emblem from '@/assets/band/emblem.png';
-import album from '@/assets/band/primordial-darkness.jpg';
+import merch1 from '@/assets/merch1.jpg';
+import merch2 from '@/assets/merch2.jpg';
+import merch3 from '@/assets/merch3.jpg';
+import merch4 from '@/assets/merch4.jpg';
 
 const products = [
   {
     name: 'End of Dawn - Official T-shirt',
     price: '€12',
-    image: emblem,
+    image: merch1,
     category: 'Apparel',
-    bgDark: true,
+    bgDark: false,
     link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt',
   },
   {
     name: 'End of Dawn - Primordial Darkness Official T-shirt',
     price: '€15',
-    image: album,
+    image: merch2,
     category: 'Apparel',
     bgDark: false,
     link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt',
@@ -23,7 +25,7 @@ const products = [
   {
     name: 'End of Dawn - Primordial Darkness CD',
     price: '€10',
-    image: album,
+    image: merch3,
     category: 'Music',
     bgDark: false,
     link: 'https://endofdawn.bandcamp.com/album/primordial-darkness',
@@ -31,7 +33,7 @@ const products = [
   {
     name: 'Bundle Edition: T-shirt + Album CD (Primordial Darkness)',
     price: '€20',
-    image: album,
+    image: merch4,
     category: 'Bundle',
     bgDark: false,
     link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness',
@@ -61,7 +63,7 @@ const Merch = () => {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className={`card-gothic overflow-hidden ${product.bgDark ? 'bg-charcoal' : ''}`}>
+              <div className={`card-gothic overflow-hidden ${product.bgDark ? 'bg-charcoal' : ''}`} style={{minHeight: '25rem'}}>
                 <div className="aspect-square relative overflow-hidden">
                   <img 
                     src={product.image} 

@@ -1,19 +1,19 @@
 import { useTranslation } from 'react-i18next';
 import { Calendar, MapPin, ExternalLink } from 'lucide-react';
-import eod1 from '@/assets/band/eod1.jpg';
-import eod2 from '@/assets/band/eod2.jpg';
-import eod3 from '@/assets/band/eod3.jpg';
-import eod4 from '@/assets/band/eod4.jpg';
-import eod5 from '@/assets/band/eod5.jpg';
-import eod6 from '@/assets/band/eod6.jpg';
-import eod7 from '@/assets/band/eod7.jpg';
-import eod10 from '@/assets/band/eod10.jpg';
-import eod14 from '@/assets/band/eod14.jpg';
+import live1 from '@/assets/live1.png';
+import live2 from '@/assets/live2.png';
+import live3 from '@/assets/live3.jpg';
+import live4 from '@/assets/live4.jpg';
+import live5 from '@/assets/live5.jpg';
+import live6 from '@/assets/live6.jpg';
+import live7 from '@/assets/live7.jpg';
+import live8 from '@/assets/live8.png';
+import live9 from '@/assets/live9.jpg';
 
 const shows = [
   {
     id: 7938170,
-    image: eod14,
+    image: live9,
     url: "https://www.facebook.com/events/634749312780087",
     title: "Frequency of Illusion Release Show",
     bands: "Flames / End of Dawn / Mallevs",
@@ -22,7 +22,7 @@ const shows = [
   },
   {
     id: 1086739,
-    image: eod10,
+    image: live8,
     url: "https://www.facebook.com/events/2485658904972489",
     title: "Golden R. Festival",
     bands: "Old Man's Child / God Dethroned / Lucifer's Child / Reflection / Exilium Noctis / Powercross / End of Dawn / Illusive Mirrors",
@@ -31,7 +31,7 @@ const shows = [
   },
   {
     id: 5167028,
-    image: eod7,
+    image: live7,
     url: "https://www.facebook.com/events/1912691492597333",
     title: "Primordial Darkness Release Show",
     bands: "End of Dawn / Likno / Aesemina",
@@ -40,7 +40,7 @@ const shows = [
   },
   {
     id: 5380196,
-    image: eod6,
+    image: live6,
     url: "https://www.facebook.com/events/918036716781146",
     title: "Ritual of The Black Mass",
     bands: "Fovitron / End of Dawn / Grotesco Karma / Archegon",
@@ -49,7 +49,7 @@ const shows = [
   },
   {
     id: 4187692,
-    image: eod5,
+    image: live5,
     url: "https://www.facebook.com/events/1111632866984593",
     title: "Dawn With No Light Release Show",
     bands: "Ignominus / Exilium Noctis / End of Dawn",
@@ -58,7 +58,7 @@ const shows = [
   },
   {
     id: 1790235,
-    image: eod4,
+    image: live4,
     url: "https://www.facebook.com/events/711955963937492",
     title: "Brazilian Attack Over Thessaloniki",
     bands: "Sextrash / Outlaw / Freefall / End of Dawn",
@@ -67,7 +67,7 @@ const shows = [
   },
   {
     id: 8190251,
-    image: eod3,
+    image: live3,
     url: "https://www.facebook.com/events/561143139480525",
     title: "Nightfall Upon Thessaloniki",
     bands: "Drama Noir / Temple of Katharsis / End of Dawn",
@@ -76,7 +76,7 @@ const shows = [
   },
   {
     id: 6190361,
-    image: eod2,
+    image: live2,
     url: "https://www.facebook.com/events/1521234788683449",
     title: "Headspin Festival",
     bands: "End of Dawn / Delta Point / 9F / Opium",
@@ -85,7 +85,7 @@ const shows = [
   },
   {
     id: 9103610,
-    image: eod1,
+    image: live1,
     url: "https://www.facebook.com/events/128779350143956",
     title: "Unholy Gathering of Dark Sonance",
     bands: "Fovitron / End of Dawn / Asfodelos",
