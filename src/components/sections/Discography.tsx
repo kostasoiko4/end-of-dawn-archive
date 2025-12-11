@@ -116,7 +116,7 @@ const Discography = () => {
                 className="card-gothic p-4 flex gap-4 group cursor-pointer hover:border-silver/30 transition-colors"
               >
                 <div className="w-20 h-20 bg-charcoal-light rounded flex items-center justify-center flex-shrink-0">
-                  <span className="text-3xl text-silver/30 font-gothic">{release.title[0]}</span>
+                  <img src={release.image} className="text-3xl text-silver/30 font-gothic"/>
                 </div>
                 <div>
                   <h4 className="font-cinzel text-silver group-hover:text-primary transition-colors">
