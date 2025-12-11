@@ -1,7 +1,10 @@
-import emblem from '@/assets/band/emblem.png';
+import { useTranslation } from 'react-i18next';
+import logo from '@/assets/band/logo.png';
 import eod8 from '@/assets/band/eod8.jpg';
 
 const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -19,35 +22,24 @@ const Hero = () => {
       <div className="relative z-10 text-center px-4">
         <div className="animate-float mb-8">
           <img 
-            src={emblem} 
-            alt="End of Dawn Emblem" 
-            className="w-64 md:w-80 lg:w-96 mx-auto opacity-90 drop-shadow-2xl"
-            style={{ filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.4))' }}
+            src={logo} 
+            alt="End of Dawn Logo" 
+            className="w-64 md:w-80 lg:w-96 mx-auto opacity-90 drop-shadow-2xl invert"
+            style={{ filter: 'invert(1) drop-shadow(0 0 30px rgba(139, 92, 246, 0.4))' }}
           />
         </div>
 
-        <h1 className="gothic-title text-4xl md:text-5xl lg:text-6xl mb-4 animate-fade-in">
-          End of Dawn
-        </h1>
-
         <p className="gothic-subtitle text-lg md:text-xl text-silver/70 mb-8 max-w-xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-          Symphonic Gothic Black Metal
+          {t('hero.subtitle')}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.4s' }}>
           <a href="#music" className="btn-gothic">
-            Listen Now
+            {t('hero.listenNow')}
           </a>
           <a href="#shows" className="btn-outline-gothic">
-            Upcoming Shows
+            {t('hero.pastShows')}
           </a>
-        </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-        <div className="w-6 h-10 border-2 border-silver/30 rounded-full flex justify-center pt-2">
-          <div className="w-1.5 h-3 bg-silver/50 rounded-full" />
         </div>
       </div>
     </section>

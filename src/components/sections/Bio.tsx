@@ -1,6 +1,9 @@
+import { useTranslation } from 'react-i18next';
 import eod3 from '@/assets/band/eod3.jpg';
 
 const Bio = () => {
+  const { t } = useTranslation();
+
   return (
     <section id="bio" className="py-24 relative overflow-hidden">
       {/* Background */}
@@ -11,7 +14,7 @@ const Bio = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
-          The Legend
+          {t('bio.title')}
         </h2>
         <div className="section-divider mb-12" />
 
@@ -27,19 +30,19 @@ const Bio = () => {
 
           <div className="space-y-6">
             <p className="text-lg text-foreground/90 leading-relaxed font-cormorant">
-              Emerging from the eternal twilight, <strong className="text-silver">End of Dawn</strong> was forged in the crucible of darkness, blending the symphonic grandeur of orchestral arrangements with the raw fury of black metal.
+              <strong className="text-silver">End of Dawn</strong> is a Symphonic/Gothic Black Metal band from Thessaloniki, Greece, formed in 2019. Rooted in a dark and atmospheric musical style, the band crafts intricate compositions that delve into themes of struggle, loss, and existential depths.
             </p>
             
             <p className="text-lg text-foreground/80 leading-relaxed font-cormorant">
-              Founded in the shadows of ancient ruins, the band channels the spirits of forgotten ages through their music. Each composition is a ritual, invoking the primordial forces that dwell between worlds—where light fades and darkness begins its eternal reign.
+              Their debut album, <strong className="text-primary">Primordial Darkness</strong>, released on November 15, 2024, features 11 haunting tracks that take listeners on a harrowing journey into the shadows of the soul. With its evocative blend of rapid, powerful riffs and symphonic textures, the album draws upon mythological and existential themes, creating an immersive and deeply resonant soundscape.
             </p>
 
             <p className="text-lg text-foreground/80 leading-relaxed font-cormorant">
-              With haunting melodies intertwined with ferocious blast beats, operatic vocals harmonizing with guttural screams, End of Dawn crafts sonic tapestries that transcend the mortal realm. Their live performances are legendary ceremonies, transforming stages into altars of darkness.
+              Driven by an unwavering dedication to their art, End of Dawn embraces the raw emotions and stark beauty found within the abyss. As they continue to forge their path, the band remains steadfast in pushing the boundaries of their sound, exploring the profound and the unknown.
             </p>
 
             <blockquote className="border-l-2 border-primary pl-4 italic text-silver/80 font-cormorant text-xl">
-              "In the end, there is no dawn—only the eternal embrace of shadows."
+              "{t('bio.quote')}"
             </blockquote>
           </div>
         </div>

@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "Startseite",
+    "music": "Musik",
+    "bio": "Biographie",
+    "videos": "Videos",
+    "lineup": "Besetzung",
+    "discography": "Diskographie",
+    "merch": "Merchandise",
+    "shows": "Konzerte",
+    "media": "Medien",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "subtitle": "Symphonic Gothic Black Metal",
+    "listenNow": "Jetzt Hören",
+    "pastShows": "Vergangene Konzerte"
+  },
+  "topSongs": {
+    "title": "Top Songs",
+    "latestAlbum": "Neuestes Album: Primordial Darkness",
+    "listenOnSpotify": "Auf Spotify Hören",
+    "plays": "Wiedergaben"
+  },
+  "bio": {
+    "title": "Die Legende",
+    "quote": "Am Ende gibt es keine Morgendämmerung—nur die ewige Umarmung der Schatten."
+  },
+  "videos": {
+    "title": "Neueste Videos",
+    "viewAll": "Alle auf YouTube Ansehen"
+  },
+  "lineup": {
+    "title": "Die Besetzung"
+  },
+  "discography": {
+    "title": "Diskographie",
+    "latestRelease": "Neueste Veröffentlichung",
+    "streamNow": "Jetzt Streamen",
+    "buyPhysical": "Physisch Kaufen",
+    "previousReleases": "Frühere Veröffentlichungen"
+  },
+  "merch": {
+    "title": "Merchandise",
+    "addToCart": "In den Warenkorb",
+    "visitStore": "Shop Besuchen"
+  },
+  "shows": {
+    "title": "Vergangene Konzerte",
+    "viewEvent": "Event Ansehen",
+    "moreInfo": "Folgen Sie uns in den sozialen Medien für Konzertankündigungen."
+  },
+  "social": {
+    "title": "Folge der Dunkelheit"
+  },
+  "media": {
+    "title": "Presse & Medien",
+    "description": "Hochauflösende Pressefotos und Werbematerialien zum Download verfügbar. Für Presseanfragen wenden Sie sich bitte an unser Management.",
+    "pressKit": "Pressemappe (PDF)",
+    "logoPack": "Logo-Paket (ZIP)",
+    "allPhotos": "Alle Fotos (ZIP)",
+    "epkZip": "EPK (ZIP)",
+    "pressPhotos": "Pressefotos",
+    "download": "Herunterladen"
+  },
+  "contact": {
+    "title": "Kontakt",
+    "getInTouch": "Kontaktieren Sie Uns",
+    "description": "Für Buchungsanfragen, Presseanfragen oder andere Fragen erreichen Sie uns über das Formular oder die Kontaktdaten unten.",
+    "generalInquiries": "Allgemeine Anfragen",
+    "phone": "Telefon",
+    "name": "Name",
+    "email": "E-Mail",
+    "subject": "Betreff",
+    "message": "Nachricht",
+    "selectSubject": "Betreff auswählen",
+    "booking": "Buchungsanfrage",
+    "press": "Presse/Medien",
+    "merchandise": "Merchandise",
+    "general": "Allgemeine Frage",
+    "other": "Sonstiges",
+    "yourName": "Ihr Name",
+    "yourEmail": "ihre@email.com",
+    "yourMessage": "Ihre Nachricht...",
+    "send": "Nachricht Senden",
+    "sending": "Senden...",
+    "success": "Nachricht erfolgreich gesendet! Wir melden uns in Kürze."
+  },
+  "footer": {
+    "rights": "Alle Rechte vorbehalten.",
+    "tagline": "Am Ende gibt es keine Morgendämmerung—nur ewige Dunkelheit."
+  }
+}

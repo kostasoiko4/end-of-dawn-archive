@@ -1,0 +1,93 @@
+{
+  "nav": {
+    "home": "Αρχική",
+    "music": "Μουσική",
+    "bio": "Βιογραφία",
+    "videos": "Βίντεο",
+    "lineup": "Σύνθεση",
+    "discography": "Δισκογραφία",
+    "merch": "Merchandise",
+    "shows": "Συναυλίες",
+    "media": "Media",
+    "contact": "Επικοινωνία"
+  },
+  "hero": {
+    "subtitle": "Symphonic Gothic Black Metal",
+    "listenNow": "Ακούστε Τώρα",
+    "pastShows": "Προηγούμενες Συναυλίες"
+  },
+  "topSongs": {
+    "title": "Κορυφαία Τραγούδια",
+    "latestAlbum": "Τελευταίο Άλμπουμ: Primordial Darkness",
+    "listenOnSpotify": "Ακούστε στο Spotify",
+    "plays": "αναπαραγωγές"
+  },
+  "bio": {
+    "title": "Ο Θρύλος",
+    "quote": "Στο τέλος, δεν υπάρχει αυγή—μόνο η αιώνια αγκαλιά των σκιών."
+  },
+  "videos": {
+    "title": "Τελευταία Βίντεο",
+    "viewAll": "Δείτε Όλα στο YouTube"
+  },
+  "lineup": {
+    "title": "Η Σύνθεση"
+  },
+  "discography": {
+    "title": "Δισκογραφία",
+    "latestRelease": "Τελευταία Κυκλοφορία",
+    "streamNow": "Stream Τώρα",
+    "buyPhysical": "Αγορά Φυσικού",
+    "previousReleases": "Προηγούμενες Κυκλοφορίες"
+  },
+  "merch": {
+    "title": "Merchandise",
+    "addToCart": "Προσθήκη στο Καλάθι",
+    "visitStore": "Επίσκεψη Καταστήματος"
+  },
+  "shows": {
+    "title": "Προηγούμενες Συναυλίες",
+    "viewEvent": "Δείτε το Event",
+    "moreInfo": "Ακολουθήστε μας στα social media για ανακοινώσεις συναυλιών."
+  },
+  "social": {
+    "title": "Ακολουθήστε το Σκοτάδι"
+  },
+  "media": {
+    "title": "Τύπος & Media",
+    "description": "Φωτογραφίες υψηλής ανάλυσης και διαφημιστικό υλικό διαθέσιμο για λήψη. Για ερωτήσεις τύπου, επικοινωνήστε με τη διεύθυνσή μας.",
+    "pressKit": "Press Kit (PDF)",
+    "logoPack": "Πακέτο Logo (ZIP)",
+    "allPhotos": "Όλες οι Φωτογραφίες (ZIP)",
+    "epkZip": "EPK (ZIP)",
+    "pressPhotos": "Φωτογραφίες Τύπου",
+    "download": "Λήψη"
+  },
+  "contact": {
+    "title": "Επικοινωνία",
+    "getInTouch": "Επικοινωνήστε Μαζί Μας",
+    "description": "Για ερωτήσεις κρατήσεων, αιτήματα τύπου ή οποιεσδήποτε άλλες ερωτήσεις, επικοινωνήστε μαζί μας μέσω της φόρμας ή των στοιχείων επικοινωνίας παρακάτω.",
+    "generalInquiries": "Γενικές Ερωτήσεις",
+    "phone": "Τηλέφωνο",
+    "name": "Όνομα",
+    "email": "Email",
+    "subject": "Θέμα",
+    "message": "Μήνυμα",
+    "selectSubject": "Επιλέξτε θέμα",
+    "booking": "Ερώτηση Κράτησης",
+    "press": "Τύπος/Media",
+    "merchandise": "Merchandise",
+    "general": "Γενική Ερώτηση",
+    "other": "Άλλο",
+    "yourName": "Το όνομά σας",
+    "yourEmail": "email@σας.com",
+    "yourMessage": "Το μήνυμά σας...",
+    "send": "Αποστολή Μηνύματος",
+    "sending": "Αποστολή...",
+    "success": "Το μήνυμα εστάλη επιτυχώς! Θα επικοινωνήσουμε σύντομα."
+  },
+  "footer": {
+    "rights": "Με επιφύλαξη παντός δικαιώματος.",
+    "tagline": "Στο τέλος, δεν υπάρχει αυγή—μόνο αιώνιο σκοτάδι."
+  }
+}

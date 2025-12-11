@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useTranslation } from 'react-i18next';
 import { X } from 'lucide-react';
 import gravekeeper from '@/assets/band/lineup/gravekeeper.jpg';
 import mynoghra from '@/assets/band/lineup/mynoghra.jpg';
@@ -61,6 +62,7 @@ const members = [
 ];
 
 const Lineup = () => {
+  const { t } = useTranslation();
   const [selectedMember, setSelectedMember] = useState<typeof members[0] | null>(null);
 
   return (
@@ -71,16 +73,16 @@ const Lineup = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
-          The Lineup
+          {t('lineup.title')}
         </h2>
         <div className="section-divider mb-12" />
 
-        {/* Main grid - responsive layout */}
-        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-4 md:gap-6 max-w-7xl mx-auto">
+        {/* Responsive grid - wraps on smaller screens */}
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8 max-w-7xl mx-auto">
           {members.map((member, index) => (
             <div 
               key={member.name} 
-              className="group cursor-pointer"
+              className="group cursor-pointer w-40 sm:w-48 md:w-56 lg:w-64"
               onClick={() => setSelectedMember(member)}
               style={{ animationDelay: `${index * 100}ms` }}
             >
@@ -101,16 +103,16 @@ const Lineup = () => {
                 <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/50 rounded-lg transition-all duration-300" />
                 
                 {/* Member info overlay */}
-                <div className="absolute bottom-0 left-0 right-0 p-3 transform translate-y-0 group-hover:-translate-y-1 transition-transform duration-300">
-                  <h3 className="font-cinzel text-silver text-sm md:text-base font-semibold drop-shadow-lg">
+                <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-0 group-hover:-translate-y-1 transition-transform duration-300">
+                  <h3 className="font-cinzel text-silver text-base md:text-lg font-semibold drop-shadow-lg">
                     {member.name}
                   </h3>
-                  <p className="text-primary text-xs md:text-sm font-cinzel tracking-wider drop-shadow-lg">
+                  <p className="text-primary text-sm md:text-base font-cinzel tracking-wider drop-shadow-lg">
                     {member.role}
                   </p>
                   
                   {/* Reveal on hover */}
-                  <p className="text-muted-foreground text-xs mt-1 font-cormorant opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                  <p className="text-muted-foreground text-xs md:text-sm mt-1 font-cormorant opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                     {member.instrument}
                   </p>
                 </div>
