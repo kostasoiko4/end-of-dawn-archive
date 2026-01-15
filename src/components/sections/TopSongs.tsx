@@ -5,24 +5,24 @@ import album from '@/assets/band/primordial-darkness.jpg';
 const songs = [
   { 
     title: 'Burning Echoes', 
-    duration: '4:29', 
-    plays: '12.5K',
+    duration: '6:34', 
+    plays: '3.2K',
     album: 'Primordial Darkness',
     spotifyEmbed: 'https://open.spotify.com/embed/track/2uXsPSS3GOSHXS3gdTfY4t?utm_source=generator&theme=0',
     spotifyLink: 'https://open.spotify.com/track/2uXsPSS3GOSHXS3gdTfY4t'
   },
   { 
     title: 'Dawn of Decay', 
-    duration: '5:03', 
-    plays: '8.2K',
+    duration: '5:15', 
+    plays: '1.5K',
     album: 'Primordial Darkness',
     spotifyEmbed: 'https://open.spotify.com/embed/track/0zrgJ7JtlXC7yrRzdx4EVH?utm_source=generator&theme=0',
     spotifyLink: 'https://open.spotify.com/track/0zrgJ7JtlXC7yrRzdx4EVH'
   },
   { 
     title: 'The Great Epilogue', 
-    duration: '6:18', 
-    plays: '6.9K',
+    duration: '5:10', 
+    plays: '1K',
     album: 'Primordial Darkness',
     spotifyEmbed: 'https://open.spotify.com/embed/track/3VXVxmrCv30tX9wULttpOs?utm_source=generator&theme=0',
     spotifyLink: 'https://open.spotify.com/track/3VXVxmrCv30tX9wULttpOs'

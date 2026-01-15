@@ -6,6 +6,7 @@ import eod14 from '@/assets/band/eod14.jpg';
 import eod15 from '@/assets/band/eod15.jpg';
 import eod12 from '@/assets/band/eod12.jpg';
 import eod13 from '@/assets/band/eod13.jpg';
+import { AiOutlineSpotify } from 'react-icons/ai';
 
 // TikTok icon component
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -106,13 +107,13 @@ const SocialFeed = () => {
           >
             <Youtube className="w-6 h-6" />
           </a>
-          <a 
+          {/* <a 
             href="#" 
             className="text-silver/60 hover:text-primary transition-colors" 
             aria-label="TikTok"
           >
             <TikTokIcon className="w-6 h-6" />
-          </a>
+          </a> */}
           <a 
             href="https://open.spotify.com/artist/03GS0Jd0J7nEJv1Ra3idkS" 
             target="_blank"
@@ -120,7 +121,7 @@ const SocialFeed = () => {
             className="text-silver/60 hover:text-primary transition-colors" 
             aria-label="Spotify"
           >
-            <Music className="w-6 h-6" />
+            <AiOutlineSpotify className="w-6 h-6" />
           </a>
         </div>
 

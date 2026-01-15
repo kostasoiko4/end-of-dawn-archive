@@ -7,7 +7,7 @@ import necro from '@/assets/band/lineup/necro.jpg';
 import yb from '@/assets/band/lineup/yb.jpg';
 import absence from '@/assets/band/lineup/absence.jpg';
 import akhenaken from '@/assets/band/lineup/akhenaken.jpg';
-import apollyon from '@/assets/band/lineup/apollyon.jpg';
+import necrohymn from '@/assets/band/lineup/necrohymn.png';
 
 const members = [
   {
@@ -39,9 +39,9 @@ const members = [
     bio: 'Crafting melodies from the depths of shadow.',
   },
   {
-    name: 'Apollyon',
+    name: 'Necrohymn',
     role: 'Bass',
-    image: apollyon,
+    image: necrohymn,
     instrument: 'Bass Guitar',
     bio: 'Thunderous depths that shake the earth.',
   },

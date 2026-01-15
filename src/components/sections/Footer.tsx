@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Instagram, Facebook, Youtube, Music } from 'lucide-react';
+import { AiOutlineSpotify } from "react-icons/ai";
+
 import logo from '@/assets/band/logo.png';
 
 // Apple Music icon
@@ -66,7 +68,7 @@ const Footer = () => {
               className="text-silver/50 hover:text-primary transition-colors" 
               aria-label="Spotify"
             >
-              <Music className="w-5 h-5" />
+              <AiOutlineSpotify className="w-5 h-5" />
             </a>
             <a 
               href="https://music.apple.com/us/artist/end-of-dawn/1738951985" 
@@ -75,7 +77,7 @@ const Footer = () => {
               className="text-silver/50 hover:text-primary transition-colors" 
               aria-label="Apple Music"
             >
-              <AppleMusicIcon className="w-5 h-5" />
+              <Music className="w-5 h-5" />
             </a>
             <a 
               href="https://endofdawn.bandcamp.com/" 
