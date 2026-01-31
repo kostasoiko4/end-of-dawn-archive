@@ -11,32 +11,32 @@ import necrohymn from '@/assets/band/lineup/necrohymn.png';
 
 const members = [
   {
-    name: 'Mynoghra',
-    role: 'Vocals',
-    image: mynoghra,
-    instrument: 'Lead & Operatic Vocals',
-    bio: 'The haunting voice that channels the darkness.',
-  },
-  {
     name: 'Necro',
-    role: 'Harsh Vocals',
+    role: 'Vocals',
     image: necro,
     instrument: 'Screams & Growls',
     bio: 'The embodiment of primordial fury.',
   },
   {
-    name: 'Gravekeeper',
-    role: 'Rythm Guitar',
-    image: gravekeeper,
-    instrument: '6-String Guitar',
-    bio: 'The sonic foundation of eternal night.',
+    name: 'Mynoghra',
+    role: 'Vocals',
+    image: mynoghra,
+    instrument: 'Screams & Operatic Vocals',
+    bio: 'The haunting voice that channels the darkness.',
   },
   {
     name: 'Absence',
-    role: 'Lead Guitar',
+    role: 'Guitar',
     image: absence,
-    instrument: '6-String Guitar',
+    instrument: 'Leads & Melodies',
     bio: 'Crafting melodies from the depths of shadow.',
+  },
+    {
+    name: 'Gravekeeper',
+    role: 'Guitar',
+    image: gravekeeper,
+    instrument: 'Rythm & Riffs',
+    bio: 'The sonic foundation of eternal night.',
   },
   {
     name: 'Necrohymn',
