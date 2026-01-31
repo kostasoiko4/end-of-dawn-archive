@@ -18,7 +18,7 @@ const upcomingShows = [
     url: "https://www.facebook.com/events/877788818126384/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22home%22%7D%2C%7B%22mechanism%22%3A%22search_results%22%2C%22surface%22%3A%22search%22%7D]%2C%22ref_notif_type%22%3Anull%7D",
     title: "Ocean of Eternal Dawn",
     bands: "Ocean of Grief / End of Dawn / Athanatos",
-    date: "12 / 02 / 2026",
+    date: "21 / 02 / 2026",
     location: "Eightball, Thessaloniki"
   },
 ]
