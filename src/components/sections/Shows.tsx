@@ -9,6 +9,19 @@ import live6 from '@/assets/live6.jpg';
 import live7 from '@/assets/live7.jpg';
 import live8 from '@/assets/live8.png';
 import live9 from '@/assets/live9.jpg';
+import live10 from '@/assets/live10.jpg';
+
+const upcomingShows = [
+  {
+    id: 7938416,
+    image: live10,
+    url: "https://www.facebook.com/events/877788818126384/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22home%22%7D%2C%7B%22mechanism%22%3A%22search_results%22%2C%22surface%22%3A%22search%22%7D]%2C%22ref_notif_type%22%3Anull%7D",
+    title: "Ocean of Eternal Dawn",
+    bands: "Ocean of Grief / End of Dawn / Athanatos",
+    date: "12 / 02 / 2026",
+    location: "Eightball, Thessaloniki"
+  },
+]
 
 const shows = [
   {
@@ -100,6 +113,68 @@ const Shows = () => {
   return (
     <section id="shows" className="py-24 bg-charcoal">
       <div className="container mx-auto px-4">
+        <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
+          {t('shows.upcoming')}
+        </h2>
+        <div className="section-divider mb-12" />
+
+        <div className="max-w-5xl mx-auto grid gap-6 mb-10">
+          {upcomingShows.map((show) => (
+            <a 
+              key={show.id}
+              href={show.url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="card-gothic overflow-hidden group hover:border-primary/30 purple-glow transition-all"
+            >
+              <div className="flex flex-col md:flex-row">
+                {/* Image */}
+                <div className="md:w-48 h-32 md:h-auto flex-shrink-0 relative overflow-hidden">
+                  <img 
+                    src={show.image} 
+                    alt={show.title}
+                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal md:block hidden" />
+                </div>
+
+                {/* Content */}
+                <div className="p-4 md:p-6 flex-1 flex flex-col md:flex-row md:items-center gap-4">
+                  {/* Date */}
+                  <div className="flex items-center gap-3 md:w-36">
+                    <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
+                    <span className="font-cinzel text-silver tracking-wider text-sm">
+                      {show.date}
+                    </span>
+                  </div>
+
+                  {/* Event Info */}
+                  <div className="flex-1">
+                    <h3 className="font-cinzel text-silver text-lg group-hover:text-primary transition-colors mb-1">
+                      {show.title}
+                    </h3>
+                    <p className="text-muted-foreground font-cormorant text-sm mb-2 line-clamp-1">
+                      {show.bands}
+                    </p>
+                    <div className="flex items-center gap-2 text-muted-foreground">
+                      <MapPin className="w-4 h-4" />
+                      <span className="font-cormorant text-sm">{show.location}</span>
+                    </div>
+                  </div>
+
+                  {/* Button */}
+                  <div className="flex items-center">
+                    <span className="btn-outline-gothic text-xs flex items-center gap-2">
+                      {t('shows.viewEvent')}
+                      <ExternalLink className="w-3 h-3" />
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </a>
+          ))}
+        </div>
+
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
           {t('shows.title')}
         </h2>

@@ -46,6 +46,7 @@
     "visitStore": "Visit Full Store"
   },
   "shows": {
+    "upcoming": "Upcoming Shows",
     "title": "Past Shows",
     "viewEvent": "View Event",
     "moreInfo": "Follow us on social media for upcoming show announcements."

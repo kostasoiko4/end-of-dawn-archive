@@ -46,6 +46,7 @@
     "visitStore": "Shop Besuchen"
   },
   "shows": {
+    "upcoming": "Kommende Konzerte",
     "title": "Vergangene Konzerte",
     "viewEvent": "Event Ansehen",
     "moreInfo": "Folgen Sie uns in den sozialen Medien für Konzertankündigungen."
