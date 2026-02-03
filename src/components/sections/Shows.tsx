@@ -10,16 +10,26 @@ import live7 from '@/assets/live7.jpg';
 import live8 from '@/assets/live8.png';
 import live9 from '@/assets/live9.jpg';
 import live10 from '@/assets/live10.jpg';
+import live11 from '@/assets/live11.jpg';
 
 const upcomingShows = [
   {
-    id: 7938416,
+    id: 4858416,
     image: live10,
     url: "https://www.facebook.com/events/877788818126384/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22home%22%7D%2C%7B%22mechanism%22%3A%22search_results%22%2C%22surface%22%3A%22search%22%7D]%2C%22ref_notif_type%22%3Anull%7D",
     title: "Ocean of Eternal Dawn",
     bands: "Ocean of Grief / End of Dawn / Athanatos",
     date: "21 / 02 / 2026",
     location: "Eightball, Thessaloniki"
+  },
+  {
+    id: 7938416,
+    image: live11,
+    url: "https://www.facebook.com/events/1545122050111450/?acontext=%7B%22action_history%22%3A%22null%22%7D&ref_source=newsfeed&ref_mechanism=feed_attachment&_rdr",
+    title: "Storming the Gates vol. V",
+    bands: "Melan Selas / Rognirgoden / End of Dawn / Sinistrus Mist",
+    date: "18 / 04 / 2026",
+    location: "Black Temple, Athens"
   },
 ]
 
