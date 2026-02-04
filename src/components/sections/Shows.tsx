@@ -10,7 +10,7 @@ import live7 from '@/assets/live7.jpg';
 import live8 from '@/assets/live8.png';
 import live9 from '@/assets/live9.jpg';
 import live10 from '@/assets/live10.jpg';
-import live11 from '@/assets/live11.jpg';
+import live11 from '@/assets/live11.png';
 
 const upcomingShows = [
   {
