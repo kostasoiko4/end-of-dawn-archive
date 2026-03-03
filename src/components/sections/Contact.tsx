@@ -1,7 +1,8 @@
-import { useState } from 'react';
+import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Send, Mail, Phone } from 'lucide-react';
 import { toast } from 'sonner';
+import emailjs from '@emailjs/browser'
 
 const Contact = () => {
   const { t } = useTranslation();
@@ -11,21 +12,26 @@ const Contact = () => {
     subject: '',
     message: '',
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const formRef = useRef(null)
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Create mailto link with form data
-    const mailtoLink = `mailto:endofdawn.bandofficial@gmail.com?subject=${encodeURIComponent(
-      `[${formData.subject}] Message from ${formData.name}`
-    )}&body=${encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`
-    )}`;
-
-    // Open email client
-    window.location.href = mailtoLink;
+    emailjs
+    .sendForm(import.meta.env.VITE_API_MAIL_SERVICE_ID, import.meta.env.VITE_API_MAIL_TEMPLATE_ID, formRef.current, {
+      publicKey: import.meta.env.VITE_API_MAIL_PUBLIC_KEY,
+    })
+    .then(
+      () => {
+        console.log('SUCCESS!');
+      },
+      (error) => {
+        console.log('FAILED...', error.text);
+      },
+    );
 
     // Show success message
     toast.success(t('contact.success'));
@@ -81,7 +87,7 @@ const Contact = () => {
 
           {/* Contact Form */}
           <div>
-            <form onSubmit={handleSubmit} className="space-y-6">
+            <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
                   {t('contact.name')}
@@ -127,11 +133,11 @@ const Contact = () => {
                   className="input-gothic"
                 >
                   <option value="">{t('contact.selectSubject')}</option>
-                  <option value="booking">{t('contact.booking')}</option>
-                  <option value="press">{t('contact.press')}</option>
-                  <option value="merch">{t('contact.merchandise')}</option>
-                  <option value="general">{t('contact.general')}</option>
-                  <option value="other">{t('contact.other')}</option>
+                  <option value="Booking Inquiry">{t('contact.booking')}</option>
+                  <option value="Press/Media">{t('contact.press')}</option>
+                  <option value="Merchandise">{t('contact.merchandise')}</option>
+                  <option value="General Questions">{t('contact.general')}</option>
+                  <option value="Other">{t('contact.other')}</option>
                 </select>
               </div>
 

@@ -11,36 +11,34 @@ import live8 from '@/assets/live8.png';
 import live9 from '@/assets/live9.jpg';
 import live10 from '@/assets/live10.jpg';
 import live11 from '@/assets/live11.png';
+import { format } from "date-fns"
 
-const upcomingShows = [
-  {
-    id: 4858416,
-    image: live10,
-    url: "https://www.facebook.com/events/877788818126384/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22home%22%7D%2C%7B%22mechanism%22%3A%22search_results%22%2C%22surface%22%3A%22search%22%7D]%2C%22ref_notif_type%22%3Anull%7D",
-    title: "Ocean of Eternal Dawn",
-    bands: "Ocean of Grief / End of Dawn / Athanatos",
-    date: "21 / 02 / 2026",
-    location: "Eightball, Thessaloniki"
-  },
+const shows = [
   {
     id: 7938416,
     image: live11,
     url: "https://www.facebook.com/events/1545122050111450/?acontext=%7B%22action_history%22%3A%22null%22%7D&ref_source=newsfeed&ref_mechanism=feed_attachment&_rdr",
     title: "Storming the Gates vol. V",
     bands: "Melan Selas / Rognirgoden / End of Dawn / Sinistrus Mist",
-    date: "18 / 04 / 2026",
+    date: 1776531600,
     location: "Black Temple, Athens"
   },
-]
-
-const shows = [
+  {
+    id: 4858416,
+    image: live10,
+    url: "https://www.facebook.com/events/877788818126384/?acontext=%7B%22event_action_history%22%3A[%7B%22surface%22%3A%22home%22%7D%2C%7B%22mechanism%22%3A%22search_results%22%2C%22surface%22%3A%22search%22%7D]%2C%22ref_notif_type%22%3Anull%7D",
+    title: "Ocean of Eternal Dawn",
+    bands: "Ocean of Grief / End of Dawn / Athanatos",
+    date: 1771696800,
+    location: "Eightball, Thessaloniki"
+  },
   {
     id: 7938170,
     image: live9,
     url: "https://www.facebook.com/events/634749312780087",
     title: "Frequency of Illusion Release Show",
     bands: "Flames / End of Dawn / Mallevs",
-    date: "07 / 12 / 2025",
+    date: 1765130400,
     location: "Eightball, Thessaloniki"
   },
   {
@@ -49,7 +47,7 @@ const shows = [
     url: "https://www.facebook.com/events/2485658904972489",
     title: "Golden R. Festival",
     bands: "Old Man's Child / God Dethroned / Lucifer's Child / Reflection / Exilium Noctis / Powercross / End of Dawn / Illusive Mirrors",
-    date: "30 / 08 / 2025",
+    date: 1756659600,
     location: "Nea Achialos, Volos"
   },
   {
@@ -58,7 +56,7 @@ const shows = [
     url: "https://www.facebook.com/events/1912691492597333",
     title: "Primordial Darkness Release Show",
     bands: "End of Dawn / Likno / Aesemina",
-    date: "08 / 05 / 2025",
+    date: 1746723600,
     location: "Eightball, Thessaloniki"
   },
   {
@@ -67,7 +65,7 @@ const shows = [
     url: "https://www.facebook.com/events/918036716781146",
     title: "Ritual of The Black Mass",
     bands: "Fovitron / End of Dawn / Grotesco Karma / Archegon",
-    date: "28 / 02 / 2025",
+    date: 1740765600,
     location: "Architektoniki, Athens"
   },
   {
@@ -76,7 +74,7 @@ const shows = [
     url: "https://www.facebook.com/events/1111632866984593",
     title: "Dawn With No Light Release Show",
     bands: "Ignominus / Exilium Noctis / End of Dawn",
-    date: "14 / 12 / 2024",
+    date: 1734199200,
     location: "Eightball, Thessaloniki"
   },
   {
@@ -85,7 +83,7 @@ const shows = [
     url: "https://www.facebook.com/events/711955963937492",
     title: "Brazilian Attack Over Thessaloniki",
     bands: "Sextrash / Outlaw / Freefall / End of Dawn",
-    date: "17 / 02 / 2024",
+    date: 1708192800,
     location: "Eightball, Thessaloniki"
   },
   {
@@ -94,7 +92,7 @@ const shows = [
     url: "https://www.facebook.com/events/561143139480525",
     title: "Nightfall Upon Thessaloniki",
     bands: "Drama Noir / Temple of Katharsis / End of Dawn",
-    date: "26 / 01 / 2024",
+    date: 1706292000,
     location: "Eightball, Thessaloniki"
   },
   {
@@ -103,7 +101,7 @@ const shows = [
     url: "https://www.facebook.com/events/1521234788683449",
     title: "Headspin Festival",
     bands: "End of Dawn / Delta Point / 9F / Opium",
-    date: "4 / 11 / 2023",
+    date: 1699120800,
     location: "Eightball, Thessaloniki"
   },
   {
@@ -112,7 +110,7 @@ const shows = [
     url: "https://www.facebook.com/events/128779350143956",
     title: "Unholy Gathering of Dark Sonance",
     bands: "Fovitron / End of Dawn / Asfodelos",
-    date: "20 / 05 / 2023",
+    date: 1684602000,
     location: "Eightball, Thessaloniki"
   },
 ];
@@ -128,61 +126,64 @@ const Shows = () => {
         </h2>
         <div className="section-divider mb-12" />
 
-        <div className="max-w-5xl mx-auto grid gap-6 mb-10">
-          {upcomingShows.map((show) => (
-            <a 
-              key={show.id}
-              href={show.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-gothic overflow-hidden group hover:border-primary/30 purple-glow transition-all"
-            >
-              <div className="flex flex-col md:flex-row">
-                {/* Image */}
-                <div className="md:w-48 h-32 md:h-auto flex-shrink-0 relative overflow-hidden">
-                  <img 
-                    src={show.image} 
-                    alt={show.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal md:block hidden" />
-                </div>
-
-                {/* Content */}
-                <div className="p-4 md:p-6 flex-1 flex flex-col md:flex-row md:items-center gap-4">
-                  {/* Date */}
-                  <div className="flex items-center gap-3 md:w-36">
-                    <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="font-cinzel text-silver tracking-wider text-sm">
-                      {show.date}
-                    </span>
+        <div className="max-w-5xl mx-auto grid gap-6 mb-10" style={{display: 'flex', flexDirection: 'column-reverse', marginBottom: '10rem'}}>
+          {shows.map((show) => <>
+            {new Date(show.date) * 1000 > new Date() &&
+              <a 
+                key={show.id}
+                href={show.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-gothic overflow-hidden group hover:border-primary/30 purple-glow transition-all"
+              >
+                <div className="flex flex-col md:flex-row">
+                  {/* Image */}
+                  <div className="md:w-48 h-32 md:h-auto flex-shrink-0 relative overflow-hidden">
+                    <img 
+                      src={show.image} 
+                      alt={show.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal md:block hidden" />
                   </div>
 
-                  {/* Event Info */}
-                  <div className="flex-1">
-                    <h3 className="font-cinzel text-silver text-lg group-hover:text-primary transition-colors mb-1">
-                      {show.title}
-                    </h3>
-                    <p className="text-muted-foreground font-cormorant text-sm mb-2 line-clamp-1">
-                      {show.bands}
-                    </p>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <MapPin className="w-4 h-4" />
-                      <span className="font-cormorant text-sm">{show.location}</span>
+                  {/* Content */}
+                  <div className="p-4 md:p-6 flex-1 flex flex-col md:flex-row md:items-center gap-4">
+                    {/* Date */}
+                    <div className="flex items-center gap-3 md:w-36">
+                      <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="font-cinzel text-silver tracking-wider text-sm">
+                        {format(new Date(show.date) * 1000, "dd / MM / yyyy")}
+                      </span>
+                    </div>
+
+                    {/* Event Info */}
+                    <div className="flex-1">
+                      <h3 className="font-cinzel text-silver text-lg group-hover:text-primary transition-colors mb-1">
+                        {show.title}
+                      </h3>
+                      <p className="text-muted-foreground font-cormorant text-sm mb-2 line-clamp-1">
+                        {show.bands}
+                      </p>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <MapPin className="w-4 h-4" />
+                        <span className="font-cormorant text-sm">{show.location}</span>
+                      </div>
+                    </div>
+
+                    {/* Button */}
+                    <div className="flex items-center">
+                      <span className="btn-outline-gothic text-xs flex items-center gap-2">
+                        {t('shows.viewEvent')}
+                        <ExternalLink className="w-3 h-3" />
+                      </span>
                     </div>
                   </div>
-
-                  {/* Button */}
-                  <div className="flex items-center">
-                    <span className="btn-outline-gothic text-xs flex items-center gap-2">
-                      {t('shows.viewEvent')}
-                      <ExternalLink className="w-3 h-3" />
-                    </span>
-                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            }
+          </>
+          )}
         </div>
 
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
@@ -191,60 +192,62 @@ const Shows = () => {
         <div className="section-divider mb-12" />
 
         <div className="max-w-5xl mx-auto grid gap-6">
-          {shows.map((show) => (
-            <a 
-              key={show.id}
-              href={show.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="card-gothic overflow-hidden group hover:border-primary/30 transition-all"
-            >
-              <div className="flex flex-col md:flex-row">
-                {/* Image */}
-                <div className="md:w-48 h-32 md:h-auto flex-shrink-0 relative overflow-hidden">
-                  <img 
-                    src={show.image} 
-                    alt={show.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal md:block hidden" />
-                </div>
-
-                {/* Content */}
-                <div className="p-4 md:p-6 flex-1 flex flex-col md:flex-row md:items-center gap-4">
-                  {/* Date */}
-                  <div className="flex items-center gap-3 md:w-36">
-                    <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
-                    <span className="font-cinzel text-silver tracking-wider text-sm">
-                      {show.date}
-                    </span>
+          {shows.map((show) => <>
+            {new Date(show.date) * 1000 < new Date() &&
+              <a 
+                key={show.id}
+                href={show.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="card-gothic overflow-hidden group hover:border-primary/30 transition-all"
+              >
+                <div className="flex flex-col md:flex-row">
+                  {/* Image */}
+                  <div className="md:w-48 h-32 md:h-auto flex-shrink-0 relative overflow-hidden">
+                    <img 
+                      src={show.image} 
+                      alt={show.title}
+                      className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-charcoal md:block hidden" />
                   </div>
 
-                  {/* Event Info */}
-                  <div className="flex-1">
-                    <h3 className="font-cinzel text-silver text-lg group-hover:text-primary transition-colors mb-1">
-                      {show.title}
-                    </h3>
-                    <p className="text-muted-foreground font-cormorant text-sm mb-2 line-clamp-1">
-                      {show.bands}
-                    </p>
-                    <div className="flex items-center gap-2 text-muted-foreground">
-                      <MapPin className="w-4 h-4" />
-                      <span className="font-cormorant text-sm">{show.location}</span>
+                  {/* Content */}
+                  <div className="p-4 md:p-6 flex-1 flex flex-col md:flex-row md:items-center gap-4">
+                    {/* Date */}
+                    <div className="flex items-center gap-3 md:w-36">
+                      <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
+                      <span className="font-cinzel text-silver tracking-wider text-sm">
+                        {format(new Date(show.date) * 1000, "dd / MM / yyyy")}
+                      </span>
+                    </div>
+
+                    {/* Event Info */}
+                    <div className="flex-1">
+                      <h3 className="font-cinzel text-silver text-lg group-hover:text-primary transition-colors mb-1">
+                        {show.title}
+                      </h3>
+                      <p className="text-muted-foreground font-cormorant text-sm mb-2 line-clamp-1">
+                        {show.bands}
+                      </p>
+                      <div className="flex items-center gap-2 text-muted-foreground">
+                        <MapPin className="w-4 h-4" />
+                        <span className="font-cormorant text-sm">{show.location}</span>
+                      </div>
+                    </div>
+
+                    {/* Button */}
+                    <div className="flex items-center">
+                      <span className="btn-outline-gothic text-xs flex items-center gap-2">
+                        {t('shows.viewEvent')}
+                        <ExternalLink className="w-3 h-3" />
+                      </span>
                     </div>
                   </div>
-
-                  {/* Button */}
-                  <div className="flex items-center">
-                    <span className="btn-outline-gothic text-xs flex items-center gap-2">
-                      {t('shows.viewEvent')}
-                      <ExternalLink className="w-3 h-3" />
-                    </span>
-                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </a>
+            }
+          </>)}
         </div>
 
         <p className="text-center text-muted-foreground font-cormorant mt-8">

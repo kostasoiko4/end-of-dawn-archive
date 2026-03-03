@@ -38,7 +38,7 @@ const Hero = () => {
             {t('hero.listenNow')}
           </a>
           <a href="#shows" className="btn-outline-gothic">
-            {t('hero.pastShows')}
+            {t('hero.shows')}
           </a>
         </div>
       </div>
