@@ -110,6 +110,19 @@ const Footer = () => {
           </nav>
 
           {/* Copyright */}
+          <div className="text-center mb-10">
+            <p className="text-muted-foreground text-sm font-cormorant">
+              {t('footer.text1')}
+            </p>
+            <p className="text-muted-foreground text-sm font-cormorant">
+              {t('footer.text2')}
+            </p>
+            <a href="https://oikonomou-portfolio.web.app/" target="__blank" className="text-primary text-s mt-2 font-cormorant" style={{cursor: "pointer", textDecoration: "underline"}}>
+              https://oikonomou-portfolio.web.app/
+            </a>
+          </div>
+
+          {/* Copyright */}
           <div className="text-center">
             <p className="text-muted-foreground text-sm font-cormorant">
               © {new Date().getFullYear()} End of Dawn. {t('footer.rights')}

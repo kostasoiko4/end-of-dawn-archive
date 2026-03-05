@@ -88,6 +88,8 @@
     "success": "Nachricht erfolgreich gesendet! Wir melden uns in Kürze."
   },
   "footer": {
+    "text1": "Gefällt Ihnen diese Website? Möchten Sie eine für Ihre eigene Marke?",
+    "text2": "Kontaktieren Sie uns über den unten stehenden Link und teilen Sie uns Ihre Wünsche mit!",
     "rights": "Alle Rechte vorbehalten.",
     "tagline": "Am Ende gibt es keine Morgendämmerung—nur ewige Dunkelheit."
   }

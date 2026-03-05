@@ -88,6 +88,8 @@
     "success": "Message envoyé avec succès! Nous vous répondrons bientôt."
   },
   "footer": {
+    "text1": "Ce site vous plaît? Vous en voulez un pour votre marque?",
+    "text2": "Contactez-nous via le lien ci-dessous et faites-nous part de vos besoins!",
     "rights": "Tous droits réservés.",
     "tagline": "À la fin, il n'y a pas d'aube—seulement les ténèbres éternelles."
   }

@@ -65,6 +65,14 @@ const posts = [
   },
 ];
 
+
+const getIframeHeight = () => {
+  if(window.innerWidth < 590) return 6000
+  if(window.innerWidth < 850) return 3100
+  if(window.innerWidth < 1125) return 2200
+  return 1650
+}
+
 const SocialFeed = () => {
   const { t } = useTranslation();
 
@@ -125,8 +133,11 @@ const SocialFeed = () => {
           </a>
         </div>
 
+        {/* <rssapp-wall id="v8PNhjiJXExI1igO"></rssapp-wall><script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script> */}
+        <iframe width="100%" height={getIframeHeight()} src="https://rss.app/embed/v1/wall/v8PNhjiJXExI1igO" frameBorder="0"></iframe>
+
         {/* Posts Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+        {/* <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
           {posts.map((post, index) => (
             <a 
               key={index} 
@@ -153,14 +164,13 @@ const SocialFeed = () => {
                   </div>
                 </div>
                 
-                {/* Instagram icon overlay */}
                 <div className="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity">
                   <Instagram className="w-5 h-5 text-silver/80" />
                 </div>
               </div>
             </a>
           ))}
-        </div>
+        </div> */}
 
         <div className="text-center mt-8">
           <a 

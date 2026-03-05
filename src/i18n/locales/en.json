@@ -88,6 +88,8 @@
     "success": "Message sent successfully! We will get back to you soon."
   },
   "footer": {
+    "text1": "Do you like this website? Do you want one for your own brand?",
+    "text2": "Contact us in the link below and let us know you needs!",
     "rights": "All rights reserved.",
     "tagline": "In the end, there is no dawn—only eternal darkness."
   }
