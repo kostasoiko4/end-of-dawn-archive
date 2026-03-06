@@ -33,10 +33,10 @@ const photos = [
 ];
 
 const downloadLinks = {
-  pressKit: 'https://drive.usercontent.google.com/u/0/uc?id=1deGY0_zZ__VJDQDYTE9lnBLfU4n51aRn&export=download',
-  logoPack: 'https://drive.usercontent.google.com/u/0/uc?id=1JwBaF6fsT68UkiIsHFaORbjkNM_eCpm6&export=download',
-  allPhotos: 'https://drive.usercontent.google.com/u/0/uc?id=12K1ysAgCnXYxKkpM_yuprTlHzFjRe8MJ&export=download',
-  epkZip: 'https://drive.usercontent.google.com/u/0/uc?id=1h9Sdh3y8iZPryNl3pRQ6oKDGZiro5ISX&export=download',
+  pressKit: 'https://drive.usercontent.google.com/u/0/uc?id=1M2Vx_DuD_pT2YujZk1VZWisZWAolzWvK&export=download',
+  logoPack: 'https://drive.usercontent.google.com/u/0/uc?id=1s52JA6e-dmQrjFXvS8nxGpM_gu0WPfph&export=download',
+  allPhotos: 'https://drive.usercontent.google.com/u/0/uc?id=1StHabcDGWkaEuTxpzfxu5COSnOX4GlcT&export=download',
+  epkZip: 'https://drive.usercontent.google.com/u/0/uc?id=19sfIw_FdGT2vMclrvj0PocNePO4ydKhA&export=download',
 };
 
 const MediaDownload = () => {
