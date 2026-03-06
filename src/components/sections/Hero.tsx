@@ -29,6 +29,7 @@ const Hero = () => {
           />
         </div>
 
+        <h1 className="gothic-title text-xl md:text-xl text-silver/70 mb-4 max-w-xl mx-auto animate-slide-up">End of Dawn</h1>
         <p className="gothic-subtitle text-lg md:text-xl text-silver/70 mb-8 max-w-xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
           {t('hero.subtitle')}
         </p>
