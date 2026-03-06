@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ShoppingBag } from 'lucide-react';
+import { useCart } from '@/contexts/CartContext';
 import logo from '@/assets/band/logo.png';
 import LanguageSelector from '../LanguageSelector';
 
 const Navigation = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
+  const { openCart, totalItems } = useCart();
 
   const navItems = [
     { label: t('nav.home'), href: '#home' },
@@ -41,10 +43,22 @@ const Navigation = () => {
               </a>
             ))}
             <LanguageSelector />
+            <button onClick={openCart} className="relative text-silver/70 hover:text-silver transition-colors">
+              <ShoppingBag size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 w-4 h-4 bg-primary text-primary-foreground text-[10px] rounded-full flex items-center justify-center font-cinzel">{totalItems}</span>
+              )}
+            </button>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-4">
+            <button onClick={openCart} className="relative text-silver/70 hover:text-silver transition-colors">
+              <ShoppingBag size={20} />
+              {totalItems > 0 && (
+                <span className="absolute -top-2 -right-2 w-4 h-4 bg-primary text-primary-foreground text-[10px] rounded-full flex items-center justify-center font-cinzel">{totalItems}</span>
+              )}
+            </button>
             <LanguageSelector />
             <button
               className="text-silver"

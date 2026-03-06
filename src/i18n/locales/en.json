@@ -92,5 +92,16 @@
     "text2": "Contact us in the link below and let us know you needs!",
     "rights": "All rights reserved.",
     "tagline": "In the end, there is no dawn—only eternal darkness."
+  },
+  "featured": {
+    "title": "Recently Featured",
+    "learnMore": "Learn More"
+  },
+  "cart": {
+    "title": "Your Cart",
+    "empty": "Your cart is empty",
+    "total": "Total",
+    "checkout": "Checkout on Bandcamp",
+    "redirectNote": "You will be redirected to Bandcamp to complete your purchase."
   }
 }

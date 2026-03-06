@@ -92,5 +92,16 @@
     "text2": "Kontaktieren Sie uns über den unten stehenden Link und teilen Sie uns Ihre Wünsche mit!",
     "rights": "Alle Rechte vorbehalten.",
     "tagline": "Am Ende gibt es keine Morgendämmerung—nur ewige Dunkelheit."
+  },
+  "featured": {
+    "title": "Kürzlich Vorgestellt",
+    "learnMore": "Mehr Erfahren"
+  },
+  "cart": {
+    "title": "Ihr Warenkorb",
+    "empty": "Ihr Warenkorb ist leer",
+    "total": "Gesamt",
+    "checkout": "Auf Bandcamp Bezahlen",
+    "redirectNote": "Sie werden zu Bandcamp weitergeleitet, um Ihren Einkauf abzuschließen."
   }
 }

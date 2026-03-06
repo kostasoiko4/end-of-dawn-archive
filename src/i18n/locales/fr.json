@@ -92,5 +92,16 @@
     "text2": "Contactez-nous via le lien ci-dessous et faites-nous part de vos besoins!",
     "rights": "Tous droits réservés.",
     "tagline": "À la fin, il n'y a pas d'aube—seulement les ténèbres éternelles."
+  },
+  "featured": {
+    "title": "Récemment en Vedette",
+    "learnMore": "En Savoir Plus"
+  },
+  "cart": {
+    "title": "Votre Panier",
+    "empty": "Votre panier est vide",
+    "total": "Total",
+    "checkout": "Payer sur Bandcamp",
+    "redirectNote": "Vous serez redirigé vers Bandcamp pour finaliser votre achat."
   }
 }
