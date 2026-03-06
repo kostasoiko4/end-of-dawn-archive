@@ -2,19 +2,6 @@ import { useTranslation } from 'react-i18next';
 import { ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
-const videos = [
-  {
-    title: 'Burning Echoes - Official Music Video',
-    youtubeId: 'OW4P2oxKtE4',
-    embedUrl: 'https://www.youtube.com/embed/OW4P2oxKtE4?si=1iNvDZrGUi56cxnM',
-  },
-  {
-    title: 'The Great Epilogue - Official Music Video',
-    youtubeId: 'UlNyF26zKqo',
-    embedUrl: 'https://www.youtube.com/embed/UlNyF26zKqo?si=OzFLND3G7rKuA5tg',
-  },
-];
-
 const Videos = () => {
   const { t } = useTranslation();
   const currentChannelId = import.meta.env.VITE_API_YOUTUBE_ID
