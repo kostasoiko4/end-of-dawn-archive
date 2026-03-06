@@ -1,5 +1,6 @@
 import { useTranslation } from 'react-i18next';
 import { ExternalLink } from 'lucide-react';
+import { useEffect, useState } from 'react';
 
 const videos = [
   {
@@ -16,6 +17,26 @@ const videos = [
 
 const Videos = () => {
   const { t } = useTranslation();
+  const currentChannelId = import.meta.env.VITE_API_YOUTUBE_ID
+  const [videos, setVideos] = useState([]); 
+  
+  useEffect(() => {
+    (async () => {
+      if (currentChannelId) {
+        try {
+          const data = await fetch(`${import.meta.env.VITE_API_YOUTUBE_BASE_URL}${import.meta.env.VITE_API_YOUTUBE_ID}`).then(response => response.json());
+          const videos = data.items.splice(0,6)
+          const embeded = videos.map(video => {
+            const videoCode = video.url.split('v=')[1]
+            return {...video, embedUrl: `https://www.youtube.com/embed/${videoCode}`}
+          })
+          setVideos(embeded);
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    })();
+  }, []);
 
   return (
     <section id="videos" className="py-24 bg-charcoal">

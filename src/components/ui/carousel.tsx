@@ -1,5 +1,6 @@
 import * as React from "react";
 import useEmblaCarousel, { type UseEmblaCarouselType } from "embla-carousel-react";
+import Autoplay from 'embla-carousel-autoplay'
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
 import { cn } from "@/lib/utils";
@@ -44,8 +45,12 @@ const Carousel = React.forwardRef<HTMLDivElement, React.HTMLAttributes<HTMLDivEl
       {
         ...opts,
         axis: orientation === "horizontal" ? "x" : "y",
+        
       },
-      plugins,
+      [
+        Autoplay({delay: 3000}),
+        // ...plugins,
+      ]
     );
     const [canScrollPrev, setCanScrollPrev] = React.useState(false);
     const [canScrollNext, setCanScrollNext] = React.useState(false);
@@ -181,6 +186,7 @@ const CarouselPrevious = React.forwardRef<HTMLButtonElement, React.ComponentProp
             : "-top-12 left-1/2 -translate-x-1/2 rotate-90",
           className,
         )}
+        style={{display: 'none'}}
         disabled={!canScrollPrev}
         onClick={scrollPrev}
         {...props}
@@ -209,6 +215,7 @@ const CarouselNext = React.forwardRef<HTMLButtonElement, React.ComponentProps<ty
             : "-bottom-12 left-1/2 -translate-x-1/2 rotate-90",
           className,
         )}
+        style={{display: 'none'}}
         disabled={!canScrollNext}
         onClick={scrollNext}
         {...props}

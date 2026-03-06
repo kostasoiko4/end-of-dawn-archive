@@ -51,6 +51,50 @@ const featuredItems = [
     link: 'https://www.youtube.com/watch?v=UlNyF26zKqo',
     date: 'Jan 2025',
   },
+    {
+    id:5,
+    type: 'release',
+    icon: Music,
+    tag: 'New Release',
+    title: 'Primordial Darkness',
+    description: 'Our debut album featuring 11 haunting tracks is out now on all platforms.',
+    image: primordialDarkness,
+    link: 'https://open.spotify.com/album/1h3GYTiuhNOEXSCRafqhqP',
+    date: 'Nov 15, 2024',
+  },
+  {
+    id: 6,
+    type: 'video',
+    icon: Video,
+    tag: 'Music Video',
+    title: 'Burning Echoes — Official Video',
+    description: 'Watch the official music video for Burning Echoes from Primordial Darkness.',
+    image: eod14,
+    link: 'https://www.youtube.com/watch?v=OW4P2oxKtE4',
+    date: 'Dec 2024',
+  },
+  {
+    id: 7,
+    type: 'show',
+    icon: Calendar,
+    tag: 'Live Show',
+    title: 'Frequency of Illusion Release Show',
+    description: 'Flames / End of Dawn / Mallevs — Eightball, Thessaloniki',
+    image: eod15,
+    link: 'https://www.facebook.com/events/634749312780087',
+    date: 'Dec 7, 2025',
+  },
+  {
+    id: 8,
+    type: 'video',
+    icon: Video,
+    tag: 'Music Video',
+    title: 'The Great Epilogue — Official Video',
+    description: 'The official music video for The Great Epilogue is streaming now.',
+    image: eod16,
+    link: 'https://www.youtube.com/watch?v=UlNyF26zKqo',
+    date: 'Jan 2025',
+  },
 ];
 
 const RecentlyFeatured = () => {
@@ -60,19 +104,19 @@ const RecentlyFeatured = () => {
     <section className="py-16 relative overflow-hidden bg-charcoal">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/8 rounded-full blur-[120px]" />
 
-      <div className="container mx-auto px-4 relative z-10">
+      <div className="mx-auto relative z-10"> {/* container px-4 */}
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
           {t('featured.title')}
         </h2>
         <div className="section-divider mb-10" />
 
-        <div className="max-w-5xl mx-auto px-12">
+        <div className="mx-auto px-12">
           <Carousel opts={{ align: 'start', loop: true }} className="w-full">
             <CarouselContent className="-ml-4">
               {featuredItems.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <CarouselItem key={item.id} className="pl-4 md:basis-1/2 lg:basis-1/2">
+                  <CarouselItem key={item.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
                     <a
                       href={item.link}
                       target="_blank"
