@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { XMLParser } from "fast-xml-parser";
 
 const Videos = () => {
   const { t } = useTranslation();
@@ -12,14 +13,28 @@ const Videos = () => {
     (async () => {
       if (currentChannelId && rssUrl) {
         try {
-          // const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
-          const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.toptal.com/developers/feed2json/convert?url=") + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
-          const videos = data.items
-          const longFormVideos = videos.filter(video => !video.url.includes('shorts'))
-          const diplayVideos = longFormVideos.splice(0,6)
-          const embeded = diplayVideos.map(video => {
-            const videoCode = video.url.split('v=')[1]
-            return {...video, embedUrl: `https://www.youtube.com/embed/${videoCode}`}
+          // const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.toptal.com/developers/feed2json/convert?url=") + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
+          // const data = await fetch(`${rssUrl}${currentChannelId}`).then(response => response.json());
+
+          // const videos = data.items
+          // const longFormVideos = videos.filter(video => !video.url.includes('shorts'))
+          // const diplayVideos = longFormVideos.splice(0,6)
+          // const embeded = diplayVideos.map(video => {
+          //   const videoCode = video.url.split('v=')[1]
+          //   return {...video, embedUrl: `https://www.youtube.com/embed/${videoCode}`}
+          // })
+
+          const res = await fetch("http://localhost:3001/youtube-feed");
+          const xml = await res.text();
+
+          const parser = new XMLParser();
+          const data = parser.parse(xml);
+          const videos = data.feed.entry.splice(0,6)
+          const embeded = videos.map(video => {
+            return {
+              title: video.title,
+              url: `https://www.youtube.com/embed/${video['yt:videoId']}`
+            }
           })
           setVideos(embeded);
         } catch (error) {
@@ -42,7 +57,7 @@ const Videos = () => {
             <div key={video.youtubeId} className="group">
               <div className="relative aspect-video rounded-lg overflow-hidden mb-4 silver-border">
                 <iframe
-                  src={video.embedUrl}
+                  src={video.url}
                   title={video.title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   allowFullScreen
