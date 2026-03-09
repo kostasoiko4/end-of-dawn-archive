@@ -1,21 +1,22 @@
 import { useTranslation } from 'react-i18next';
 import { ExternalLink } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { parse } from 'rss-to-json'
 
 const Videos = () => {
   const { t } = useTranslation();
+  const rssUrl = import.meta.env.VITE_API_YOUTUBE_BASE_URL
   const currentChannelId = import.meta.env.VITE_API_YOUTUBE_ID
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
-
     (async () => {
-      if (currentChannelId) {
+      if (currentChannelId && rssUrl) {
         try {
-          const data = await fetch(`https://www.toptal.com/developers/feed2json/convert?url=https%3A%2F%2Fwww.youtube.com%2Ffeeds%2Fvideos.xml%3Fchannel_id%3DUCRkmAzBKgtkX4JIM6CTLVkg`).then(response => response.json());
-          const videos = data.items.splice(0,6)
-          const embeded = videos.map(video => {
+          const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
+          const videos = data.items
+          const longFormVideos = videos.filter(video => !video.url.includes('shorts'))
+          const diplayVideos = longFormVideos.splice(0,6)
+          const embeded = diplayVideos.map(video => {
             const videoCode = video.url.split('v=')[1]
             return {...video, embedUrl: `https://www.youtube.com/embed/${videoCode}`}
           })
