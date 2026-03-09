@@ -13,17 +13,6 @@ const Videos = () => {
     (async () => {
       if (currentChannelId && rssUrl) {
         try {
-          // const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.toptal.com/developers/feed2json/convert?url=") + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
-          // const data = await fetch(`${rssUrl}${currentChannelId}`).then(response => response.json());
-
-          // const videos = data.items
-          // const longFormVideos = videos.filter(video => !video.url.includes('shorts'))
-          // const diplayVideos = longFormVideos.splice(0,6)
-          // const embeded = diplayVideos.map(video => {
-          //   const videoCode = video.url.split('v=')[1]
-          //   return {...video, embedUrl: `https://www.youtube.com/embed/${videoCode}`}
-          // })
-
           const res = await fetch("https://eod-proxy-83beb47ab8db.herokuapp.com/youtube-feed");
           const xml = await res.text();
 
