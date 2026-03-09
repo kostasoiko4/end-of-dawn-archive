@@ -24,7 +24,7 @@ const Videos = () => {
           //   return {...video, embedUrl: `https://www.youtube.com/embed/${videoCode}`}
           // })
 
-          const res = await fetch("http://localhost:3001/youtube-feed");
+          const res = await fetch("https://eod-proxy-83beb47ab8db.herokuapp.com/youtube-feed");
           const xml = await res.text();
 
           const parser = new XMLParser();
