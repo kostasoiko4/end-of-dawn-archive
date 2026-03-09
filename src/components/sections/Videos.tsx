@@ -12,7 +12,8 @@ const Videos = () => {
     (async () => {
       if (currentChannelId && rssUrl) {
         try {
-          const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
+          // const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
+          const data = await fetch("https://api.allorigins.win/raw?url=" + encodeURIComponent("https://www.toptal.com/developers/feed2json/convert?url=") + encodeURIComponent(`${rssUrl}${currentChannelId}`)).then(response => response.json());
           const videos = data.items
           const longFormVideos = videos.filter(video => !video.url.includes('shorts'))
           const diplayVideos = longFormVideos.splice(0,6)
