@@ -7,7 +7,20 @@ import merch2 from '@/assets/merch2.jpg';
 import merch3 from '@/assets/merch3.jpg';
 import merch4 from '@/assets/merch4.jpg';
 
-const products = [
+import dummy1 from '@/assets/Dummy_1.png';
+import dummy2 from '@/assets/Dummy_2.png';
+import dummy3 from '@/assets/Dummy_3.png';
+import dummy4 from '@/assets/Dummy_4.png';
+import dummy5 from '@/assets/Dummy_5.png';
+
+
+const products = window.location.href.includes('localhost') ? [
+  { name: 'Το Βρακί του Αχιλλέα', price: '€0', image: dummy1, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt' },
+  { name: 'Το χρησιμοποιημένο σφουγκαράκι της Γεωργίας', price: '€0', image: dummy4, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt' },
+  { name: 'Η μαγκούρα του Γιάννη', price: '€0', image: dummy2, category: 'Music', link: 'https://endofdawn.bandcamp.com/album/primordial-darkness' },
+  { name: 'Άλεξ (Ολόκληρος)', price: '€0', image: dummy5, category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
+  { name: 'Ψήφος στήριξης υποψήφιου δημοτικού συμβούλου Μπουτσιούκη Ιωάννη', price: '€0', image: dummy3, category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
+] : [
   { name: 'End of Dawn - Official T-shirt', price: '€12', image: merch1, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt' },
   { name: 'End of Dawn - Primordial Darkness Official T-shirt', price: '€15', image: merch2, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt' },
   { name: 'End of Dawn - Primordial Darkness CD', price: '€10', image: merch3, category: 'Music', link: 'https://endofdawn.bandcamp.com/album/primordial-darkness' },
