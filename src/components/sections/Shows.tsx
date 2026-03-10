@@ -27,8 +27,8 @@ const Shows = () => {
   useEffect(() => {
     getShows()
     .then(res => {
-      const upcoming = res.filter(show => new Date(show.date) * 1000 > new Date())
-      const past = res.filter(show => new Date(show.date) * 1000 < new Date())
+      const upcoming = res.filter(show => new Date(show.date).getTime() > Date.now())
+      const past = res.filter(show => new Date(show.date).getTime() < Date.now())
 
       upcoming.sort((a, b) => a.date - b.date)
       past.sort((a, b) => b.date - a.date)
