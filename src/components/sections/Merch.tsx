@@ -1,6 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { ShoppingBag, ExternalLink } from 'lucide-react';
-import { useCart } from '@/contexts/CartContext';
+import { useDispatch } from 'react-redux';
+import { addItem } from '@/store/cartSlice';
 import merch1 from '@/assets/merch1.jpg';
 import merch2 from '@/assets/merch2.jpg';
 import merch3 from '@/assets/merch3.jpg';
@@ -15,7 +16,7 @@ const products = [
 
 const Merch = () => {
   const { t } = useTranslation();
-  const { addItem } = useCart();
+  const dispatch = useDispatch();
 
   return (
     <section id="merch" className="py-24 relative overflow-hidden">
@@ -43,7 +44,7 @@ const Merch = () => {
                     <button
                       onClick={(e) => {
                         e.stopPropagation();
-                        addItem({ name: product.name, price: product.price, image: product.image, link: product.link });
+                        dispatch(addItem({ name: product.name, price: product.price, image: product.image, link: product.link }));
                       }}
                       className="btn-gothic text-sm opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0"
                     >

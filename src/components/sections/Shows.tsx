@@ -140,7 +140,7 @@ const Shows = () => {
                     <div className="flex items-center gap-3 md:w-36">
                       <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="font-cinzel text-silver tracking-wider text-sm">
-                        {format(new Date(show.date) * 1000, "dd / MM / yyyy")}
+                        {format(new Date(show.date), "dd / MM / yyyy")}
                       </span>
                     </div>
 
