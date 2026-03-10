@@ -27,8 +27,10 @@ const Shows = () => {
   useEffect(() => {
     getShows()
     .then(res => {
-      const upcoming = res.filter(show => new Date(show.date).getTime() > Date.now())
-      const past = res.filter(show => new Date(show.date).getTime() < Date.now())
+      // @ts-ignore
+      const upcoming = res.filter(show => new Date(show.date) * 1000 > new Date())
+      // @ts-ignore
+      const past = res.filter(show => new Date(show.date) * 1000 < new Date())
 
       upcoming.sort((a, b) => a.date - b.date)
       past.sort((a, b) => b.date - a.date)
@@ -76,7 +78,8 @@ const Shows = () => {
                       <div className="flex items-center gap-3 md:w-36">
                         <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
                         <span className="font-cinzel text-silver tracking-wider text-sm">
-                          {format(new Date(show.date), "dd / MM / yyyy")}
+                          {/* @ts-ignore */}
+                          {format(new Date(show.date) * 1000, "dd / MM / yyyy")}
                         </span>
                       </div>
 
@@ -140,7 +143,8 @@ const Shows = () => {
                     <div className="flex items-center gap-3 md:w-36">
                       <Calendar className="w-5 h-5 text-primary flex-shrink-0" />
                       <span className="font-cinzel text-silver tracking-wider text-sm">
-                        {format(new Date(show.date), "dd / MM / yyyy")}
+                        {/* @ts-ignore */}
+                        {format(new Date(show.date) * 1000, "dd / MM / yyyy")}
                       </span>
                     </div>
 

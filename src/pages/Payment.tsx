@@ -7,7 +7,7 @@ import { ArrowLeft, CheckCircle } from 'lucide-react';
 import emailjs from '@emailjs/browser';
 import { selectCartItems, selectTotalPrice, clearCart } from '@/store/cartSlice';
 
-const PAYPAL_CLIENT_ID = 'test'; // Replace with real PayPal client ID
+const PAYPAL_CLIENT_ID = import.meta.env.VITE_API_PAYPAL_CLIENT_ID;
 
 const PaymentContent = () => {
   const { t } = useTranslation();
