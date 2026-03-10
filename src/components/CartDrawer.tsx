@@ -1,14 +1,29 @@
 import { useTranslation } from 'react-i18next';
-import { useCart } from '@/contexts/CartContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
 import { Sheet, SheetContent, SheetHeader, SheetTitle } from '@/components/ui/sheet';
-import { ShoppingBag, Plus, Minus, Trash2, ExternalLink } from 'lucide-react';
+import { ShoppingBag, Plus, Minus, Trash2 } from 'lucide-react';
+import {
+  selectCartItems, selectCartIsOpen, selectTotalItems, selectTotalPrice,
+  closeCart, removeItem, updateQuantity,
+} from '@/store/cartSlice';
 
 const CartDrawer = () => {
   const { t } = useTranslation();
-  const { items, isOpen, closeCart, removeItem, updateQuantity, totalItems, totalPrice } = useCart();
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const items = useSelector(selectCartItems);
+  const isOpen = useSelector(selectCartIsOpen);
+  const totalItems = useSelector(selectTotalItems);
+  const totalPrice = useSelector(selectTotalPrice);
+
+  const handleCheckout = () => {
+    dispatch(closeCart());
+    navigate('/checkout');
+  };
 
   return (
-    <Sheet open={isOpen} onOpenChange={(open) => !open && closeCart()}>
+    <Sheet open={isOpen} onOpenChange={(open) => !open && dispatch(closeCart())}>
       <SheetContent side="right" className="bg-charcoal border-silver/10 w-full sm:max-w-md flex flex-col">
         <SheetHeader>
           <SheetTitle className="font-cinzel text-silver tracking-wider uppercase flex items-center gap-2">
@@ -32,14 +47,14 @@ const CartDrawer = () => {
                     <h4 className="font-cinzel text-silver text-xs leading-tight line-clamp-2">{item.name}</h4>
                     <p className="text-primary font-cinzel text-sm mt-1">{item.price}</p>
                     <div className="flex items-center gap-2 mt-2">
-                      <button onClick={() => updateQuantity(item.name, item.quantity - 1)} className="w-6 h-6 flex items-center justify-center border border-silver/20 rounded text-silver hover:bg-primary/20 transition-colors">
+                      <button onClick={() => dispatch(updateQuantity({ name: item.name, quantity: item.quantity - 1 }))} className="w-6 h-6 flex items-center justify-center border border-silver/20 rounded text-silver hover:bg-primary/20 transition-colors">
                         <Minus className="w-3 h-3" />
                       </button>
                       <span className="text-silver font-cinzel text-sm w-6 text-center">{item.quantity}</span>
-                      <button onClick={() => updateQuantity(item.name, item.quantity + 1)} className="w-6 h-6 flex items-center justify-center border border-silver/20 rounded text-silver hover:bg-primary/20 transition-colors">
+                      <button onClick={() => dispatch(updateQuantity({ name: item.name, quantity: item.quantity + 1 }))} className="w-6 h-6 flex items-center justify-center border border-silver/20 rounded text-silver hover:bg-primary/20 transition-colors">
                         <Plus className="w-3 h-3" />
                       </button>
-                      <button onClick={() => removeItem(item.name)} className="ml-auto text-muted-foreground hover:text-destructive transition-colors">
+                      <button onClick={() => dispatch(removeItem(item.name))} className="ml-auto text-muted-foreground hover:text-destructive transition-colors">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -53,17 +68,12 @@ const CartDrawer = () => {
                 <span className="font-cinzel text-silver tracking-wider uppercase text-sm">{t('cart.total')}</span>
                 <span className="font-cinzel text-primary text-lg">€{totalPrice.toFixed(2)}</span>
               </div>
-              <a
-                href="https://endofdawn.bandcamp.com/merch"
-                target="_blank"
-                rel="noopener noreferrer"
+              <button
+                onClick={handleCheckout}
                 className="btn-gothic w-full text-center flex items-center justify-center gap-2"
               >
-                {t('cart.checkout')} <ExternalLink className="w-4 h-4" />
-              </a>
-              <p className="text-xs text-muted-foreground text-center font-cormorant">
-                {t('cart.redirectNote')}
-              </p>
+                {t('cart.proceedToCheckout')}
+              </button>
             </div>
           </>
         )}

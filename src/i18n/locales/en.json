@@ -101,7 +101,33 @@
     "title": "Your Cart",
     "empty": "Your cart is empty",
     "total": "Total",
-    "checkout": "Checkout on Bandcamp",
-    "redirectNote": "You will be redirected to Bandcamp to complete your purchase."
+    "proceedToCheckout": "Proceed to Checkout"
+  },
+  "checkout": {
+    "title": "Checkout",
+    "backToStore": "Back to Store",
+    "proceedToPayment": "Proceed to Payment"
+  },
+  "payment": {
+    "title": "Payment Details",
+    "backToCheckout": "Back to Checkout",
+    "shippingDetails": "Shipping Details",
+    "orderSummary": "Order Summary",
+    "payWith": "Pay with PayPal",
+    "fillDetails": "Please fill in all shipping details above to proceed with payment.",
+    "name": "Full Name",
+    "email": "Email",
+    "address": "Address",
+    "city": "City",
+    "zip": "Postal Code",
+    "country": "Country",
+    "namePlaceholder": "John Doe",
+    "emailPlaceholder": "your@email.com",
+    "addressPlaceholder": "123 Street Name",
+    "cityPlaceholder": "City",
+    "zipPlaceholder": "12345",
+    "countryPlaceholder": "Country",
+    "successTitle": "Order Confirmed!",
+    "successMessage": "Thank you for your purchase! A confirmation email has been sent. We will process your order shortly."
   }
 }

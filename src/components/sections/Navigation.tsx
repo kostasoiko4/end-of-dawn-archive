@@ -1,14 +1,16 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Menu, X, ShoppingBag } from 'lucide-react';
-import { useCart } from '@/contexts/CartContext';
+import { useSelector, useDispatch } from 'react-redux';
+import { selectTotalItems, openCart } from '@/store/cartSlice';
 import logo from '@/assets/band/logo.png';
 import LanguageSelector from '../LanguageSelector';
 
 const Navigation = () => {
   const { t } = useTranslation();
   const [isOpen, setIsOpen] = useState(false);
-  const { openCart, totalItems } = useCart();
+  const dispatch = useDispatch();
+  const totalItems = useSelector(selectTotalItems);
 
   const navItems = [
     { label: t('nav.home'), href: '#home' },
@@ -28,22 +30,15 @@ const Navigation = () => {
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-20">
           <a href="#home" className="flex items-center gap-3">
-            <img 
-              src={logo} 
-              alt="End of Dawn" 
-              className="h-12 w-auto opacity-90" 
-            />
+            <img src={logo} alt="End of Dawn" className="h-12 w-auto opacity-90" />
           </a>
 
-          {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6">
             {navItems.map((item) => (
-              <a key={item.href} href={item.href} className="nav-link">
-                {item.label}
-              </a>
+              <a key={item.href} href={item.href} className="nav-link">{item.label}</a>
             ))}
             <LanguageSelector />
-            <button onClick={openCart} className="relative text-silver/70 hover:text-silver transition-colors">
+            <button onClick={() => dispatch(openCart())} className="relative text-silver/70 hover:text-silver transition-colors">
               <ShoppingBag size={20} />
               {totalItems > 0 && (
                 <span className="absolute -top-2 -right-2 w-4 h-4 bg-primary text-primary-foreground text-[10px] rounded-full flex items-center justify-center font-cinzel">{totalItems}</span>
@@ -51,36 +46,25 @@ const Navigation = () => {
             </button>
           </div>
 
-          {/* Mobile Menu Button */}
           <div className="lg:hidden flex items-center gap-4">
-            <button onClick={openCart} className="relative text-silver/70 hover:text-silver transition-colors">
+            <button onClick={() => dispatch(openCart())} className="relative text-silver/70 hover:text-silver transition-colors">
               <ShoppingBag size={20} />
               {totalItems > 0 && (
                 <span className="absolute -top-2 -right-2 w-4 h-4 bg-primary text-primary-foreground text-[10px] rounded-full flex items-center justify-center font-cinzel">{totalItems}</span>
               )}
             </button>
             <LanguageSelector />
-            <button
-              className="text-silver"
-              onClick={() => setIsOpen(!isOpen)}
-              aria-label="Toggle menu"
-            >
+            <button className="text-silver" onClick={() => setIsOpen(!isOpen)} aria-label="Toggle menu">
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
         {isOpen && (
           <div className="lg:hidden py-4 border-t border-silver/10">
             <div className="flex flex-col gap-4">
               {navItems.map((item) => (
-                <a
-                  key={item.href}
-                  href={item.href}
-                  className="nav-link text-center py-2"
-                  onClick={() => setIsOpen(false)}
-                >
+                <a key={item.href} href={item.href} className="nav-link text-center py-2" onClick={() => setIsOpen(false)}>
                   {item.label}
                 </a>
               ))}
