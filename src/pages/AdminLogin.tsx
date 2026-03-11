@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { Lock, Eye, EyeOff } from 'lucide-react';
 import { useState } from 'react';
-import logo from '@/assets/band/logo.png';
+import logo from '@/assets/band/logo.svg';
 import { loginAdmin, selectIsAuthenticated, selectAuthLoading, selectAuthError, clearError } from '@/store/authSlice';
 import type { AppDispatch } from '@/store';
 

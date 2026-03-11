@@ -1,5 +1,5 @@
 import { useTranslation } from 'react-i18next';
-import logo from '@/assets/band/logo.png';
+import logo from '@/assets/band/logo.svg';
 import eod8 from '@/assets/band/eod8.jpg';
 
 const Hero = () => {
@@ -24,7 +24,7 @@ const Hero = () => {
           <img 
             src={logo} 
             alt="End of Dawn Logo" 
-            loading="eager"
+            // loading="eager"
             className="w-64 md:w-80 lg:w-96 mx-auto opacity-90 drop-shadow-2xl"
             style={{ filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.4))' }}
           />

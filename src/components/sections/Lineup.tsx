@@ -7,7 +7,7 @@ import necro from '@/assets/band/lineup/necro.jpg';
 import yb from '@/assets/band/lineup/yb.jpg';
 import absence from '@/assets/band/lineup/absence.jpg';
 import akhenaken from '@/assets/band/lineup/akhenaken.jpg';
-import necrohymn from '@/assets/band/lineup/necrohymn.png';
+import necrohymn from '@/assets/band/lineup/necrohymn.jpg';
 
 const members = [
   {

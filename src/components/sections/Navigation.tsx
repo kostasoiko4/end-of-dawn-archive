@@ -3,7 +3,7 @@ import { useTranslation } from 'react-i18next';
 import { Menu, X, ShoppingBag } from 'lucide-react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectTotalItems, openCart } from '@/store/cartSlice';
-import logo from '@/assets/band/logo.png';
+import logo from '@/assets/band/logo.svg';
 import LanguageSelector from '../LanguageSelector';
 
 const Navigation = () => {

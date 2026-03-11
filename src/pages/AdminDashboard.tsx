@@ -14,7 +14,7 @@ import {
   Star, Mail, Share2, Download, Save, Plus, Trash2, ChevronDown, ChevronUp,
 } from 'lucide-react';
 import { toast } from 'sonner';
-import logo from '@/assets/band/logo.png';
+import logo from '@/assets/band/logo.svg';
 
 type Tab = 'hero' | 'bio' | 'songs' | 'lineup' | 'releases' | 'merch' | 'shows' | 'featured' | 'contact' | 'social' | 'media';
 
