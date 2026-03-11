@@ -1,19 +1,30 @@
-import { useState } from 'react';
+import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useSelector, useDispatch } from 'react-redux';
 import { Lock, Eye, EyeOff } from 'lucide-react';
+import { useState } from 'react';
 import logo from '@/assets/band/logo.png';
+import { loginAdmin, selectIsAuthenticated, selectAuthLoading, selectAuthError, clearError } from '@/store/authSlice';
+import type { AppDispatch } from '@/store';
 
 const AdminLogin = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
-  const [error, setError] = useState('');
+  const dispatch = useDispatch<AppDispatch>();
   const navigate = useNavigate();
+  const isAuthenticated = useSelector(selectIsAuthenticated);
+  const loading = useSelector(selectAuthLoading);
+  const error = useSelector(selectAuthError);
+
+  useEffect(() => {
+    if (isAuthenticated) navigate('/admin/dashboard');
+  }, [isAuthenticated, navigate]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder — will connect to auth backend later
-    setError('Admin authentication not yet configured. Please contact the developer.');
+    dispatch(clearError());
+    dispatch(loginAdmin({ email, password }));
   };
 
   return (
@@ -24,7 +35,7 @@ const AdminLogin = () => {
 
       <div className="card-gothic p-8 w-full max-w-sm relative z-10">
         <div className="flex flex-col items-center mb-8">
-          <img src={logo} alt="End of Dawn" className="h-16 w-auto mb-4 opacity-80" />
+          <img src={logo} alt="End of Dawn" className="h-16 w-auto mb-4 opacity-80" loading="lazy" />
           <div className="flex items-center gap-2 text-primary">
             <Lock className="w-4 h-4" />
             <h1 className="font-cinzel text-sm tracking-[0.2em] uppercase">Admin Access</h1>
@@ -33,10 +44,10 @@ const AdminLogin = () => {
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <input
-            type="email"
+            type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder="Username"
             className="input-gothic"
             required
           />
@@ -60,8 +71,8 @@ const AdminLogin = () => {
 
           {error && <p className="text-destructive text-sm font-cormorant">{error}</p>}
 
-          <button type="submit" className="btn-gothic w-full">
-            Sign In
+          <button type="submit" disabled={loading} className="btn-gothic w-full disabled:opacity-50">
+            {loading ? 'Signing In...' : 'Sign In'}
           </button>
         </form>
 

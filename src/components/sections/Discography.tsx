@@ -51,6 +51,7 @@ const Discography = () => {
                   <img 
                     src={album} 
                     alt="Primordial Darkness" 
+                    loading="lazy"
                     className="w-full aspect-square object-cover rounded-lg purple-glow"
                   />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
@@ -116,7 +117,7 @@ const Discography = () => {
                 className="card-gothic p-4 flex gap-4 group cursor-pointer hover:border-silver/30 transition-colors"
               >
                 <div className="w-20 h-20 bg-charcoal-light rounded flex items-center justify-center flex-shrink-0">
-                  <img src={release.image} className="text-3xl text-silver/30 font-gothic"/>
+                  <img src={release.image} loading="lazy" className="text-3xl text-silver/30 font-gothic"/>
                 </div>
                 <div>
                   <h4 className="font-cinzel text-silver group-hover:text-primary transition-colors">

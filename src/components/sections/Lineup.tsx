@@ -90,6 +90,7 @@ const Lineup = () => {
                 <img 
                   src={member.image} 
                   alt={member.name}
+                  loading="lazy"
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                 />
                 
@@ -149,6 +150,7 @@ const Lineup = () => {
                 <img 
                   src={selectedMember.image} 
                   alt={selectedMember.name}
+                  loading="lazy"
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-charcoal via-transparent to-transparent" />

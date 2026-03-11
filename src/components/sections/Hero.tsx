@@ -24,6 +24,7 @@ const Hero = () => {
           <img 
             src={logo} 
             alt="End of Dawn Logo" 
+            loading="eager"
             className="w-64 md:w-80 lg:w-96 mx-auto opacity-90 drop-shadow-2xl"
             style={{ filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.4))' }}
           />
