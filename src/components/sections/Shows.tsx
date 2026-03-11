@@ -54,10 +54,8 @@ const Shows = () => {
 
             <div className="max-w-5xl mx-auto grid gap-6 mb-10" style={{marginBottom: '10rem'}}>
               {showsFeed.upcoming.map((show) => 
-                <a 
+                <span 
                   key={show.id}
-                  
-                  rel="noopener noreferrer"
                   className="card-gothic overflow-hidden group hover:border-primary/30 purple-glow transition-all"
                 >
                   <div className="flex flex-col md:flex-row">
@@ -125,7 +123,7 @@ const Shows = () => {
                       </div>
                     </div>
                   </div>
-                </a>
+                </span >
               )}
             </div>
           </> : <></>

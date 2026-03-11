@@ -23,7 +23,7 @@ const Bio = () => {
             <img 
               src={eod3} 
               alt="End of Dawn performing" 
-              loading="lazy"
+              loading="lazy" 
               className="w-full rounded-lg"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-background via-transparent to-transparent rounded-lg" />

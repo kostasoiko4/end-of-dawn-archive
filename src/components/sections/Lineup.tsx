@@ -117,11 +117,6 @@ const Lineup = () => {
                     {member.instrument}
                   </p>
                 </div>
-                
-                {/* Click indicator */}
-                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
-                  <span className="text-primary text-lg">+</span>
-                </div>
               </div>
             </div>
           ))}
