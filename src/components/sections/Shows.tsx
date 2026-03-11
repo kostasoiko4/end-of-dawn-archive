@@ -56,8 +56,7 @@ const Shows = () => {
               {showsFeed.upcoming.map((show) => 
                 <a 
                   key={show.id}
-                  href={show.url}
-                  target="_blank"
+                  
                   rel="noopener noreferrer"
                   className="card-gothic overflow-hidden group hover:border-primary/30 purple-glow transition-all"
                 >
@@ -97,12 +96,32 @@ const Shows = () => {
                         </div>
                       </div>
 
-                      {/* Button */}
-                      <div className="flex items-center">
-                        <span className="btn-outline-gothic text-xs flex items-center gap-2">
-                          {t('shows.viewEvent')}
-                          <ExternalLink className="w-3 h-3" />
-                        </span>
+                      <div>
+                        {/* Button */}
+                        <div className="flex items-center">
+                          <a 
+                            href={show.url}
+                            target="_blank" 
+                            className="btn-outline-gothic text-xs flex items-center gap-2 mb-4"
+                          >
+                            {t('shows.viewEvent')}
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+
+                        {/* Button */}
+                        {show.ticketsUrl &&  
+                          <div className="flex items-center">
+                            <a 
+                              href={show.ticketsUrl} //change with tickets url
+                              target="_blank" 
+                              className="btn-outline-gothic text-xs flex items-center gap-2"
+                            >
+                              {t('shows.getTickets')}
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </div>
+                        }
                       </div>
                     </div>
                   </div>
