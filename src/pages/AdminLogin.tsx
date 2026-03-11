@@ -35,7 +35,7 @@ const AdminLogin = () => {
 
       <div className="card-gothic p-8 w-full max-w-sm relative z-10">
         <div className="flex flex-col items-center mb-8">
-          <img src={logo} alt="End of Dawn" className="h-16 w-auto mb-4 opacity-80" loading="lazy" />
+          <img src={logo} alt="End of Dawn" className="h-16 w-auto mb-4 opacity-80"  />
           <div className="flex items-center gap-2 text-primary">
             <Lock className="w-4 h-4" />
             <h1 className="font-cinzel text-sm tracking-[0.2em] uppercase">Admin Access</h1>

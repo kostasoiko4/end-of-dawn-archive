@@ -59,7 +59,7 @@ const TopSongs = () => {
                 <img 
                   src={album} 
                   alt="Primordial Darkness Album" 
-                  loading="lazy"
+                  
                   className="w-full aspect-square object-cover rounded-lg purple-glow"
                 />
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors rounded-lg flex items-center justify-center">
