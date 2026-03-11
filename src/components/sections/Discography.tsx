@@ -51,6 +51,7 @@ const Discography = () => {
                   <img 
                     src={album} 
                     alt="Primordial Darkness" 
+                    loading="lazy"
                     className="w-full aspect-square object-cover rounded-lg purple-glow"
                   />
                   <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
