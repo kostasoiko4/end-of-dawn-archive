@@ -1,36 +1,12 @@
 import { useTranslation } from 'react-i18next';
 import { Play, Clock, ExternalLink } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store';
 import album from '@/assets/band/primordial-darkness.jpg';
-
-const songs = [
-  { 
-    title: 'Burning Echoes', 
-    duration: '6:34', 
-    plays: '3.2K',
-    album: 'Primordial Darkness',
-    spotifyEmbed: 'https://open.spotify.com/embed/track/2uXsPSS3GOSHXS3gdTfY4t?utm_source=generator&theme=0',
-    spotifyLink: 'https://open.spotify.com/track/2uXsPSS3GOSHXS3gdTfY4t'
-  },
-  { 
-    title: 'Dawn of Decay', 
-    duration: '5:15', 
-    plays: '1.5K',
-    album: 'Primordial Darkness',
-    spotifyEmbed: 'https://open.spotify.com/embed/track/0zrgJ7JtlXC7yrRzdx4EVH?utm_source=generator&theme=0',
-    spotifyLink: 'https://open.spotify.com/track/0zrgJ7JtlXC7yrRzdx4EVH'
-  },
-  { 
-    title: 'The Great Epilogue', 
-    duration: '5:10', 
-    plays: '1K',
-    album: 'Primordial Darkness',
-    spotifyEmbed: 'https://open.spotify.com/embed/track/3VXVxmrCv30tX9wULttpOs?utm_source=generator&theme=0',
-    spotifyLink: 'https://open.spotify.com/track/3VXVxmrCv30tX9wULttpOs'
-  },
-];
 
 const TopSongs = () => {
   const { t } = useTranslation();
+  const songs = useSelector((state: RootState) => state.content.songs);
 
   const handleSongClick = (spotifyLink: string) => {
     window.open(spotifyLink, '_blank');
@@ -59,7 +35,7 @@ const TopSongs = () => {
                 <img 
                   src={album} 
                   alt="Primordial Darkness Album" 
-                  
+                  loading="lazy"
                   className="w-full aspect-square object-cover rounded-lg purple-glow"
                 />
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/30 transition-colors rounded-lg flex items-center justify-center">
