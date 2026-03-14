@@ -1,5 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Download, Image, FileText, Package } from 'lucide-react';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store';
 import eod1 from '@/assets/band/eod1.jpg';
 import eod2 from '@/assets/band/eod2.jpg';
 import eod3 from '@/assets/band/eod3.jpg';
@@ -32,15 +34,9 @@ const photos = [
   { src: eod6, title: 'Live Performance 5' },
 ];
 
-const downloadLinks = {
-  pressKit: 'https://drive.usercontent.google.com/u/0/uc?id=1M2Vx_DuD_pT2YujZk1VZWisZWAolzWvK&export=download',
-  logoPack: 'https://drive.usercontent.google.com/u/0/uc?id=1s52JA6e-dmQrjFXvS8nxGpM_gu0WPfph&export=download',
-  allPhotos: 'https://drive.usercontent.google.com/u/0/uc?id=1StHabcDGWkaEuTxpzfxu5COSnOX4GlcT&export=download',
-  epkZip: 'https://drive.usercontent.google.com/u/0/uc?id=19sfIw_FdGT2vMclrvj0PocNePO4ydKhA&export=download',
-};
-
 const MediaDownload = () => {
   const { t } = useTranslation();
+  const mediaLinks = useSelector((state: RootState) => state.content.mediaLinks);
 
   const handleDownload = (imageSrc: string, title: string) => {
     const link = document.createElement('a');
@@ -60,54 +56,31 @@ const MediaDownload = () => {
         <div className="section-divider mb-12" />
 
         <div className="max-w-6xl mx-auto">
-          {/* Info */}
           <div className="text-center mb-12">
             <p className="text-foreground/80 font-cormorant text-lg max-w-2xl mx-auto">
               {t('media.description')}
             </p>
           </div>
 
-          {/* Quick Downloads */}
           <div className="flex flex-wrap justify-center gap-4 mb-12">
-            <a 
-              href={downloadLinks.pressKit}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-gothic text-sm flex items-center gap-2"
-            >
+            <a href={mediaLinks.pressKit} target="_blank" rel="noopener noreferrer" className="btn-outline-gothic text-sm flex items-center gap-2">
               <FileText className="w-4 h-4" />
               {t('media.pressKit')}
             </a>
-            <a 
-              href={downloadLinks.logoPack}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-gothic text-sm flex items-center gap-2"
-            >
+            <a href={mediaLinks.logoPack} target="_blank" rel="noopener noreferrer" className="btn-outline-gothic text-sm flex items-center gap-2">
               <Image className="w-4 h-4" />
               {t('media.logoPack')}
             </a>
-            <a 
-              href={downloadLinks.allPhotos}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-gothic text-sm flex items-center gap-2"
-            >
+            <a href={mediaLinks.allPhotos} target="_blank" rel="noopener noreferrer" className="btn-outline-gothic text-sm flex items-center gap-2">
               <Download className="w-4 h-4" />
               {t('media.allPhotos')}
             </a>
-            <a 
-              href={downloadLinks.epkZip}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="btn-outline-gothic text-sm flex items-center gap-2"
-            >
+            <a href={mediaLinks.epkZip} target="_blank" rel="noopener noreferrer" className="btn-outline-gothic text-sm flex items-center gap-2">
               <Package className="w-4 h-4" />
               {t('media.epkZip')}
             </a>
           </div>
 
-          {/* Photo Grid */}
           <h3 className="gothic-subtitle text-xl text-center mb-8">{t('media.pressPhotos')}</h3>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {photos.map((photo, index) => (
@@ -115,7 +88,7 @@ const MediaDownload = () => {
                 <img 
                   src={photo.src} 
                   alt={photo.title}
-                  
+                  loading="lazy"
                   className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
                 <div className="absolute inset-0 bg-background/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center">

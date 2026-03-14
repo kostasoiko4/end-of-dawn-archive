@@ -45,6 +45,8 @@ export interface ReleaseItem {
   featured: boolean;
   link: string;
   image: string;
+  description?: string;
+  streamLink?: string;
 }
 
 export interface MerchItem {
@@ -63,6 +65,7 @@ export interface ShowItem {
   bands: string;
   date: string;
   location: string;
+  ticketsUrl?: string;
 }
 
 export interface FeaturedItem {
@@ -135,26 +138,35 @@ const initialState: ContentState = {
   ],
   videos: [],
   lineup: [
-    { name: 'Necro', role: 'Vocals', instrument: 'Screams & Growls', bio: 'The embodiment of primordial fury.', image: '' },
-    { name: 'Mynoghra', role: 'Vocals', instrument: 'Screams & Operatic Vocals', bio: 'The haunting voice that channels the darkness.', image: '' },
-    { name: 'Absence', role: 'Guitar', instrument: 'Leads & Melodies', bio: 'Crafting melodies from the depths of shadow.', image: '' },
-    { name: 'Gravekeeper', role: 'Guitar', instrument: 'Rythm & Riffs', bio: 'The sonic foundation of eternal night.', image: '' },
-    { name: 'Necrohymn', role: 'Bass', instrument: 'Bass Guitar', bio: 'Thunderous depths that shake the earth.', image: '' },
-    { name: 'Akhenaten', role: 'Keyboards', instrument: 'Synths & Orchestration', bio: 'Weaving symphonic darkness through keys.', image: '' },
-    { name: 'YB', role: 'Drums', instrument: 'Drums & Percussion', bio: 'The relentless heartbeat of chaos.', image: '' },
+    { name: 'Necro', role: 'Vocals', instrument: 'Screams & Growls', bio: 'The embodiment of primordial fury.', image: 'necro' },
+    { name: 'Mynoghra', role: 'Vocals', instrument: 'Screams & Operatic Vocals', bio: 'The haunting voice that channels the darkness.', image: 'mynoghra' },
+    { name: 'Absence', role: 'Guitar', instrument: 'Leads & Melodies', bio: 'Crafting melodies from the depths of shadow.', image: 'absence' },
+    { name: 'Gravekeeper', role: 'Guitar', instrument: 'Rythm & Riffs', bio: 'The sonic foundation of eternal night.', image: 'gravekeeper' },
+    { name: 'Necrohymn', role: 'Bass', instrument: 'Bass Guitar', bio: 'Thunderous depths that shake the earth.', image: 'necrohymn' },
+    { name: 'Akhenaten', role: 'Keyboards', instrument: 'Synths & Orchestration', bio: 'Weaving symphonic darkness through keys.', image: 'akhenaten' },
+    { name: 'YB', role: 'Drums', instrument: 'Drums & Percussion', bio: 'The relentless heartbeat of chaos.', image: 'yb' },
   ],
   releases: [
-    { title: 'Primordial Darkness', date: '15 / 11 / 2024', type: 'Full Length', label: 'WormHoleDeath', tracks: 11, featured: true, link: 'https://endofdawn.bandcamp.com/album/primordial-darkness', image: '' },
-    { title: 'Shadow', date: '18 / 10 / 2024', type: 'Single', label: 'Independent', tracks: 1, featured: false, link: 'https://endofdawn.bandcamp.com/track/shadow', image: '' },
+    { title: 'Primordial Darkness', date: '15 / 11 / 2024', type: 'Full Length', label: 'WormHoleDeath', tracks: 11, featured: true, link: 'https://endofdawn.bandcamp.com/album/primordial-darkness', image: 'primordial-darkness', description: 'The debut full-length album plunges listeners into an abyss of orchestral darkness. Eleven haunting tracks that chronicle the fall of light and the rise of eternal shadow, drawing upon mythological and existential themes.', streamLink: 'https://open.spotify.com/album/1h3GYTiuhNOEXSCRafqhqP' },
+    { title: 'Shadow', date: '18 / 10 / 2024', type: 'Single', label: 'Independent', tracks: 1, featured: false, link: 'https://endofdawn.bandcamp.com/track/shadow', image: 'shadow' },
   ],
   merch: [
-    { name: 'End of Dawn - Official T-shirt', price: '€12', image: '', category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt' },
-    { name: 'End of Dawn - Primordial Darkness Official T-shirt', price: '€15', image: '', category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt' },
-    { name: 'End of Dawn - Primordial Darkness CD', price: '€10', image: '', category: 'Music', link: 'https://endofdawn.bandcamp.com/album/primordial-darkness' },
-    { name: 'Bundle Edition: T-shirt + Album CD (Primordial Darkness)', price: '€20', image: '', category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
+    { name: 'End of Dawn - Official T-shirt', price: '€12', image: 'merch1', category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt' },
+    { name: 'End of Dawn - Primordial Darkness Official T-shirt', price: '€15', image: 'merch2', category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt' },
+    { name: 'End of Dawn - Primordial Darkness CD', price: '€10', image: 'merch3', category: 'Music', link: 'https://endofdawn.bandcamp.com/album/primordial-darkness' },
+    { name: 'Bundle Edition: T-shirt + Album CD (Primordial Darkness)', price: '€20', image: 'merch4', category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
   ],
   shows: [],
-  featured: [],
+  featured: [
+    { id: 1, type: 'release', tag: 'New Release', title: 'Primordial Darkness', description: 'Our debut album featuring 11 haunting tracks is out now on all platforms.', image: 'primordial-darkness', link: 'https://open.spotify.com/album/1h3GYTiuhNOEXSCRafqhqP', date: 'Nov 15, 2024' },
+    { id: 2, type: 'video', tag: 'Music Video', title: 'Burning Echoes — Official Video', description: 'Watch the official music video for Burning Echoes from Primordial Darkness.', image: 'eod14', link: 'https://www.youtube.com/watch?v=OW4P2oxKtE4', date: 'Dec 2024' },
+    { id: 3, type: 'show', tag: 'Live Show', title: 'Frequency of Illusion Release Show', description: 'Flames / End of Dawn / Mallevs — Eightball, Thessaloniki', image: 'eod15', link: 'https://www.facebook.com/events/634749312780087', date: 'Dec 7, 2025' },
+    { id: 4, type: 'video', tag: 'Music Video', title: 'The Great Epilogue — Official Video', description: 'The official music video for The Great Epilogue is streaming now.', image: 'eod16', link: 'https://www.youtube.com/watch?v=UlNyF26zKqo', date: 'Jan 2025' },
+    { id: 5, type: 'release', tag: 'New Release', title: 'Primordial Darkness', description: 'Our debut album featuring 11 haunting tracks is out now on all platforms.', image: 'primordial-darkness', link: 'https://open.spotify.com/album/1h3GYTiuhNOEXSCRafqhqP', date: 'Nov 15, 2024' },
+    { id: 6, type: 'video', tag: 'Music Video', title: 'Burning Echoes — Official Video', description: 'Watch the official music video for Burning Echoes from Primordial Darkness.', image: 'eod14', link: 'https://www.youtube.com/watch?v=OW4P2oxKtE4', date: 'Dec 2024' },
+    { id: 7, type: 'show', tag: 'Live Show', title: 'Frequency of Illusion Release Show', description: 'Flames / End of Dawn / Mallevs — Eightball, Thessaloniki', image: 'eod15', link: 'https://www.facebook.com/events/634749312780087', date: 'Dec 7, 2025' },
+    { id: 8, type: 'video', tag: 'Music Video', title: 'The Great Epilogue — Official Video', description: 'The official music video for The Great Epilogue is streaming now.', image: 'eod16', link: 'https://www.youtube.com/watch?v=UlNyF26zKqo', date: 'Jan 2025' },
+  ],
   contact: {
     email: 'endofdawn.bandofficial@gmail.com',
     phone: '+30 6981777403',
@@ -184,7 +196,7 @@ export const fetchContent = createAsyncThunk('content/fetchAll', async (_, { rej
     // TODO: Replace with actual API call
     // const response = await fetch('/api/content');
     // return await response.json();
-    return initialState; // Return defaults for now
+    return initialState;
   } catch (err: any) {
     return rejectWithValue(err.message);
   }
@@ -192,8 +204,7 @@ export const fetchContent = createAsyncThunk('content/fetchAll', async (_, { rej
 
 export const updateHero = createAsyncThunk('content/updateHero', async (data: HeroContent, { rejectWithValue }) => {
   try {
-    // TODO: Replace with actual API call
-    // await fetch('/api/content/hero', { method: 'PUT', body: JSON.stringify(data) });
+    // TODO: await fetch('/api/content/hero', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -202,7 +213,7 @@ export const updateHero = createAsyncThunk('content/updateHero', async (data: He
 
 export const updateBio = createAsyncThunk('content/updateBio', async (data: BioContent, { rejectWithValue }) => {
   try {
-    // TODO: await fetch('/api/content/bio', { method: 'PUT', body: JSON.stringify(data) });
+    // TODO: await fetch('/api/content/bio', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -211,7 +222,7 @@ export const updateBio = createAsyncThunk('content/updateBio', async (data: BioC
 
 export const updateSongs = createAsyncThunk('content/updateSongs', async (data: Song[], { rejectWithValue }) => {
   try {
-    // TODO: await fetch('/api/content/songs', { method: 'PUT', body: JSON.stringify(data) });
+    // TODO: await fetch('/api/content/songs', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -220,6 +231,7 @@ export const updateSongs = createAsyncThunk('content/updateSongs', async (data: 
 
 export const updateLineup = createAsyncThunk('content/updateLineup', async (data: MemberItem[], { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/lineup', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -228,6 +240,7 @@ export const updateLineup = createAsyncThunk('content/updateLineup', async (data
 
 export const updateReleases = createAsyncThunk('content/updateReleases', async (data: ReleaseItem[], { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/releases', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -236,6 +249,7 @@ export const updateReleases = createAsyncThunk('content/updateReleases', async (
 
 export const updateMerch = createAsyncThunk('content/updateMerch', async (data: MerchItem[], { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/merch', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -244,6 +258,7 @@ export const updateMerch = createAsyncThunk('content/updateMerch', async (data: 
 
 export const updateShows = createAsyncThunk('content/updateShows', async (data: ShowItem[], { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/shows', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -252,6 +267,7 @@ export const updateShows = createAsyncThunk('content/updateShows', async (data: 
 
 export const updateFeatured = createAsyncThunk('content/updateFeatured', async (data: FeaturedItem[], { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/featured', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -260,6 +276,7 @@ export const updateFeatured = createAsyncThunk('content/updateFeatured', async (
 
 export const updateContact = createAsyncThunk('content/updateContact', async (data: ContactInfo, { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/contact', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -268,6 +285,7 @@ export const updateContact = createAsyncThunk('content/updateContact', async (da
 
 export const updateSocialLinks = createAsyncThunk('content/updateSocialLinks', async (data: SocialLinks, { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/social-links', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -276,6 +294,7 @@ export const updateSocialLinks = createAsyncThunk('content/updateSocialLinks', a
 
 export const updateMediaLinks = createAsyncThunk('content/updateMediaLinks', async (data: MediaLinks, { rejectWithValue }) => {
   try {
+    // TODO: await fetch('/api/content/media-links', { method: 'PUT', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
     return data;
   } catch (err: any) {
     return rejectWithValue(err.message);
@@ -301,7 +320,6 @@ const contentSlice = createSlice({
     setMediaLinks(state, action: PayloadAction<MediaLinks>) { state.mediaLinks = action.payload; },
   },
   extraReducers: (builder) => {
-    // fetchContent
     builder.addCase(fetchContent.pending, (state) => { state.loading = true; state.error = null; });
     builder.addCase(fetchContent.fulfilled, (state, action) => {
       state.loading = false;
@@ -309,7 +327,6 @@ const contentSlice = createSlice({
     });
     builder.addCase(fetchContent.rejected, (state, action) => { state.loading = false; state.error = action.payload as string; });
 
-    // Individual updates
     builder.addCase(updateHero.fulfilled, (state, action) => { state.hero = action.payload; });
     builder.addCase(updateBio.fulfilled, (state, action) => { state.bio = action.payload; });
     builder.addCase(updateSongs.fulfilled, (state, action) => { state.songs = action.payload; });

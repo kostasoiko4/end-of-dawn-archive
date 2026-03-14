@@ -1,5 +1,7 @@
 import { useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store';
 import { X } from 'lucide-react';
 import gravekeeper from '@/assets/band/lineup/gravekeeper.jpg';
 import mynoghra from '@/assets/band/lineup/mynoghra.jpg';
@@ -9,61 +11,23 @@ import absence from '@/assets/band/lineup/absence.jpg';
 import akhenaken from '@/assets/band/lineup/akhenaken.jpg';
 import necrohymn from '@/assets/band/lineup/necrohymn.jpg';
 
-const members = [
-  {
-    name: 'Necro',
-    role: 'Vocals',
-    image: necro,
-    instrument: 'Screams & Growls',
-    bio: 'The embodiment of primordial fury.',
-  },
-  {
-    name: 'Mynoghra',
-    role: 'Vocals',
-    image: mynoghra,
-    instrument: 'Screams & Operatic Vocals',
-    bio: 'The haunting voice that channels the darkness.',
-  },
-  {
-    name: 'Absence',
-    role: 'Guitar',
-    image: absence,
-    instrument: 'Leads & Melodies',
-    bio: 'Crafting melodies from the depths of shadow.',
-  },
-    {
-    name: 'Gravekeeper',
-    role: 'Guitar',
-    image: gravekeeper,
-    instrument: 'Rythm & Riffs',
-    bio: 'The sonic foundation of eternal night.',
-  },
-  {
-    name: 'Necrohymn',
-    role: 'Bass',
-    image: necrohymn,
-    instrument: 'Bass Guitar',
-    bio: 'Thunderous depths that shake the earth.',
-  },
-  {
-    name: 'Akhenaten',
-    role: 'Keyboards',
-    image: akhenaken,
-    instrument: 'Synths & Orchestration',
-    bio: 'Weaving symphonic darkness through keys.',
-  },
-  {
-    name: 'YB',
-    role: 'Drums',
-    image: yb,
-    instrument: 'Drums & Percussion',
-    bio: 'The relentless heartbeat of chaos.',
-  },
-];
+// Map image keys to imported assets
+const imageMap: Record<string, string> = {
+  necro, mynoghra, absence, gravekeeper, necrohymn, akhenaten: akhenaken, yb,
+};
 
 const Lineup = () => {
   const { t } = useTranslation();
+  const members = useSelector((state: RootState) => state.content.lineup);
   const [selectedMember, setSelectedMember] = useState<typeof members[0] | null>(null);
+
+  const getImage = (member: typeof members[0]) => {
+    // If image is a URL, use it directly; otherwise look up in imageMap
+    if (member.image.startsWith('http') || member.image.startsWith('/') || member.image.startsWith('data:')) {
+      return member.image;
+    }
+    return imageMap[member.image.toLowerCase()] || '';
+  };
 
   return (
     <section id="lineup" className="py-24 relative overflow-hidden">
@@ -77,7 +41,6 @@ const Lineup = () => {
         </h2>
         <div className="section-divider mb-12" />
 
-        {/* Responsive grid - wraps on smaller screens */}
         <div className="flex flex-wrap justify-center gap-6 md:gap-8 max-w-7xl mx-auto">
           {members.map((member, index) => (
             <div 
@@ -88,22 +51,16 @@ const Lineup = () => {
             >
               <div className="relative aspect-[3/4] rounded-lg overflow-hidden silver-border bg-charcoal-light transform transition-all duration-500 group-hover:scale-105 group-hover:shadow-[0_0_30px_rgba(139,92,246,0.3)]">
                 <img 
-                  src={member.image} 
+                  src={getImage(member)} 
                   alt={member.name}
-                  
+                  loading="lazy"
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                 />
                 
-                {/* Gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-300" />
-                
-                {/* Purple glow on hover */}
                 <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/20 transition-all duration-300" />
-                
-                {/* Border glow effect */}
                 <div className="absolute inset-0 border-2 border-primary/0 group-hover:border-primary/50 rounded-lg transition-all duration-300" />
                 
-                {/* Member info overlay */}
                 <div className="absolute bottom-0 left-0 right-0 p-4 transform translate-y-0 group-hover:-translate-y-1 transition-transform duration-300">
                   <h3 className="font-cinzel text-silver text-base md:text-lg font-semibold drop-shadow-lg">
                     {member.name}
@@ -111,8 +68,6 @@ const Lineup = () => {
                   <p className="text-primary text-sm md:text-base font-cinzel tracking-wider drop-shadow-lg">
                     {member.role}
                   </p>
-                  
-                  {/* Reveal on hover */}
                   <p className="text-muted-foreground text-xs md:text-sm mt-1 font-cormorant opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                     {member.instrument}
                   </p>
@@ -143,9 +98,8 @@ const Lineup = () => {
             <div className="flex flex-col md:flex-row">
               <div className="relative md:w-1/2 aspect-[3/4] md:aspect-auto">
                 <img 
-                  src={selectedMember.image} 
+                  src={getImage(selectedMember)} 
                   alt={selectedMember.name}
-                  
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-charcoal via-transparent to-transparent" />

@@ -1,7 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import { ShoppingBag, ExternalLink } from 'lucide-react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { addItem } from '@/store/cartSlice';
+import type { RootState } from '@/store';
 import merch1 from '@/assets/merch1.jpg';
 import merch2 from '@/assets/merch2.jpg';
 import merch3 from '@/assets/merch3.jpg';
@@ -13,23 +14,34 @@ import dummy3 from '@/assets/Dummy_3.png';
 import dummy4 from '@/assets/Dummy_4.png';
 import dummy5 from '@/assets/Dummy_5.png';
 
+// Map image keys to imported assets
+const imageMap: Record<string, string> = {
+  merch1, merch2, merch3, merch4,
+};
 
-const products = window.location.href.includes('localhost') ? [
+// Localhost dummy products
+const dummyProducts = [
   { name: 'Το Βρακί του Αχιλλέα', price: '€0', image: dummy1, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt' },
   { name: 'Το χρησιμοποιημένο σφουγκαράκι της Γεωργίας', price: '€0', image: dummy4, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt' },
   { name: 'Η μαγκούρα του Γιάννη', price: '€0', image: dummy2, category: 'Music', link: 'https://endofdawn.bandcamp.com/album/primordial-darkness' },
   { name: 'Άλεξ (Ολόκληρος)', price: '€0', image: dummy5, category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
   { name: 'Ψήφος στήριξης υποψήφιου δημοτικού συμβούλου Μπουτσιούκη Ιωάννη', price: '€0', image: dummy3, category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
-] : [
-  { name: 'End of Dawn - Official T-shirt', price: '€12', image: merch1, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt' },
-  { name: 'End of Dawn - Primordial Darkness Official T-shirt', price: '€15', image: merch2, category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt' },
-  { name: 'End of Dawn - Primordial Darkness CD', price: '€10', image: merch3, category: 'Music', link: 'https://endofdawn.bandcamp.com/album/primordial-darkness' },
-  { name: 'Bundle Edition: T-shirt + Album CD (Primordial Darkness)', price: '€20', image: merch4, category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
 ];
 
 const Merch = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
+  const merchItems = useSelector((state: RootState) => state.content.merch);
+  const isLocalhost = window.location.href.includes('localhost');
+
+  const getImage = (imageKey: string) => {
+    if (imageKey.startsWith('http') || imageKey.startsWith('/') || imageKey.startsWith('data:')) return imageKey;
+    return imageMap[imageKey.toLowerCase()] || '';
+  };
+
+  const products = isLocalhost
+    ? dummyProducts
+    : merchItems.map(item => ({ ...item, image: getImage(item.image) }));
 
   return (
     <section id="merch" className="py-24 relative overflow-hidden">
@@ -50,8 +62,8 @@ const Merch = () => {
                   <img
                     src={product.image}
                     alt={product.name}
+                    loading="lazy"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                    
                   />
                   <div className="absolute inset-0 bg-background/0 group-hover:bg-background/30 transition-colors flex items-center justify-center">
                     <button
