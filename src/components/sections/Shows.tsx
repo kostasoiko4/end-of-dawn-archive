@@ -4,6 +4,7 @@ import { format } from "date-fns"
 import { useEffect, useState } from 'react';
 import { initializeApp } from 'firebase/app';
 
+// @ts-ignore
 import firebaseConfig from '../../../firebase_config.json'
 import { getFirestore, collection, getDocs } from 'firebase/firestore/lite';
 
