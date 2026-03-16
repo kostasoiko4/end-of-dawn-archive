@@ -2,7 +2,7 @@ import { useTranslation } from 'react-i18next';
 import { Instagram, Facebook, Youtube, Music } from 'lucide-react';
 import { AiOutlineSpotify } from "react-icons/ai";
 
-import logo from '@/assets/band/logo.png';
+import logo from '@/assets/band/logo.svg';
 
 // Apple Music icon
 const AppleMusicIcon = ({ className }: { className?: string }) => (

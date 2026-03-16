@@ -7,7 +7,7 @@ import necro from '@/assets/band/lineup/necro.jpg';
 import yb from '@/assets/band/lineup/yb.jpg';
 import absence from '@/assets/band/lineup/absence.jpg';
 import akhenaken from '@/assets/band/lineup/akhenaken.jpg';
-import necrohymn from '@/assets/band/lineup/necrohymn.png';
+import necrohymn from '@/assets/band/lineup/necrohymn.jpg';
 
 const members = [
   {
@@ -90,6 +90,7 @@ const Lineup = () => {
                 <img 
                   src={member.image} 
                   alt={member.name}
+                  
                   className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:brightness-110"
                 />
                 
@@ -115,11 +116,6 @@ const Lineup = () => {
                   <p className="text-muted-foreground text-xs md:text-sm mt-1 font-cormorant opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                     {member.instrument}
                   </p>
-                </div>
-                
-                {/* Click indicator */}
-                <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 backdrop-blur-sm">
-                  <span className="text-primary text-lg">+</span>
                 </div>
               </div>
             </div>
@@ -149,6 +145,7 @@ const Lineup = () => {
                 <img 
                   src={selectedMember.image} 
                   alt={selectedMember.name}
+                  
                   className="w-full h-full object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t md:bg-gradient-to-r from-charcoal via-transparent to-transparent" />

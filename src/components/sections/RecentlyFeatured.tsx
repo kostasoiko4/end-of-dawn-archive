@@ -129,7 +129,7 @@ const RecentlyFeatured = () => {
                             src={item.image}
                             alt={item.title}
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            loading="lazy"
+                            
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent" />
                           <span className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-cinzel uppercase tracking-wider rounded">

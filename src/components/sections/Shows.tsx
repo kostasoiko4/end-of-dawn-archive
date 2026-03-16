@@ -54,11 +54,8 @@ const Shows = () => {
 
             <div className="max-w-5xl mx-auto grid gap-6 mb-10" style={{marginBottom: '10rem'}}>
               {showsFeed.upcoming.map((show) => 
-                <a 
+                <span 
                   key={show.id}
-                  href={show.url}
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="card-gothic overflow-hidden group hover:border-primary/30 purple-glow transition-all"
                 >
                   <div className="flex flex-col md:flex-row">
@@ -97,16 +94,36 @@ const Shows = () => {
                         </div>
                       </div>
 
-                      {/* Button */}
-                      <div className="flex items-center">
-                        <span className="btn-outline-gothic text-xs flex items-center gap-2">
-                          {t('shows.viewEvent')}
-                          <ExternalLink className="w-3 h-3" />
-                        </span>
+                      <div>
+                        {/* Button */}
+                        <div className="flex items-center">
+                          <a 
+                            href={show.url}
+                            target="_blank" 
+                            className="btn-outline-gothic text-xs flex items-center gap-2 mb-4"
+                          >
+                            {t('shows.viewEvent')}
+                            <ExternalLink className="w-3 h-3" />
+                          </a>
+                        </div>
+
+                        {/* Button */}
+                        {show.ticketsUrl &&  
+                          <div className="flex items-center">
+                            <a 
+                              href={show.ticketsUrl} //change with tickets url
+                              target="_blank" 
+                              className="btn-outline-gothic text-xs flex items-center gap-2"
+                            >
+                              {t('shows.getTickets')}
+                              <ExternalLink className="w-3 h-3" />
+                            </a>
+                          </div>
+                        }
                       </div>
                     </div>
                   </div>
-                </a>
+                </span >
               )}
             </div>
           </> : <></>
