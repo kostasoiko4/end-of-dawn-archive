@@ -14,7 +14,402 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bio_content: {
+        Row: {
+          created_at: string
+          id: string
+          paragraph1: string
+          paragraph2: string
+          paragraph3: string
+          quote: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          paragraph1?: string
+          paragraph2?: string
+          paragraph3?: string
+          quote?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          paragraph1?: string
+          paragraph2?: string
+          paragraph3?: string
+          quote?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      contact_info: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          phone: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email?: string
+          id?: string
+          phone?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          phone?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      featured_items: {
+        Row: {
+          created_at: string
+          date: string
+          description: string
+          id: string
+          image: string
+          link: string
+          sort_order: number
+          tag: string
+          title: string
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          description?: string
+          id?: string
+          image?: string
+          link?: string
+          sort_order?: number
+          tag?: string
+          title: string
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          description?: string
+          id?: string
+          image?: string
+          link?: string
+          sort_order?: number
+          tag?: string
+          title?: string
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      hero_content: {
+        Row: {
+          created_at: string
+          id: string
+          listen_now_label: string
+          shows_label: string
+          subtitle: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          id?: string
+          listen_now_label?: string
+          shows_label?: string
+          subtitle?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          id?: string
+          listen_now_label?: string
+          shows_label?: string
+          subtitle?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      lineup_members: {
+        Row: {
+          bio: string
+          created_at: string
+          id: string
+          image: string
+          instrument: string
+          name: string
+          role: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          bio?: string
+          created_at?: string
+          id?: string
+          image?: string
+          instrument?: string
+          name: string
+          role?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          bio?: string
+          created_at?: string
+          id?: string
+          image?: string
+          instrument?: string
+          name?: string
+          role?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      media_links: {
+        Row: {
+          all_photos: string
+          created_at: string
+          epk_zip: string
+          id: string
+          logo_pack: string
+          press_kit: string
+          updated_at: string
+        }
+        Insert: {
+          all_photos?: string
+          created_at?: string
+          epk_zip?: string
+          id?: string
+          logo_pack?: string
+          press_kit?: string
+          updated_at?: string
+        }
+        Update: {
+          all_photos?: string
+          created_at?: string
+          epk_zip?: string
+          id?: string
+          logo_pack?: string
+          press_kit?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      merch_items: {
+        Row: {
+          category: string
+          created_at: string
+          id: string
+          image: string
+          link: string
+          name: string
+          price: string
+          sort_order: number
+          updated_at: string
+        }
+        Insert: {
+          category?: string
+          created_at?: string
+          id?: string
+          image?: string
+          link?: string
+          name: string
+          price?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Update: {
+          category?: string
+          created_at?: string
+          id?: string
+          image?: string
+          link?: string
+          name?: string
+          price?: string
+          sort_order?: number
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      releases: {
+        Row: {
+          created_at: string
+          date: string
+          description: string | null
+          featured: boolean
+          id: string
+          image: string
+          label: string
+          link: string
+          sort_order: number
+          stream_link: string | null
+          title: string
+          tracks: number
+          type: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          date?: string
+          description?: string | null
+          featured?: boolean
+          id?: string
+          image?: string
+          label?: string
+          link?: string
+          sort_order?: number
+          stream_link?: string | null
+          title: string
+          tracks?: number
+          type?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          date?: string
+          description?: string | null
+          featured?: boolean
+          id?: string
+          image?: string
+          label?: string
+          link?: string
+          sort_order?: number
+          stream_link?: string | null
+          title?: string
+          tracks?: number
+          type?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      shows: {
+        Row: {
+          bands: string
+          created_at: string
+          date: string
+          id: string
+          image: string
+          location: string
+          sort_order: number
+          tickets_url: string | null
+          title: string
+          updated_at: string
+          url: string
+        }
+        Insert: {
+          bands?: string
+          created_at?: string
+          date: string
+          id?: string
+          image?: string
+          location?: string
+          sort_order?: number
+          tickets_url?: string | null
+          title: string
+          updated_at?: string
+          url?: string
+        }
+        Update: {
+          bands?: string
+          created_at?: string
+          date?: string
+          id?: string
+          image?: string
+          location?: string
+          sort_order?: number
+          tickets_url?: string | null
+          title?: string
+          updated_at?: string
+          url?: string
+        }
+        Relationships: []
+      }
+      social_links: {
+        Row: {
+          apple_music: string
+          bandcamp: string
+          created_at: string
+          facebook: string
+          id: string
+          instagram: string
+          spotify: string
+          tiktok: string
+          updated_at: string
+          youtube: string
+        }
+        Insert: {
+          apple_music?: string
+          bandcamp?: string
+          created_at?: string
+          facebook?: string
+          id?: string
+          instagram?: string
+          spotify?: string
+          tiktok?: string
+          updated_at?: string
+          youtube?: string
+        }
+        Update: {
+          apple_music?: string
+          bandcamp?: string
+          created_at?: string
+          facebook?: string
+          id?: string
+          instagram?: string
+          spotify?: string
+          tiktok?: string
+          updated_at?: string
+          youtube?: string
+        }
+        Relationships: []
+      }
+      songs: {
+        Row: {
+          album: string
+          created_at: string
+          duration: string
+          id: string
+          plays: string
+          sort_order: number
+          spotify_embed: string
+          spotify_link: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          album?: string
+          created_at?: string
+          duration?: string
+          id?: string
+          plays?: string
+          sort_order?: number
+          spotify_embed?: string
+          spotify_link?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          album?: string
+          created_at?: string
+          duration?: string
+          id?: string
+          plays?: string
+          sort_order?: number
+          spotify_embed?: string
+          spotify_link?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
