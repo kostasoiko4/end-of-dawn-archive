@@ -250,7 +250,7 @@ const AdminDashboard = () => {
                 <Field label="Image URL" value={show.image} onChange={v => updateShow(i, 'image', v)} />
               </ItemCard>
             ))}
-            <button onClick={() => setShows([...shows, { id: Date.now(), image: '', url: '', title: '', bands: '', date: '', location: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
+            <button onClick={() => setShows([...shows, { id: crypto.randomUUID(), image: '', url: '', title: '', bands: '', date: '', location: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
               <Plus className="w-4 h-4" /> Add Show
             </button>
           </div>
