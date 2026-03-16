@@ -1,110 +1,39 @@
 import { useTranslation } from 'react-i18next';
 import { ExternalLink, Music, Video, Calendar } from 'lucide-react';
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from '@/components/ui/carousel';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store';
 import eod14 from '@/assets/band/eod14.jpg';
 import eod15 from '@/assets/band/eod15.jpg';
 import eod16 from '@/assets/band/eod16.jpg';
 import primordialDarkness from '@/assets/band/primordial-darkness.jpg';
 
-const featuredItems = [
-  {
-    id: 1,
-    type: 'release',
-    icon: Music,
-    tag: 'New Release',
-    title: 'Primordial Darkness',
-    description: 'Our debut album featuring 11 haunting tracks is out now on all platforms.',
-    image: primordialDarkness,
-    link: 'https://open.spotify.com/album/1h3GYTiuhNOEXSCRafqhqP',
-    date: 'Nov 15, 2024',
-  },
-  {
-    id: 2,
-    type: 'video',
-    icon: Video,
-    tag: 'Music Video',
-    title: 'Burning Echoes — Official Video',
-    description: 'Watch the official music video for Burning Echoes from Primordial Darkness.',
-    image: eod14,
-    link: 'https://www.youtube.com/watch?v=OW4P2oxKtE4',
-    date: 'Dec 2024',
-  },
-  {
-    id: 3,
-    type: 'show',
-    icon: Calendar,
-    tag: 'Live Show',
-    title: 'Frequency of Illusion Release Show',
-    description: 'Flames / End of Dawn / Mallevs — Eightball, Thessaloniki',
-    image: eod15,
-    link: 'https://www.facebook.com/events/634749312780087',
-    date: 'Dec 7, 2025',
-  },
-  {
-    id: 4,
-    type: 'video',
-    icon: Video,
-    tag: 'Music Video',
-    title: 'The Great Epilogue — Official Video',
-    description: 'The official music video for The Great Epilogue is streaming now.',
-    image: eod16,
-    link: 'https://www.youtube.com/watch?v=UlNyF26zKqo',
-    date: 'Jan 2025',
-  },
-    {
-    id:5,
-    type: 'release',
-    icon: Music,
-    tag: 'New Release',
-    title: 'Primordial Darkness',
-    description: 'Our debut album featuring 11 haunting tracks is out now on all platforms.',
-    image: primordialDarkness,
-    link: 'https://open.spotify.com/album/1h3GYTiuhNOEXSCRafqhqP',
-    date: 'Nov 15, 2024',
-  },
-  {
-    id: 6,
-    type: 'video',
-    icon: Video,
-    tag: 'Music Video',
-    title: 'Burning Echoes — Official Video',
-    description: 'Watch the official music video for Burning Echoes from Primordial Darkness.',
-    image: eod14,
-    link: 'https://www.youtube.com/watch?v=OW4P2oxKtE4',
-    date: 'Dec 2024',
-  },
-  {
-    id: 7,
-    type: 'show',
-    icon: Calendar,
-    tag: 'Live Show',
-    title: 'Frequency of Illusion Release Show',
-    description: 'Flames / End of Dawn / Mallevs — Eightball, Thessaloniki',
-    image: eod15,
-    link: 'https://www.facebook.com/events/634749312780087',
-    date: 'Dec 7, 2025',
-  },
-  {
-    id: 8,
-    type: 'video',
-    icon: Video,
-    tag: 'Music Video',
-    title: 'The Great Epilogue — Official Video',
-    description: 'The official music video for The Great Epilogue is streaming now.',
-    image: eod16,
-    link: 'https://www.youtube.com/watch?v=UlNyF26zKqo',
-    date: 'Jan 2025',
-  },
-];
+// Map image keys to imported assets
+const imageMap: Record<string, string> = {
+  'primordial-darkness': primordialDarkness,
+  eod14, eod15, eod16,
+};
+
+const iconMap: Record<string, typeof Music> = {
+  release: Music,
+  video: Video,
+  show: Calendar,
+};
 
 const RecentlyFeatured = () => {
   const { t } = useTranslation();
+  const featuredItems = useSelector((state: RootState) => state.content.featured);
+
+  const getImage = (imageKey: string) => {
+    if (imageKey.startsWith('http') || imageKey.startsWith('/') || imageKey.startsWith('data:')) return imageKey;
+    return imageMap[imageKey.toLowerCase()] || '';
+  };
 
   return (
     <section className="py-16 relative overflow-hidden bg-charcoal">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/8 rounded-full blur-[120px]" />
 
-      <div className="mx-auto relative z-10"> {/* container px-4 */}
+      <div className="mx-auto relative z-10">
         <h2 className="gothic-title text-3xl md:text-4xl text-center mb-4">
           {t('featured.title')}
         </h2>
@@ -114,7 +43,7 @@ const RecentlyFeatured = () => {
           <Carousel opts={{ align: 'start', loop: true }} className="w-full">
             <CarouselContent className="-ml-4">
               {featuredItems.map((item) => {
-                const Icon = item.icon;
+                const Icon = iconMap[item.type] || Music;
                 return (
                   <CarouselItem key={item.id} className="pl-4 md:basis-1/2 lg:basis-1/4">
                     <a
@@ -126,10 +55,10 @@ const RecentlyFeatured = () => {
                       <div className="card-gothic h-full flex flex-col overflow-hidden hover:border-primary/30 transition-all duration-300">
                         <div className="relative h-48 overflow-hidden">
                           <img
-                            src={item.image}
+                            src={getImage(item.image)}
                             alt={item.title}
+                            loading="lazy"
                             className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                            
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-transparent to-transparent" />
                           <span className="absolute top-3 left-3 flex items-center gap-1.5 px-3 py-1 bg-primary/90 text-primary-foreground text-xs font-cinzel uppercase tracking-wider rounded">

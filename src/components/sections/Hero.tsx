@@ -1,9 +1,12 @@
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store';
 import logo from '@/assets/band/logo.svg';
 import eod8 from '@/assets/band/eod8.jpg';
 
 const Hero = () => {
   const { t } = useTranslation();
+  const hero = useSelector((state: RootState) => state.content.hero);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden">
@@ -24,7 +27,7 @@ const Hero = () => {
           <img 
             src={logo} 
             alt="End of Dawn Logo" 
-            // loading="eager"
+            loading="eager"
             className="w-64 md:w-80 lg:w-96 mx-auto opacity-90 drop-shadow-2xl"
             style={{ filter: 'drop-shadow(0 0 30px rgba(139, 92, 246, 0.4))' }}
           />
@@ -32,7 +35,7 @@ const Hero = () => {
 
         <h1 className="gothic-title text-xl md:text-xl text-silver/70 mb-4 max-w-xl mx-auto animate-slide-up">End of Dawn</h1>
         <p className="gothic-subtitle text-lg md:text-xl text-silver/70 mb-8 max-w-xl mx-auto animate-slide-up" style={{ animationDelay: '0.2s' }}>
-          {t('hero.subtitle')}
+          {hero.subtitle}
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center animate-slide-up" style={{ animationDelay: '0.4s' }}>

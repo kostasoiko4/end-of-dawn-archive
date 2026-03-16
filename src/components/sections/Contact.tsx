@@ -1,11 +1,14 @@
 import { useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
+import type { RootState } from '@/store';
 import { Send, Mail, Phone } from 'lucide-react';
 import { toast } from 'sonner';
 import emailjs from '@emailjs/browser'
 
 const Contact = () => {
   const { t } = useTranslation();
+  const contactInfo = useSelector((state: RootState) => state.content.contact);
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -33,7 +36,6 @@ const Contact = () => {
       },
     );
 
-    // Show success message
     toast.success(t('contact.success'));
     setFormData({ name: '', email: '', subject: '', message: '' });
     setIsSubmitting(false);
@@ -55,7 +57,6 @@ const Contact = () => {
         <div className="section-divider mb-12" />
 
         <div className="max-w-4xl mx-auto grid md:grid-cols-2 gap-12">
-          {/* Contact Info */}
           <div>
             <h3 className="font-cinzel text-xl text-silver mb-6">{t('contact.getInTouch')}</h3>
             <p className="text-foreground/80 font-cormorant text-lg mb-8">
@@ -67,8 +68,8 @@ const Contact = () => {
                 <Mail className="w-5 h-5 text-primary mt-1" />
                 <div>
                   <h4 className="font-cinzel text-silver text-sm tracking-wider">{t('contact.generalInquiries')}</h4>
-                  <a href="mailto:endofdawn.bandofficial@gmail.com" className="text-muted-foreground hover:text-primary transition-colors">
-                    endofdawn.bandofficial@gmail.com
+                  <a href={`mailto:${contactInfo.email}`} className="text-muted-foreground hover:text-primary transition-colors">
+                    {contactInfo.email}
                   </a>
                 </div>
               </div>
@@ -77,61 +78,35 @@ const Contact = () => {
                 <Phone className="w-5 h-5 text-primary mt-1" />
                 <div>
                   <h4 className="font-cinzel text-silver text-sm tracking-wider">{t('contact.phone')}</h4>
-                  <a href="tel:+306981777403" className="text-muted-foreground hover:text-primary transition-colors">
-                    +30 6981777403
+                  <a href={`tel:${contactInfo.phone.replace(/\s/g, '')}`} className="text-muted-foreground hover:text-primary transition-colors">
+                    {contactInfo.phone}
                   </a>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Contact Form */}
           <div>
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
                   {t('contact.name')}
                 </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="input-gothic"
-                  placeholder={t('contact.yourName')}
-                />
+                <input type="text" id="name" name="name" value={formData.name} onChange={handleChange} required className="input-gothic" placeholder={t('contact.yourName')} />
               </div>
 
               <div>
                 <label htmlFor="email" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
                   {t('contact.email')}
                 </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="input-gothic"
-                  placeholder={t('contact.yourEmail')}
-                />
+                <input type="email" id="email" name="email" value={formData.email} onChange={handleChange} required className="input-gothic" placeholder={t('contact.yourEmail')} />
               </div>
 
               <div>
                 <label htmlFor="subject" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
                   {t('contact.subject')}
                 </label>
-                <select
-                  id="subject"
-                  name="subject"
-                  value={formData.subject}
-                  onChange={handleChange}
-                  required
-                  className="input-gothic"
-                >
+                <select id="subject" name="subject" value={formData.subject} onChange={handleChange} required className="input-gothic">
                   <option value="">{t('contact.selectSubject')}</option>
                   <option value="Booking Inquiry">{t('contact.booking')}</option>
                   <option value="Press/Media">{t('contact.press')}</option>
@@ -145,23 +120,10 @@ const Contact = () => {
                 <label htmlFor="message" className="block text-sm font-cinzel text-silver mb-2 tracking-wider">
                   {t('contact.message')}
                 </label>
-                <textarea
-                  id="message"
-                  name="message"
-                  value={formData.message}
-                  onChange={handleChange}
-                  required
-                  rows={5}
-                  className="input-gothic resize-none"
-                  placeholder={t('contact.yourMessage')}
-                />
+                <textarea id="message" name="message" value={formData.message} onChange={handleChange} required rows={5} className="input-gothic resize-none" placeholder={t('contact.yourMessage')} />
               </div>
 
-              <button
-                type="submit"
-                disabled={isSubmitting}
-                className="btn-gothic w-full flex items-center justify-center gap-2 disabled:opacity-50"
-              >
+              <button type="submit" disabled={isSubmitting} className="btn-gothic w-full flex items-center justify-center gap-2 disabled:opacity-50">
                 {isSubmitting ? (
                   <span>{t('contact.sending')}</span>
                 ) : (

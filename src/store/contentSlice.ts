@@ -1,13 +1,16 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { supabase } from '@/integrations/supabase/client';
 
 // ─── Types ───────────────────────────────────────────────────
 export interface HeroContent {
+  id?: string;
   subtitle: string;
   listenNowLabel: string;
   showsLabel: string;
 }
 
 export interface BioContent {
+  id?: string;
   paragraph1: string;
   paragraph2: string;
   paragraph3: string;
@@ -15,6 +18,7 @@ export interface BioContent {
 }
 
 export interface Song {
+  id?: string;
   title: string;
   duration: string;
   plays: string;
@@ -29,6 +33,7 @@ export interface VideoItem {
 }
 
 export interface MemberItem {
+  id?: string;
   name: string;
   role: string;
   instrument: string;
@@ -37,6 +42,7 @@ export interface MemberItem {
 }
 
 export interface ReleaseItem {
+  id?: string;
   title: string;
   date: string;
   type: string;
@@ -45,9 +51,12 @@ export interface ReleaseItem {
   featured: boolean;
   link: string;
   image: string;
+  description?: string;
+  streamLink?: string;
 }
 
 export interface MerchItem {
+  id?: string;
   name: string;
   price: string;
   image: string;
@@ -56,17 +65,18 @@ export interface MerchItem {
 }
 
 export interface ShowItem {
-  id: number;
+  id: string;
   image: string;
   url: string;
   title: string;
   bands: string;
   date: string;
   location: string;
+  ticketsUrl?: string;
 }
 
 export interface FeaturedItem {
-  id: number;
+  id: string;
   type: string;
   tag: string;
   title: string;
@@ -77,11 +87,13 @@ export interface FeaturedItem {
 }
 
 export interface ContactInfo {
+  id?: string;
   email: string;
   phone: string;
 }
 
 export interface SocialLinks {
+  id?: string;
   instagram: string;
   facebook: string;
   youtube: string;
@@ -92,6 +104,7 @@ export interface SocialLinks {
 }
 
 export interface MediaLinks {
+  id?: string;
   pressKit: string;
   logoPack: string;
   allPhotos: string;
@@ -115,171 +128,329 @@ export interface ContentState {
   error: string | null;
 }
 
-// ─── Initial State (current website defaults) ────────────────
+// ─── Defaults ────────────────────────────────────────────────
+const defaultHero: HeroContent = { subtitle: '', listenNowLabel: 'Listen Now', showsLabel: 'Upcoming Shows' };
+const defaultBio: BioContent = { paragraph1: '', paragraph2: '', paragraph3: '', quote: '' };
+const defaultContact: ContactInfo = { email: '', phone: '' };
+const defaultSocialLinks: SocialLinks = { instagram: '', facebook: '', youtube: '', spotify: '', appleMusic: '', bandcamp: '', tiktok: '' };
+const defaultMediaLinks: MediaLinks = { pressKit: '', logoPack: '', allPhotos: '', epkZip: '' };
+
 const initialState: ContentState = {
-  hero: {
-    subtitle: 'Symphonic / Gothic Black Metal from Thessaloniki, Greece',
-    listenNowLabel: 'Listen Now',
-    showsLabel: 'Upcoming Shows',
-  },
-  bio: {
-    paragraph1: 'End of Dawn is a Symphonic/Gothic Black Metal band from Thessaloniki, Greece, formed in 2019. Rooted in a dark and atmospheric musical style, the band crafts intricate compositions that delve into themes of struggle, loss, and existential depths.',
-    paragraph2: 'Their debut album, Primordial Darkness, released on November 15, 2024, features 11 haunting tracks that take listeners on a harrowing journey into the shadows of the soul. With its evocative blend of rapid, powerful riffs and symphonic textures, the album draws upon mythological and existential themes, creating an immersive and deeply resonant soundscape.',
-    paragraph3: 'Driven by an unwavering dedication to their art, End of Dawn embraces the raw emotions and stark beauty found within the abyss. As they continue to forge their path, the band remains steadfast in pushing the boundaries of their sound, exploring the profound and the unknown.',
-    quote: 'From the ashes of silence, we rise to orchestrate the symphony of eternal night.',
-  },
-  songs: [
-    { title: 'Burning Echoes', duration: '6:34', plays: '3.2K', album: 'Primordial Darkness', spotifyEmbed: 'https://open.spotify.com/embed/track/2uXsPSS3GOSHXS3gdTfY4t?utm_source=generator&theme=0', spotifyLink: 'https://open.spotify.com/track/2uXsPSS3GOSHXS3gdTfY4t' },
-    { title: 'Dawn of Decay', duration: '5:15', plays: '1.5K', album: 'Primordial Darkness', spotifyEmbed: 'https://open.spotify.com/embed/track/0zrgJ7JtlXC7yrRzdx4EVH?utm_source=generator&theme=0', spotifyLink: 'https://open.spotify.com/track/0zrgJ7JtlXC7yrRzdx4EVH' },
-    { title: 'The Great Epilogue', duration: '5:10', plays: '1K', album: 'Primordial Darkness', spotifyEmbed: 'https://open.spotify.com/embed/track/3VXVxmrCv30tX9wULttpOs?utm_source=generator&theme=0', spotifyLink: 'https://open.spotify.com/track/3VXVxmrCv30tX9wULttpOs' },
-  ],
+  hero: defaultHero,
+  bio: defaultBio,
+  songs: [],
   videos: [],
-  lineup: [
-    { name: 'Necro', role: 'Vocals', instrument: 'Screams & Growls', bio: 'The embodiment of primordial fury.', image: '' },
-    { name: 'Mynoghra', role: 'Vocals', instrument: 'Screams & Operatic Vocals', bio: 'The haunting voice that channels the darkness.', image: '' },
-    { name: 'Absence', role: 'Guitar', instrument: 'Leads & Melodies', bio: 'Crafting melodies from the depths of shadow.', image: '' },
-    { name: 'Gravekeeper', role: 'Guitar', instrument: 'Rythm & Riffs', bio: 'The sonic foundation of eternal night.', image: '' },
-    { name: 'Necrohymn', role: 'Bass', instrument: 'Bass Guitar', bio: 'Thunderous depths that shake the earth.', image: '' },
-    { name: 'Akhenaten', role: 'Keyboards', instrument: 'Synths & Orchestration', bio: 'Weaving symphonic darkness through keys.', image: '' },
-    { name: 'YB', role: 'Drums', instrument: 'Drums & Percussion', bio: 'The relentless heartbeat of chaos.', image: '' },
-  ],
-  releases: [
-    { title: 'Primordial Darkness', date: '15 / 11 / 2024', type: 'Full Length', label: 'WormHoleDeath', tracks: 11, featured: true, link: 'https://endofdawn.bandcamp.com/album/primordial-darkness', image: '' },
-    { title: 'Shadow', date: '18 / 10 / 2024', type: 'Single', label: 'Independent', tracks: 1, featured: false, link: 'https://endofdawn.bandcamp.com/track/shadow', image: '' },
-  ],
-  merch: [
-    { name: 'End of Dawn - Official T-shirt', price: '€12', image: '', category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-official-t-shirt' },
-    { name: 'End of Dawn - Primordial Darkness Official T-shirt', price: '€15', image: '', category: 'Apparel', link: 'https://endofdawn.bandcamp.com/merch/end-of-dawn-primordial-darkness-official-t-shirt' },
-    { name: 'End of Dawn - Primordial Darkness CD', price: '€10', image: '', category: 'Music', link: 'https://endofdawn.bandcamp.com/album/primordial-darkness' },
-    { name: 'Bundle Edition: T-shirt + Album CD (Primordial Darkness)', price: '€20', image: '', category: 'Bundle', link: 'https://endofdawn.bandcamp.com/merch/bundle-edition-t-shirt-primordial-darkness-album-cd-primordial-darkness' },
-  ],
+  lineup: [],
+  releases: [],
+  merch: [],
   shows: [],
   featured: [],
-  contact: {
-    email: 'endofdawn.bandofficial@gmail.com',
-    phone: '+30 6981777403',
-  },
-  socialLinks: {
-    instagram: 'https://www.instagram.com/endofdawnofficial/',
-    facebook: 'https://www.facebook.com/endofdawnofficial/',
-    youtube: 'https://www.youtube.com/@EndofDawn.official',
-    spotify: 'https://open.spotify.com/artist/03GS0Jd0J7nEJv1Ra3idkS',
-    appleMusic: 'https://music.apple.com/us/artist/end-of-dawn/1738951985',
-    bandcamp: 'https://endofdawn.bandcamp.com/',
-    tiktok: '',
-  },
-  mediaLinks: {
-    pressKit: 'https://drive.usercontent.google.com/u/0/uc?id=1M2Vx_DuD_pT2YujZk1VZWisZWAolzWvK&export=download',
-    logoPack: 'https://drive.usercontent.google.com/u/0/uc?id=1s52JA6e-dmQrjFXvS8nxGpM_gu0WPfph&export=download',
-    allPhotos: 'https://drive.usercontent.google.com/u/0/uc?id=1StHabcDGWkaEuTxpzfxu5COSnOX4GlcT&export=download',
-    epkZip: 'https://drive.usercontent.google.com/u/0/uc?id=19sfIw_FdGT2vMclrvj0PocNePO4ydKhA&export=download',
-  },
+  contact: defaultContact,
+  socialLinks: defaultSocialLinks,
+  mediaLinks: defaultMediaLinks,
   loading: false,
   error: null,
 };
 
-// ─── Async Thunks (prepared for future API integration) ──────
+// ─── Helpers: DB row <-> App model mapping ───────────────────
+const mapHeroFromDb = (row: any): HeroContent => ({
+  id: row.id,
+  subtitle: row.subtitle,
+  listenNowLabel: row.listen_now_label,
+  showsLabel: row.shows_label,
+});
+
+const mapSongFromDb = (row: any): Song => ({
+  id: row.id,
+  title: row.title,
+  duration: row.duration,
+  plays: row.plays,
+  album: row.album,
+  spotifyEmbed: row.spotify_embed,
+  spotifyLink: row.spotify_link,
+});
+
+const mapMemberFromDb = (row: any): MemberItem => ({
+  id: row.id,
+  name: row.name,
+  role: row.role,
+  instrument: row.instrument,
+  bio: row.bio,
+  image: row.image,
+});
+
+const mapReleaseFromDb = (row: any): ReleaseItem => ({
+  id: row.id,
+  title: row.title,
+  date: row.date,
+  type: row.type,
+  label: row.label,
+  tracks: row.tracks,
+  featured: row.featured,
+  link: row.link,
+  image: row.image,
+  description: row.description,
+  streamLink: row.stream_link,
+});
+
+const mapMerchFromDb = (row: any): MerchItem => ({
+  id: row.id,
+  name: row.name,
+  price: row.price,
+  image: row.image,
+  category: row.category,
+  link: row.link,
+});
+
+const mapShowFromDb = (row: any): ShowItem => ({
+  id: row.id,
+  image: row.image,
+  url: row.url,
+  title: row.title,
+  bands: row.bands,
+  date: row.date,
+  location: row.location,
+  ticketsUrl: row.tickets_url,
+});
+
+const mapFeaturedFromDb = (row: any): FeaturedItem => ({
+  id: row.id,
+  type: row.type,
+  tag: row.tag,
+  title: row.title,
+  description: row.description,
+  image: row.image,
+  link: row.link,
+  date: row.date,
+});
+
+const mapSocialFromDb = (row: any): SocialLinks => ({
+  id: row.id,
+  instagram: row.instagram,
+  facebook: row.facebook,
+  youtube: row.youtube,
+  spotify: row.spotify,
+  appleMusic: row.apple_music,
+  bandcamp: row.bandcamp,
+  tiktok: row.tiktok,
+});
+
+const mapMediaFromDb = (row: any): MediaLinks => ({
+  id: row.id,
+  pressKit: row.press_kit,
+  logoPack: row.logo_pack,
+  allPhotos: row.all_photos,
+  epkZip: row.epk_zip,
+});
+
+// ─── Fetch all content from Supabase ─────────────────────────
 export const fetchContent = createAsyncThunk('content/fetchAll', async (_, { rejectWithValue }) => {
   try {
-    // TODO: Replace with actual API call
-    // const response = await fetch('/api/content');
-    // return await response.json();
-    return initialState; // Return defaults for now
+    const [heroRes, bioRes, songsRes, lineupRes, releasesRes, merchRes, showsRes, featuredRes, contactRes, socialRes, mediaRes] = await Promise.all([
+      supabase.from('hero_content').select('*').limit(1).maybeSingle(),
+      supabase.from('bio_content').select('*').limit(1).maybeSingle(),
+      supabase.from('songs').select('*').order('sort_order'),
+      supabase.from('lineup_members').select('*').order('sort_order'),
+      supabase.from('releases').select('*').order('sort_order'),
+      supabase.from('merch_items').select('*').order('sort_order'),
+      supabase.from('shows').select('*').order('date', { ascending: true }),
+      supabase.from('featured_items').select('*').order('sort_order'),
+      supabase.from('contact_info').select('*').limit(1).maybeSingle(),
+      supabase.from('social_links').select('*').limit(1).maybeSingle(),
+      supabase.from('media_links').select('*').limit(1).maybeSingle(),
+    ]);
+
+    return {
+      hero: heroRes.data ? mapHeroFromDb(heroRes.data) : defaultHero,
+      bio: bioRes.data ? { id: bioRes.data.id, paragraph1: bioRes.data.paragraph1, paragraph2: bioRes.data.paragraph2, paragraph3: bioRes.data.paragraph3, quote: bioRes.data.quote } : defaultBio,
+      songs: (songsRes.data || []).map(mapSongFromDb),
+      lineup: (lineupRes.data || []).map(mapMemberFromDb),
+      releases: (releasesRes.data || []).map(mapReleaseFromDb),
+      merch: (merchRes.data || []).map(mapMerchFromDb),
+      shows: (showsRes.data || []).map(mapShowFromDb),
+      featured: (featuredRes.data || []).map(mapFeaturedFromDb),
+      contact: contactRes.data ? { id: contactRes.data.id, email: contactRes.data.email, phone: contactRes.data.phone } : defaultContact,
+      socialLinks: socialRes.data ? mapSocialFromDb(socialRes.data) : defaultSocialLinks,
+      mediaLinks: mediaRes.data ? mapMediaFromDb(mediaRes.data) : defaultMediaLinks,
+    };
   } catch (err: any) {
     return rejectWithValue(err.message);
   }
 });
 
+// ─── Update thunks (upsert single-row tables, replace arrays) ─
 export const updateHero = createAsyncThunk('content/updateHero', async (data: HeroContent, { rejectWithValue }) => {
   try {
-    // TODO: Replace with actual API call
-    // await fetch('/api/content/hero', { method: 'PUT', body: JSON.stringify(data) });
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    const payload = { subtitle: data.subtitle, listen_now_label: data.listenNowLabel, shows_label: data.showsLabel };
+    if (data.id) {
+      const { error } = await supabase.from('hero_content').update(payload).eq('id', data.id);
+      if (error) throw error;
+    } else {
+      const { error } = await supabase.from('hero_content').insert(payload);
+      if (error) throw error;
+    }
+    const { data: row } = await supabase.from('hero_content').select('*').limit(1).maybeSingle();
+    return row ? mapHeroFromDb(row) : data;
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateBio = createAsyncThunk('content/updateBio', async (data: BioContent, { rejectWithValue }) => {
   try {
-    // TODO: await fetch('/api/content/bio', { method: 'PUT', body: JSON.stringify(data) });
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    const payload = { paragraph1: data.paragraph1, paragraph2: data.paragraph2, paragraph3: data.paragraph3, quote: data.quote };
+    if (data.id) {
+      const { error } = await supabase.from('bio_content').update(payload).eq('id', data.id);
+      if (error) throw error;
+    } else {
+      const { error } = await supabase.from('bio_content').insert(payload);
+      if (error) throw error;
+    }
+    const { data: row } = await supabase.from('bio_content').select('*').limit(1).maybeSingle();
+    return row ? { id: row.id, paragraph1: row.paragraph1, paragraph2: row.paragraph2, paragraph3: row.paragraph3, quote: row.quote } as BioContent : data;
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateSongs = createAsyncThunk('content/updateSongs', async (data: Song[], { rejectWithValue }) => {
   try {
-    // TODO: await fetch('/api/content/songs', { method: 'PUT', body: JSON.stringify(data) });
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    // Delete all then re-insert
+    await supabase.from('songs').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    const rows = data.map((s, i) => ({
+      title: s.title, duration: s.duration, plays: s.plays, album: s.album,
+      spotify_embed: s.spotifyEmbed, spotify_link: s.spotifyLink, sort_order: i,
+    }));
+    if (rows.length) {
+      const { error } = await supabase.from('songs').insert(rows);
+      if (error) throw error;
+    }
+    const { data: result } = await supabase.from('songs').select('*').order('sort_order');
+    return (result || []).map(mapSongFromDb);
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateLineup = createAsyncThunk('content/updateLineup', async (data: MemberItem[], { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    await supabase.from('lineup_members').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    const rows = data.map((m, i) => ({
+      name: m.name, role: m.role, instrument: m.instrument, bio: m.bio, image: m.image, sort_order: i,
+    }));
+    if (rows.length) {
+      const { error } = await supabase.from('lineup_members').insert(rows);
+      if (error) throw error;
+    }
+    const { data: result } = await supabase.from('lineup_members').select('*').order('sort_order');
+    return (result || []).map(mapMemberFromDb);
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateReleases = createAsyncThunk('content/updateReleases', async (data: ReleaseItem[], { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    await supabase.from('releases').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    const rows = data.map((r, i) => ({
+      title: r.title, date: r.date, type: r.type, label: r.label, tracks: r.tracks,
+      featured: r.featured, link: r.link, image: r.image, description: r.description || null,
+      stream_link: r.streamLink || null, sort_order: i,
+    }));
+    if (rows.length) {
+      const { error } = await supabase.from('releases').insert(rows);
+      if (error) throw error;
+    }
+    const { data: result } = await supabase.from('releases').select('*').order('sort_order');
+    return (result || []).map(mapReleaseFromDb);
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateMerch = createAsyncThunk('content/updateMerch', async (data: MerchItem[], { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    await supabase.from('merch_items').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    const rows = data.map((m, i) => ({
+      name: m.name, price: m.price, image: m.image, category: m.category, link: m.link, sort_order: i,
+    }));
+    if (rows.length) {
+      const { error } = await supabase.from('merch_items').insert(rows);
+      if (error) throw error;
+    }
+    const { data: result } = await supabase.from('merch_items').select('*').order('sort_order');
+    return (result || []).map(mapMerchFromDb);
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateShows = createAsyncThunk('content/updateShows', async (data: ShowItem[], { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    await supabase.from('shows').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    const rows = data.map((s, i) => ({
+      image: s.image, url: s.url, title: s.title, bands: s.bands,
+      date: s.date, location: s.location, tickets_url: s.ticketsUrl || null, sort_order: i,
+    }));
+    if (rows.length) {
+      const { error } = await supabase.from('shows').insert(rows);
+      if (error) throw error;
+    }
+    const { data: result } = await supabase.from('shows').select('*').order('date');
+    return (result || []).map(mapShowFromDb);
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateFeatured = createAsyncThunk('content/updateFeatured', async (data: FeaturedItem[], { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    await supabase.from('featured_items').delete().neq('id', '00000000-0000-0000-0000-000000000000');
+    const rows = data.map((f, i) => ({
+      type: f.type, tag: f.tag, title: f.title, description: f.description,
+      image: f.image, link: f.link, date: f.date, sort_order: i,
+    }));
+    if (rows.length) {
+      const { error } = await supabase.from('featured_items').insert(rows);
+      if (error) throw error;
+    }
+    const { data: result } = await supabase.from('featured_items').select('*').order('sort_order');
+    return (result || []).map(mapFeaturedFromDb);
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateContact = createAsyncThunk('content/updateContact', async (data: ContactInfo, { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    const payload = { email: data.email, phone: data.phone };
+    if (data.id) {
+      const { error } = await supabase.from('contact_info').update(payload).eq('id', data.id);
+      if (error) throw error;
+    } else {
+      const { error } = await supabase.from('contact_info').insert(payload);
+      if (error) throw error;
+    }
+    const { data: row } = await supabase.from('contact_info').select('*').limit(1).maybeSingle();
+    return row ? { id: row.id, email: row.email, phone: row.phone } as ContactInfo : data;
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateSocialLinks = createAsyncThunk('content/updateSocialLinks', async (data: SocialLinks, { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    const payload = {
+      instagram: data.instagram, facebook: data.facebook, youtube: data.youtube,
+      spotify: data.spotify, apple_music: data.appleMusic, bandcamp: data.bandcamp, tiktok: data.tiktok,
+    };
+    if (data.id) {
+      const { error } = await supabase.from('social_links').update(payload).eq('id', data.id);
+      if (error) throw error;
+    } else {
+      const { error } = await supabase.from('social_links').insert(payload);
+      if (error) throw error;
+    }
+    const { data: row } = await supabase.from('social_links').select('*').limit(1).maybeSingle();
+    return row ? mapSocialFromDb(row) : data;
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 export const updateMediaLinks = createAsyncThunk('content/updateMediaLinks', async (data: MediaLinks, { rejectWithValue }) => {
   try {
-    return data;
-  } catch (err: any) {
-    return rejectWithValue(err.message);
-  }
+    const payload = { press_kit: data.pressKit, logo_pack: data.logoPack, all_photos: data.allPhotos, epk_zip: data.epkZip };
+    if (data.id) {
+      const { error } = await supabase.from('media_links').update(payload).eq('id', data.id);
+      if (error) throw error;
+    } else {
+      const { error } = await supabase.from('media_links').insert(payload);
+      if (error) throw error;
+    }
+    const { data: row } = await supabase.from('media_links').select('*').limit(1).maybeSingle();
+    return row ? mapMediaFromDb(row) : data;
+  } catch (err: any) { return rejectWithValue(err.message); }
 });
 
 // ─── Slice ───────────────────────────────────────────────────
@@ -287,29 +458,26 @@ const contentSlice = createSlice({
   name: 'content',
   initialState,
   reducers: {
-    setHero(state, action: PayloadAction<HeroContent>) { state.hero = action.payload; },
-    setBio(state, action: PayloadAction<BioContent>) { state.bio = action.payload; },
-    setSongs(state, action: PayloadAction<Song[]>) { state.songs = action.payload; },
     setVideos(state, action: PayloadAction<VideoItem[]>) { state.videos = action.payload; },
-    setLineup(state, action: PayloadAction<MemberItem[]>) { state.lineup = action.payload; },
-    setReleases(state, action: PayloadAction<ReleaseItem[]>) { state.releases = action.payload; },
-    setMerch(state, action: PayloadAction<MerchItem[]>) { state.merch = action.payload; },
-    setShows(state, action: PayloadAction<ShowItem[]>) { state.shows = action.payload; },
-    setFeatured(state, action: PayloadAction<FeaturedItem[]>) { state.featured = action.payload; },
-    setContact(state, action: PayloadAction<ContactInfo>) { state.contact = action.payload; },
-    setSocialLinks(state, action: PayloadAction<SocialLinks>) { state.socialLinks = action.payload; },
-    setMediaLinks(state, action: PayloadAction<MediaLinks>) { state.mediaLinks = action.payload; },
   },
   extraReducers: (builder) => {
-    // fetchContent
     builder.addCase(fetchContent.pending, (state) => { state.loading = true; state.error = null; });
     builder.addCase(fetchContent.fulfilled, (state, action) => {
       state.loading = false;
-      Object.assign(state, action.payload);
+      state.hero = action.payload.hero;
+      state.bio = action.payload.bio;
+      state.songs = action.payload.songs;
+      state.lineup = action.payload.lineup;
+      state.releases = action.payload.releases;
+      state.merch = action.payload.merch;
+      state.shows = action.payload.shows;
+      state.featured = action.payload.featured;
+      state.contact = action.payload.contact;
+      state.socialLinks = action.payload.socialLinks;
+      state.mediaLinks = action.payload.mediaLinks;
     });
     builder.addCase(fetchContent.rejected, (state, action) => { state.loading = false; state.error = action.payload as string; });
 
-    // Individual updates
     builder.addCase(updateHero.fulfilled, (state, action) => { state.hero = action.payload; });
     builder.addCase(updateBio.fulfilled, (state, action) => { state.bio = action.payload; });
     builder.addCase(updateSongs.fulfilled, (state, action) => { state.songs = action.payload; });
@@ -324,9 +492,5 @@ const contentSlice = createSlice({
   },
 });
 
-export const {
-  setHero, setBio, setSongs, setVideos, setLineup, setReleases,
-  setMerch, setShows, setFeatured, setContact, setSocialLinks, setMediaLinks,
-} = contentSlice.actions;
-
+export const { setVideos } = contentSlice.actions;
 export default contentSlice.reducer;
