@@ -7,6 +7,7 @@ import eod15 from '@/assets/band/eod15.jpg';
 import eod12 from '@/assets/band/eod12.jpg';
 import eod13 from '@/assets/band/eod13.jpg';
 import { AiOutlineSpotify } from 'react-icons/ai';
+import { useEffect } from 'react';
 
 // TikTok icon component
 const TikTokIcon = ({ className }: { className?: string }) => (
@@ -133,8 +134,7 @@ const SocialFeed = () => {
           </a>
         </div>
 
-        {/* <rssapp-wall id="v8PNhjiJXExI1igO"></rssapp-wall><script src="https://widget.rss.app/v1/wall.js" type="text/javascript" async></script> */}
-        <iframe width="100%" height={getIframeHeight()} src="https://rss.app/embed/v1/wall/v8PNhjiJXExI1igO" frameBorder="0"></iframe>
+        {/* <iframe width="100%" height={getIframeHeight()} src="https://rss.app/embed/v1/wall/v8PNhjiJXExI1igO" frameBorder="0"></iframe> */}
 
         {/* Posts Grid */}
         {/* <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
