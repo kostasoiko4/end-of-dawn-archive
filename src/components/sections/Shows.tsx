@@ -8,6 +8,8 @@ const Shows = () => {
   const { t } = useTranslation();
   const allShows = useSelector((state: RootState) => state.content.shows);
 
+  console.log(allShows)
+
   const now = new Date();
   const upcoming = allShows
     .filter(show => new Date(show.date) > now)
