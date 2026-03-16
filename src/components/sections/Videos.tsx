@@ -13,7 +13,7 @@ const Videos = () => {
     (async () => {
       if (currentChannelId && rssUrl) {
         try {
-          const res = await fetch("https://eod-proxy-83beb47ab8db.herokuapp.com/youtube-feed");
+          const res = await fetch("https://eod-proxy.onrender.com/youtube-feed");
           const xml = await res.text();
 
           const parser = new XMLParser();
