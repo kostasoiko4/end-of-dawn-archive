@@ -1,4 +1,5 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import { supabase } from '@/integrations/supabase/client';
 
 interface AuthState {
   isAuthenticated: boolean;
@@ -14,30 +15,38 @@ const initialState: AuthState = {
   error: null,
 };
 
-// Placeholder login — will be replaced with real API auth later
 export const loginAdmin = createAsyncThunk(
   'auth/login',
   async (credentials: { email: string; password: string }, { rejectWithValue }) => {
     try {
-      // TODO: Replace with actual API call
-      // const res = await fetch('/api/auth/login', { method: 'POST', body: JSON.stringify(credentials) });
-      // if (!res.ok) throw new Error('Invalid credentials');
-      // return await res.json();
-
-      // Temporary hardcoded admin credentials
-      if (credentials.email === 'admin' && credentials.password === 'admin') {
-        return { email: 'admin' };
-      }
-      throw new Error('Invalid credentials');
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email: credentials.email,
+        password: credentials.password,
+      });
+      if (error) throw error;
+      return { email: data.user?.email || '' };
     } catch (err: any) {
-      return rejectWithValue(err.message);
+      return rejectWithValue(err.message || 'Invalid credentials');
     }
   }
 );
 
 export const logoutAdmin = createAsyncThunk('auth/logout', async () => {
-  // TODO: await fetch('/api/auth/logout', { method: 'POST' });
+  await supabase.auth.signOut();
   return null;
+});
+
+// Check existing session on app load
+export const checkSession = createAsyncThunk('auth/checkSession', async (_, { rejectWithValue }) => {
+  try {
+    const { data: { session } } = await supabase.auth.getSession();
+    if (session?.user) {
+      return { email: session.user.email || '' };
+    }
+    return null;
+  } catch (err: any) {
+    return rejectWithValue(err.message);
+  }
 });
 
 const authSlice = createSlice({
@@ -60,6 +69,12 @@ const authSlice = createSlice({
     builder.addCase(logoutAdmin.fulfilled, (state) => {
       state.isAuthenticated = false;
       state.user = null;
+    });
+    builder.addCase(checkSession.fulfilled, (state, action) => {
+      if (action.payload) {
+        state.isAuthenticated = true;
+        state.user = action.payload;
+      }
     });
   },
 });

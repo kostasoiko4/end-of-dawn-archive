@@ -5,15 +5,12 @@ import { XMLParser } from "fast-xml-parser";
 
 const Videos = () => {
   const { t } = useTranslation();
-  const rssUrl = import.meta.env.VITE_API_YOUTUBE_BASE_URL
-  const currentChannelId = import.meta.env.VITE_API_YOUTUBE_ID
   const [videos, setVideos] = useState([]);
 
   useEffect(() => {
     (async () => {
-      if (currentChannelId && rssUrl) {
         try {
-          const res = await fetch("https://eod-proxy-83beb47ab8db.herokuapp.com/youtube-feed");
+          const res = await fetch(`${import.meta.env.VITE_API_PROXY_BASE_URL}/youtube-feed`);
           const xml = await res.text();
 
           const parser = new XMLParser();
@@ -30,7 +27,7 @@ const Videos = () => {
           console.log(error);
         }
       }
-    })();
+    )();
   }, []);
 
   return (

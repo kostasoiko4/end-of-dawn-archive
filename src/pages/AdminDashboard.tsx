@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectIsAuthenticated, logoutAdmin } from '@/store/authSlice';
@@ -10,11 +10,16 @@ import {
   type MerchItem, type ShowItem, type FeaturedItem, type ContactInfo, type SocialLinks, type MediaLinks,
 } from '@/store/contentSlice';
 import {
-  LogOut, Home, Music, BookOpen, Users, Disc, ShoppingBag, Calendar,
+  LogOut, Home, Music, BookOpen, Users, Disc, ShoppingBag,
   Star, Mail, Share2, Download, Save, Plus, Trash2, ChevronDown, ChevronUp,
+  CalendarIcon, Upload, X,
 } from 'lucide-react';
 import { toast } from 'sonner';
 import logo from '@/assets/band/logo.svg';
+import { format, parseISO } from 'date-fns';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
+import { cn } from '@/lib/utils';
 
 type Tab = 'hero' | 'bio' | 'songs' | 'lineup' | 'releases' | 'merch' | 'shows' | 'featured' | 'contact' | 'social' | 'media';
 
@@ -25,14 +30,14 @@ const tabs: { id: Tab; label: string; icon: any }[] = [
   { id: 'lineup', label: 'Lineup', icon: Users },
   { id: 'releases', label: 'Discography', icon: Disc },
   { id: 'merch', label: 'Merchandise', icon: ShoppingBag },
-  { id: 'shows', label: 'Shows', icon: Calendar },
+  { id: 'shows', label: 'Shows', icon: CalendarIcon },
   { id: 'featured', label: 'Featured', icon: Star },
   { id: 'contact', label: 'Contact', icon: Mail },
   { id: 'social', label: 'Social Links', icon: Share2 },
   { id: 'media', label: 'Media Links', icon: Download },
 ];
 
-// ─── Reusable input ──────────────────────────────────────────
+// ─── Reusable text input ─────────────────────────────────────
 const Field = ({ label, value, onChange, type = 'text', rows }: {
   label: string; value: string; onChange: (v: string) => void; type?: string; rows?: number;
 }) => (
@@ -45,6 +50,128 @@ const Field = ({ label, value, onChange, type = 'text', rows }: {
     )}
   </div>
 );
+
+// ─── Date picker field ───────────────────────────────────────
+const DateField = ({ label, value, onChange }: {
+  label: string; value: string; onChange: (v: string) => void;
+}) => {
+  const [open, setOpen] = useState(false);
+
+  // Parse existing value to Date
+  let selectedDate: Date | undefined;
+  try {
+    if (value) {
+      selectedDate = new Date(value);
+      if (isNaN(selectedDate.getTime())) selectedDate = undefined;
+    }
+  } catch { selectedDate = undefined; }
+
+  const handleSelect = (date: Date | undefined) => {
+    if (date) {
+      // Store as UTC ISO string
+      const utcDate = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      onChange(utcDate.toISOString());
+    }
+    setOpen(false);
+  };
+
+  return (
+    <div className="space-y-1">
+      <label className="text-xs font-cinzel text-silver/70 tracking-wider uppercase">{label}</label>
+      <Popover open={open} onOpenChange={setOpen}>
+        <PopoverTrigger asChild>
+          <button
+            type="button"
+            className={cn(
+              "input-gothic text-sm flex items-center gap-2 text-left w-full",
+              !selectedDate && "text-muted-foreground"
+            )}
+          >
+            <CalendarIcon className="w-4 h-4 opacity-50" />
+            {selectedDate ? format(selectedDate, 'PPP') : 'Pick a date'}
+          </button>
+        </PopoverTrigger>
+        <PopoverContent className="w-auto p-0 z-50" align="start">
+          <Calendar
+            mode="single"
+            selected={selectedDate}
+            onSelect={handleSelect}
+            initialFocus
+            className="p-3 pointer-events-auto"
+          />
+        </PopoverContent>
+      </Popover>
+    </div>
+  );
+};
+
+// ─── Image upload field (stores as base64 data URI) ──────────
+const ImageField = ({ label, value, onChange }: {
+  label: string; value: string; onChange: (v: string) => void;
+}) => {
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error('Image must be under 5MB');
+      return;
+    }
+    const reader = new FileReader();
+    reader.onload = () => {
+      onChange(reader.result as string);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  const isBase64 = value?.startsWith('data:');
+  const isUrl = value && !isBase64 && (value.startsWith('http') || value.startsWith('/'));
+  const hasPreview = isBase64 || isUrl;
+
+  return (
+    <div className="space-y-2">
+      <label className="text-xs font-cinzel text-silver/70 tracking-wider uppercase">{label}</label>
+      <div className="flex items-start gap-3">
+        {hasPreview && (
+          <div className="relative w-20 h-20 rounded border border-silver/20 overflow-hidden flex-shrink-0">
+            <img src={value} alt="Preview" className="w-full h-full object-cover" />
+            <button
+              onClick={() => onChange('')}
+              className="absolute top-0.5 right-0.5 bg-background/80 rounded-full p-0.5"
+            >
+              <X className="w-3 h-3 text-destructive" />
+            </button>
+          </div>
+        )}
+        <div className="flex-1 space-y-2">
+          <button
+            type="button"
+            onClick={() => inputRef.current?.click()}
+            className="btn-outline-gothic text-xs flex items-center gap-2"
+          >
+            <Upload className="w-3 h-3" /> Upload Image
+          </button>
+          <input
+            ref={inputRef}
+            type="file"
+            accept="image/*"
+            onChange={handleFileChange}
+            className="hidden"
+          />
+          <p className="text-[10px] text-muted-foreground">Or paste a URL below:</p>
+          <input
+            type="text"
+            value={isBase64 ? '' : value}
+            onChange={e => onChange(e.target.value)}
+            placeholder="https://..."
+            className="input-gothic text-xs"
+          />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 // ─── Collapsible card wrapper ────────────────────────────────
 const ItemCard = ({ title, onRemove, children }: { title: string; onRemove?: () => void; children: React.ReactNode }) => {
@@ -92,6 +219,19 @@ const AdminDashboard = () => {
   useEffect(() => {
     if (!isAuthenticated) navigate('/admin/login');
   }, [isAuthenticated, navigate]);
+
+  // Sync local state when Redux content changes (e.g. after fetch)
+  useEffect(() => { setHero(content.hero); }, [content.hero]);
+  useEffect(() => { setBio(content.bio); }, [content.bio]);
+  useEffect(() => { setSongs(content.songs); }, [content.songs]);
+  useEffect(() => { setLineup(content.lineup); }, [content.lineup]);
+  useEffect(() => { setReleases(content.releases); }, [content.releases]);
+  useEffect(() => { setMerch(content.merch); }, [content.merch]);
+  useEffect(() => { setShows(content.shows); }, [content.shows]);
+  useEffect(() => { setFeatured(content.featured); }, [content.featured]);
+  useEffect(() => { setContactInfo(content.contact); }, [content.contact]);
+  useEffect(() => { setSocialLinksState(content.socialLinks); }, [content.socialLinks]);
+  useEffect(() => { setMediaLinksState(content.mediaLinks); }, [content.mediaLinks]);
 
   const handleSave = () => {
     switch (activeTab) {
@@ -186,7 +326,7 @@ const AdminDashboard = () => {
                 <Field label="Role" value={member.role} onChange={v => updateMember(i, 'role', v)} />
                 <Field label="Instrument" value={member.instrument} onChange={v => updateMember(i, 'instrument', v)} />
                 <Field label="Bio" value={member.bio} onChange={v => updateMember(i, 'bio', v)} />
-                <Field label="Image URL" value={member.image} onChange={v => updateMember(i, 'image', v)} />
+                <ImageField label="Image" value={member.image} onChange={v => updateMember(i, 'image', v)} />
               </ItemCard>
             ))}
             <button onClick={() => setLineup([...lineup, { name: '', role: '', instrument: '', bio: '', image: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
@@ -201,12 +341,12 @@ const AdminDashboard = () => {
             {releases.map((release, i) => (
               <ItemCard key={i} title={release.title || `Release ${i + 1}`} onRemove={() => setReleases(releases.filter((_, j) => j !== i))}>
                 <Field label="Title" value={release.title} onChange={v => updateRelease(i, 'title', v)} />
-                <Field label="Date" value={release.date} onChange={v => updateRelease(i, 'date', v)} />
+                <DateField label="Date" value={release.date} onChange={v => updateRelease(i, 'date', v)} />
                 <Field label="Type" value={release.type} onChange={v => updateRelease(i, 'type', v)} />
                 <Field label="Label" value={release.label} onChange={v => updateRelease(i, 'label', v)} />
                 <Field label="Tracks" value={String(release.tracks)} onChange={v => updateRelease(i, 'tracks', parseInt(v) || 0)} />
                 <Field label="Link" value={release.link} onChange={v => updateRelease(i, 'link', v)} />
-                <Field label="Image URL" value={release.image} onChange={v => updateRelease(i, 'image', v)} />
+                <ImageField label="Image" value={release.image} onChange={v => updateRelease(i, 'image', v)} />
                 <div className="flex items-center gap-2">
                   <input type="checkbox" checked={release.featured} onChange={e => updateRelease(i, 'featured', e.target.checked)} className="accent-primary" />
                   <span className="text-xs text-silver/70 font-cinzel">Featured</span>
@@ -228,7 +368,7 @@ const AdminDashboard = () => {
                 <Field label="Price" value={item.price} onChange={v => updateMerchItem(i, 'price', v)} />
                 <Field label="Category" value={item.category} onChange={v => updateMerchItem(i, 'category', v)} />
                 <Field label="Link" value={item.link} onChange={v => updateMerchItem(i, 'link', v)} />
-                <Field label="Image URL" value={item.image} onChange={v => updateMerchItem(i, 'image', v)} />
+                <ImageField label="Image" value={item.image} onChange={v => updateMerchItem(i, 'image', v)} />
               </ItemCard>
             ))}
             <button onClick={() => setMerch([...merch, { name: '', price: '', image: '', category: '', link: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
@@ -244,13 +384,14 @@ const AdminDashboard = () => {
               <ItemCard key={i} title={show.title || `Show ${i + 1}`} onRemove={() => setShows(shows.filter((_, j) => j !== i))}>
                 <Field label="Title" value={show.title} onChange={v => updateShow(i, 'title', v)} />
                 <Field label="Bands" value={show.bands} onChange={v => updateShow(i, 'bands', v)} />
-                <Field label="Date" value={show.date} onChange={v => updateShow(i, 'date', v)} />
+                <DateField label="Date" value={show.date} onChange={v => updateShow(i, 'date', v)} />
                 <Field label="Location" value={show.location} onChange={v => updateShow(i, 'location', v)} />
                 <Field label="Event URL" value={show.url} onChange={v => updateShow(i, 'url', v)} />
-                <Field label="Image URL" value={show.image} onChange={v => updateShow(i, 'image', v)} />
+                <Field label="Tickets URL (optional)" value={show.ticketsUrl || ''} onChange={v => updateShow(i, 'ticketsUrl', v)} />
+                <ImageField label="Image" value={show.image} onChange={v => updateShow(i, 'image', v)} />
               </ItemCard>
             ))}
-            <button onClick={() => setShows([...shows, { id: Date.now(), image: '', url: '', title: '', bands: '', date: '', location: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
+            <button onClick={() => setShows([...shows, { id: crypto.randomUUID(), image: '', url: '', title: '', bands: '', date: '', location: '', ticketsUrl: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
               <Plus className="w-4 h-4" /> Add Show
             </button>
           </div>
@@ -266,11 +407,11 @@ const AdminDashboard = () => {
                 <Field label="Tag" value={item.tag} onChange={v => updateFeaturedItem(i, 'tag', v)} />
                 <Field label="Description" value={item.description} onChange={v => updateFeaturedItem(i, 'description', v)} rows={3} />
                 <Field label="Link" value={item.link} onChange={v => updateFeaturedItem(i, 'link', v)} />
-                <Field label="Date" value={item.date} onChange={v => updateFeaturedItem(i, 'date', v)} />
-                <Field label="Image URL" value={item.image} onChange={v => updateFeaturedItem(i, 'image', v)} />
+                <DateField label="Date" value={item.date} onChange={v => updateFeaturedItem(i, 'date', v)} />
+                <ImageField label="Image" value={item.image} onChange={v => updateFeaturedItem(i, 'image', v)} />
               </ItemCard>
             ))}
-            <button onClick={() => setFeatured([...featured, { id: Date.now(), type: '', tag: '', title: '', description: '', image: '', link: '', date: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
+            <button onClick={() => setFeatured([...featured, { id: crypto.randomUUID(), type: '', tag: '', title: '', description: '', image: '', link: '', date: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
               <Plus className="w-4 h-4" /> Add Featured Item
             </button>
           </div>

@@ -27,6 +27,8 @@ const AdminLogin = () => {
     dispatch(loginAdmin({ email, password }));
   };
 
+  // admin@endofdawn.com / admin123!
+
   return (
     <div className="min-h-screen bg-background flex items-center justify-center px-4">
       <div className="absolute inset-0 overflow-hidden">
