@@ -1,14 +1,41 @@
 User-agent: Googlebot
 Allow: /
+Allow: /checkout
+Allow: /payment
+
+Disallow: /admin/login
+Disallow: /admin/dashboard
 
 User-agent: Bingbot
 Allow: /
+Allow: /checkout
+Allow: /payment
+
+Disallow: /admin/login
+Disallow: /admin/dashboard
 
 User-agent: Twitterbot
 Allow: /
+Allow: /checkout
+Allow: /payment
+
+Disallow: /admin/login
+Disallow: /admin/dashboard
 
 User-agent: facebookexternalhit
 Allow: /
+Allow: /checkout
+Allow: /payment
+
+Disallow: /admin/login
+Disallow: /admin/dashboard
 
 User-agent: *
 Allow: /
+Allow: /checkout
+Allow: /payment
+
+Disallow: /admin/login
+Disallow: /admin/dashboard
+
+Sitemap: https://endofdawn.com/sitemap.xml

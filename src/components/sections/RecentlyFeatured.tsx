@@ -7,6 +7,15 @@ import eod14 from '@/assets/band/eod14.jpg';
 import eod15 from '@/assets/band/eod15.jpg';
 import eod16 from '@/assets/band/eod16.jpg';
 import primordialDarkness from '@/assets/band/primordial-darkness.jpg';
+import { format } from 'date-fns';
+import { enGB, el, de, fr } from 'date-fns/locale'
+
+const locales = {
+  en: enGB,
+  el: el,
+  de: de,
+  fr: fr
+}
 
 // Map image keys to imported assets
 const imageMap: Record<string, string> = {
@@ -21,7 +30,9 @@ const iconMap: Record<string, typeof Music> = {
 };
 
 const RecentlyFeatured = () => {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const lang = i18n.resolvedLanguage
+  const locale = locales[lang]
   const featuredItems = useSelector((state: RootState) => state.content.featured);
 
   const getImage = (imageKey: string) => {
@@ -67,7 +78,7 @@ const RecentlyFeatured = () => {
                           </span>
                         </div>
                         <div className="p-5 flex-1 flex flex-col">
-                          <p className="text-xs text-muted-foreground font-cinzel tracking-wider mb-2">{item.date}</p>
+                          <p className="text-xs text-muted-foreground font-cinzel tracking-wider mb-2">{format(new Date(item.date), "MMM do", {locale: locale})}</p>
                           <h3 className="font-cinzel text-silver text-lg mb-2 group-hover:text-primary transition-colors">
                             {item.title}
                           </h3>
