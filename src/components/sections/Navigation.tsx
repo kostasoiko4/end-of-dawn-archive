@@ -31,6 +31,7 @@ const Navigation = () => {
         <div className="flex items-center justify-between h-20">
           <a href="#home" className="flex items-center gap-3">
             <img src={logo} alt="End of Dawn" className="h-12 w-auto opacity-90" />
+            <h1 className="gothic-title">End of Dawn</h1>
           </a>
 
           <div className="hidden lg:flex items-center gap-6">
