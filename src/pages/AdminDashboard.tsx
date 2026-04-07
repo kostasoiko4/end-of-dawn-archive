@@ -21,7 +21,7 @@ import { Calendar } from '@/components/ui/calendar';
 import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { cn } from '@/lib/utils';
 
-type Tab = 'hero' | 'bio' | 'songs' | 'lineup' | 'releases' | 'merch' | 'shows' | 'featured' | 'contact' | 'social' | 'media';
+type Tab = 'hero' | 'bio' | 'songs' | 'lineup' | 'releases' | 'merch' | 'shows' | 'contact' | 'social' | 'media';
 
 const tabs: { id: Tab; label: string; icon: any }[] = [
   { id: 'hero', label: 'Hero', icon: Home },
@@ -31,7 +31,6 @@ const tabs: { id: Tab; label: string; icon: any }[] = [
   { id: 'releases', label: 'Discography', icon: Disc },
   { id: 'merch', label: 'Merchandise', icon: ShoppingBag },
   { id: 'shows', label: 'Shows', icon: CalendarIcon },
-  { id: 'featured', label: 'Featured', icon: Star },
   { id: 'contact', label: 'Contact', icon: Mail },
   { id: 'social', label: 'Social Links', icon: Share2 },
   { id: 'media', label: 'Media Links', icon: Download },
