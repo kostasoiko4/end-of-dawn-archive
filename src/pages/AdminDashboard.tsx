@@ -5,9 +5,9 @@ import { selectIsAuthenticated, logoutAdmin } from '@/store/authSlice';
 import type { AppDispatch, RootState } from '@/store';
 import {
   updateHero, updateBio, updateSongs, updateLineup, updateReleases,
-  updateMerch, updateShows, updateFeatured, updateContact, updateSocialLinks, updateMediaLinks,
+  updateMerch, updateShows, updateContact, updateSocialLinks, updateMediaLinks,
   type HeroContent, type BioContent, type Song, type MemberItem, type ReleaseItem,
-  type MerchItem, type ShowItem, type FeaturedItem, type ContactInfo, type SocialLinks, type MediaLinks,
+  type MerchItem, type ShowItem, type ContactInfo, type SocialLinks, type MediaLinks,
 } from '@/store/contentSlice';
 import {
   LogOut, Home, Music, BookOpen, Users, Disc, ShoppingBag,
