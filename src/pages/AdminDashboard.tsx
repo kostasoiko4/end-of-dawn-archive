@@ -393,25 +393,6 @@ const AdminDashboard = () => {
           </div>
         );
 
-      case 'featured':
-        return (
-          <div className="space-y-4">
-            {featured.map((item, i) => (
-              <ItemCard key={i} title={item.title || `Item ${i + 1}`} onRemove={() => setFeatured(featured.filter((_, j) => j !== i))}>
-                <Field label="Title" value={item.title} onChange={v => updateFeaturedItem(i, 'title', v)} />
-                <Field label="Type" value={item.type} onChange={v => updateFeaturedItem(i, 'type', v)} />
-                <Field label="Tag" value={item.tag} onChange={v => updateFeaturedItem(i, 'tag', v)} />
-                <Field label="Description" value={item.description} onChange={v => updateFeaturedItem(i, 'description', v)} rows={3} />
-                <Field label="Link" value={item.link} onChange={v => updateFeaturedItem(i, 'link', v)} />
-                <DateField label="Date" value={item.date} onChange={v => updateFeaturedItem(i, 'date', v)} />
-                <ImageField label="Image" value={item.image} onChange={v => updateFeaturedItem(i, 'image', v)} />
-              </ItemCard>
-            ))}
-            <button onClick={() => setFeatured([...featured, { id: crypto.randomUUID(), type: '', tag: '', title: '', description: '', image: '', link: '', date: '' }])} className="btn-outline-gothic text-sm flex items-center gap-2">
-              <Plus className="w-4 h-4" /> Add Featured Item
-            </button>
-          </div>
-        );
 
       case 'contact':
         return (
