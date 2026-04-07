@@ -1,18 +1,16 @@
 import { useTranslation } from 'react-i18next';
 import { useSelector } from 'react-redux';
 import type { RootState } from '@/store';
+import { Skeleton } from '@/components/ui/skeleton';
 import eod3 from '@/assets/band/eod3.jpg';
 
 const Bio = () => {
   const { t } = useTranslation();
-  const bio = useSelector((state: RootState) => state.content.bio);
+  const { bio, loading } = useSelector((state: RootState) => state.content);
 
   return (
     <section id="bio" className="py-24 relative overflow-hidden">
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-charcoal via-background to-charcoal" />
-      
-      {/* Purple accent */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-primary/10 rounded-full blur-[100px]" />
 
       <div className="container mx-auto px-4 relative z-10">
@@ -33,21 +31,32 @@ const Bio = () => {
           </div>
 
           <div className="space-y-6">
-            <p className="text-lg text-foreground/90 leading-relaxed font-cormorant">
-              <strong className="text-silver">End of Dawn</strong> {bio.paragraph1.replace('End of Dawn ', '')}
-            </p>
-            
-            <p className="text-lg text-foreground/80 leading-relaxed font-cormorant">
-              {bio.paragraph2}
-            </p>
-
-            <p className="text-lg text-foreground/80 leading-relaxed font-cormorant">
-              {bio.paragraph3}
-            </p>
-
-            <blockquote className="border-l-2 border-primary pl-4 italic text-silver/80 font-cormorant text-xl">
-              "{bio.quote}"
-            </blockquote>
+            {loading ? (
+              <>
+                <Skeleton className="h-5 w-full bg-silver/10" />
+                <Skeleton className="h-5 w-11/12 bg-silver/10" />
+                <Skeleton className="h-5 w-full bg-silver/10" />
+                <Skeleton className="h-5 w-10/12 bg-silver/10" />
+                <Skeleton className="h-5 w-full bg-silver/10" />
+                <Skeleton className="h-5 w-9/12 bg-silver/10" />
+                <Skeleton className="h-8 w-3/4 bg-silver/10 mt-4" />
+              </>
+            ) : (
+              <>
+                <p className="text-lg text-foreground/90 leading-relaxed font-cormorant">
+                  <strong className="text-silver">End of Dawn</strong> {bio.paragraph1.replace('End of Dawn ', '')}
+                </p>
+                <p className="text-lg text-foreground/80 leading-relaxed font-cormorant">
+                  {bio.paragraph2}
+                </p>
+                <p className="text-lg text-foreground/80 leading-relaxed font-cormorant">
+                  {bio.paragraph3}
+                </p>
+                <blockquote className="border-l-2 border-primary pl-4 italic text-silver/80 font-cormorant text-xl">
+                  "{bio.quote}"
+                </blockquote>
+              </>
+            )}
           </div>
         </div>
       </div>
