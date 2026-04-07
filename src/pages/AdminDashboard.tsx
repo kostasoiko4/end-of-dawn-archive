@@ -210,7 +210,7 @@ const AdminDashboard = () => {
   const [releases, setReleases] = useState<ReleaseItem[]>(content.releases);
   const [merch, setMerch] = useState<MerchItem[]>(content.merch);
   const [shows, setShows] = useState<ShowItem[]>(content.shows);
-  const [featured, setFeatured] = useState<FeaturedItem[]>(content.featured);
+  
   const [contactInfo, setContactInfo] = useState<ContactInfo>(content.contact);
   const [socialLinks, setSocialLinksState] = useState<SocialLinks>(content.socialLinks);
   const [mediaLinks, setMediaLinksState] = useState<MediaLinks>(content.mediaLinks);
@@ -227,7 +227,7 @@ const AdminDashboard = () => {
   useEffect(() => { setReleases(content.releases); }, [content.releases]);
   useEffect(() => { setMerch(content.merch); }, [content.merch]);
   useEffect(() => { setShows(content.shows); }, [content.shows]);
-  useEffect(() => { setFeatured(content.featured); }, [content.featured]);
+  
   useEffect(() => { setContactInfo(content.contact); }, [content.contact]);
   useEffect(() => { setSocialLinksState(content.socialLinks); }, [content.socialLinks]);
   useEffect(() => { setMediaLinksState(content.mediaLinks); }, [content.mediaLinks]);
@@ -241,7 +241,7 @@ const AdminDashboard = () => {
       case 'releases': dispatch(updateReleases(releases)); break;
       case 'merch': dispatch(updateMerch(merch)); break;
       case 'shows': dispatch(updateShows(shows)); break;
-      case 'featured': dispatch(updateFeatured(featured)); break;
+      
       case 'contact': dispatch(updateContact(contactInfo)); break;
       case 'social': dispatch(updateSocialLinks(socialLinks)); break;
       case 'media': dispatch(updateMediaLinks(mediaLinks)); break;
@@ -269,9 +269,6 @@ const AdminDashboard = () => {
   };
   const updateShow = (i: number, field: keyof ShowItem, value: string) => {
     const arr = [...shows]; arr[i] = { ...arr[i], [field]: value } as any; setShows(arr);
-  };
-  const updateFeaturedItem = (i: number, field: keyof FeaturedItem, value: string) => {
-    const arr = [...featured]; arr[i] = { ...arr[i], [field]: value } as any; setFeatured(arr);
   };
 
   if (!isAuthenticated) return null;
