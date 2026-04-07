@@ -11,7 +11,7 @@ import {
 } from '@/store/contentSlice';
 import {
   LogOut, Home, Music, BookOpen, Users, Disc, ShoppingBag,
-  Star, Mail, Share2, Download, Save, Plus, Trash2, ChevronDown, ChevronUp,
+  Mail, Share2, Download, Save, Plus, Trash2, ChevronDown, ChevronUp,
   CalendarIcon, Upload, X,
 } from 'lucide-react';
 import { toast } from 'sonner';
