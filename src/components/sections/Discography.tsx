@@ -5,6 +5,7 @@ import type { RootState } from '@/store';
 import { Skeleton } from '@/components/ui/skeleton';
 import albumImg from '@/assets/band/primordial-darkness.jpg';
 import singleImg from '@/assets/band/eodShadow.jpg';
+import { format } from 'date-fns';
 
 const imageMap: Record<string, string> = {
   'primordial-darkness': albumImg,
@@ -61,7 +62,7 @@ const Discography = () => {
                     <div className="flex-1">
                       <div className="inline-block px-3 py-1 bg-primary/20 text-primary text-xs font-cinzel tracking-wider rounded mb-4">{t('discography.latestRelease')}</div>
                       <h3 className="font-gothic text-2xl md:text-3xl text-silver mb-2">{featuredRelease.title}</h3>
-                      <p className="text-muted-foreground font-cinzel tracking-wider mb-4">{featuredRelease.type} • {featuredRelease.date} • {featuredRelease.tracks} Tracks</p>
+                      <p className="text-muted-foreground font-cinzel tracking-wider mb-4">{featuredRelease.type} • {format(new Date(featuredRelease.date), "dd / MM / yyyy")} • {featuredRelease.tracks} Tracks</p>
                       <p className="text-muted-foreground font-cinzel tracking-wider mb-4 text-sm">Label: {featuredRelease.label}</p>
                       {featuredRelease.description && <p className="text-foreground/80 font-cormorant text-lg mb-6">{featuredRelease.description}</p>}
                       <div className="flex flex-wrap gap-4">
@@ -90,7 +91,7 @@ const Discography = () => {
                       </div>
                       <div>
                         <h4 className="font-cinzel text-silver group-hover:text-primary transition-colors">{release.title}</h4>
-                        <p className="text-sm text-muted-foreground">{release.type} • {release.date}</p>
+                        <p className="text-sm text-muted-foreground">{release.type} • {format(new Date(release.date), "dd / MM / yyyy")}</p>
                         <p className="text-xs text-muted-foreground mt-1">Label: {release.label}</p>
                         <p className="text-xs text-muted-foreground">{release.tracks} {release.tracks === 1 ? 'track' : 'tracks'}</p>
                       </div>

@@ -15,6 +15,7 @@ import merch1 from '@/assets/merch1.jpg';
 import merch2 from '@/assets/merch2.jpg';
 import merch3 from '@/assets/merch3.jpg';
 import merch4 from '@/assets/merch4.jpg';
+import { format } from 'date-fns';
 
 const imageMap: Record<string, string> = {
   'primordial-darkness': primordialDarkness,
@@ -190,7 +191,7 @@ const RecentlyFeatured = () => {
                         </div>
                         <div className="p-5 flex-1 flex flex-col">
                           {item.date && (
-                            <p className="text-xs text-muted-foreground font-cinzel tracking-wider mb-2">{item.date}</p>
+                            <p className="text-xs text-muted-foreground font-cinzel tracking-wider mb-2">{format(new Date(item.date), "dd / MM / yyyy")}</p>
                           )}
                           <h3 className="font-cinzel text-silver text-lg mb-2 group-hover:text-primary transition-colors">
                             {item.title}
