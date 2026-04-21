@@ -73,7 +73,8 @@ const Merch = () => {
                       <button
                         onClick={(e) => {
                           e.stopPropagation();
-                          dispatch(addItem({ name: product.name, price: product.price, image: product.image, link: product.link }));
+                          // dispatch(addItem({ name: product.name, price: product.price, image: product.image, link: product.link }));
+                          window.open(product.link, '__blank')
                         }}
                         className="btn-gothic text-sm opacity-0 group-hover:opacity-100 transition-all transform translate-y-4 group-hover:translate-y-0"
                       >
